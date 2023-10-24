@@ -8,6 +8,7 @@ module.exports = {
     // definiuje plik wejściowy
     mode: 'development',
     // definiuję tryb działania
+    devtool: 'source-map',
     output: {
         path: path.resolve(__dirname, 'build'),
         // definiuje ścieżką wyjściową
