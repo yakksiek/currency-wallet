@@ -7,13 +7,25 @@ const theme = {
             title: 'var(--dark-color-2)',
             text: 'var(--dark-color-3)',
             'element-bg': 'var(--black)',
+            'btn-text': 'var(--dark-color-3)',
         },
         light: {
             body: 'var(--color-1)',
             title: 'var(--color-3)',
             text: 'var(--color-4)',
             'element-bg': 'var(--color-2)',
+            'btn-text': 'var(--color-1)',
         },
+    },
+    wrapper: {
+        icon: css`
+            border: 1px solid var(--accent-color-3);
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--button-radius);
+        `,
     },
 };
 

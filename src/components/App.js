@@ -32,7 +32,7 @@ const App = function () {
 const StyledElement = styled.div`
     max-width: 300px;
     padding: 1rem;
-    border-radius: 1rem;
+    border-radius: 2rem;
 
     .red {
         color: var(--accent-color-2);

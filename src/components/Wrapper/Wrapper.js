@@ -21,6 +21,7 @@ const DefaultStyledWrapper = styled.div`
     & > * {
         flex: 1;
     } */
+  
 `;
 
 const StyledWrapper = styled(DefaultStyledWrapper)(({ theme, $as }) => theme.wrapper[$as]);

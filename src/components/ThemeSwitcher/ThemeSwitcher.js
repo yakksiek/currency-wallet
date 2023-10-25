@@ -33,6 +33,7 @@ const StyledThemeSwticher = styled.div`
 
     .button {
         background-color: ${({ mode, theme }) => theme.palete[mode].title};
+        color: ${({ mode, theme }) => theme.palete[mode]['btn-text']};
     }
 `;
 
