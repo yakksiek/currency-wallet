@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { StyledFieldWrapper } from './Switch.styled';
 
-function Switch({ handleClick }) {
+function Switch({ handleClick, name }) {
     const [isToggled, setIsToggled] = useState(false);
 
     const onToggle = () => {
@@ -13,8 +13,8 @@ function Switch({ handleClick }) {
 
     return (
         <StyledFieldWrapper>
-            <label htmlFor="darkMode" className="toggle-switch">
-                <input type="checkbox" id="darkMode" name="darkMode" checked={isToggled} onChange={onToggle} />
+            <label htmlFor={name} className="toggle-switch">
+                <input type="checkbox" id={name} name={name} checked={isToggled} onChange={onToggle} />
                 <span className="switch" />
             </label>
         </StyledFieldWrapper>
@@ -23,6 +23,7 @@ function Switch({ handleClick }) {
 
 Switch.propTypes = {
     handleClick: PropTypes.func.isRequired,
+    name: PropTypes.string.isRequired,
 };
 
 export default Switch;

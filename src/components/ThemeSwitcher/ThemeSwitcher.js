@@ -30,6 +30,10 @@ const StyledThemeSwticher = styled.div`
     .element {
         background-color: ${({ mode, theme }) => theme.palete[mode]['element-bg']};
     }
+
+    .button {
+        background-color: ${({ mode, theme }) => theme.palete[mode].title};
+    }
 `;
 
 export default ThemeSwitcher;

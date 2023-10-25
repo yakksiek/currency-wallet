@@ -27,6 +27,13 @@ module.exports = {
                 // określam jaki [loader]
                 // ma być wykorzystany
             },
+            {
+                test: /\.(ttf|otf|woff|woff2)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'fonts/[name][contenthash][ext]',
+                },
+            },
         ],
         // obecnie brak dodatkowych ustawień
     },

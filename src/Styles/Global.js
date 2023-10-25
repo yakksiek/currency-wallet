@@ -26,11 +26,25 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    sans-serif;
+    font-family: 'PoppinsMedium', sans-serif;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'PoppinsSemiBold', sans-serif;
+    }
+
+  button {
+    /* font-family: 'PoppinsSemiBold', sans-serif; */
+    /* font-family: 'PoppinsRegular', sans-serif; */
+    font-family: 'PoppinsMedium', sans-serif;
   }
 `;
 
