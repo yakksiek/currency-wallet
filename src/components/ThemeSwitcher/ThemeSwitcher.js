@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-function ThemeSwitcher({ children, mode }) {
+function ThemeSwitcher({ children, darkMode }) {
+    const mode = darkMode ? 'dark' : 'light';
     return <StyledThemeSwticher mode={mode}>{children}</StyledThemeSwticher>;
 }
 
 ThemeSwitcher.propTypes = {
     children: PropTypes.node.isRequired,
-    mode: PropTypes.string.isRequired,
+    darkMode: PropTypes.bool.isRequired,
 };
 
 const StyledThemeSwticher = styled.div`

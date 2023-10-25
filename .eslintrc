@@ -12,7 +12,16 @@
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
         "func-names": ["error", "as-needed"],
-        "no-unused-vars": "off"
+        "no-unused-vars": "off",
+        "import/no-extraneous-dependencies": "off",
+        "no-console": "off",
+        "no-restricted-syntax": [
+            "error",
+            {
+                "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
+                "message": "Unexpected property on console object was called"
+            }
+        ]
     },
     "globals": {
         "window": true,
