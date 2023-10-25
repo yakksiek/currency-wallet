@@ -1,7 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import { darkModeSlice } from '../features/darkModeSlice';
-import { formSlice } from '../features/form';
+import { formSlice } from '../features/formSlice';
 
 const rootReducer = combineReducers({
     darkMode: darkModeSlice.reducer,

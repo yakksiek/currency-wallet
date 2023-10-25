@@ -11,8 +11,7 @@ export const formSlice = createSlice({
     reducers: {
         toggleForm(state) {
             state.isOpen = !state.isOpen;
-            console.log('form open:');
-            console.log(state.isOpen);
+            console.log(`form open: ${state.isOpen}`);
         },
     },
 });
