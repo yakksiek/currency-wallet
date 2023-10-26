@@ -13,6 +13,7 @@ const App = function () {
     return (
         <ThemeProvider theme={theme}>
             <ThemeSwitcher darkMode={darkMode}>
+                <Dashboard />
                 <StyledElement className="element">
                     <h1>Działa</h1>
                     <p>
@@ -23,7 +24,6 @@ const App = function () {
                     <p className="green">15% $423 SELL</p>
                     <p className="grey">two months ago</p>
                 </StyledElement>
-                <Dashboard />
             </ThemeSwitcher>
         </ThemeProvider>
     );

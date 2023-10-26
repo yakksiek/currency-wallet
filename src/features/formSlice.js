@@ -2,7 +2,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    isOpen: false,
+    isOpen: true,
+    formData: { date: '2023-10-10T22:00:00.000Z' },
+    formErrors: {},
 };
 
 export const formSlice = createSlice({
@@ -12,6 +14,21 @@ export const formSlice = createSlice({
         toggleForm(state) {
             state.isOpen = !state.isOpen;
             console.log(`form open: ${state.isOpen}`);
+        },
+        setFormData(state, { payload }) {
+            const { name, value } = payload;
+            state.formData[name] = value;
+        },
+        setErrors(state, { payload }) {
+            state.formErrors = payload;
+        },
+        removeError(state, { payload }) {
+            const { name } = payload;
+            const { [name]: ommitedKey, ...filteredErrors } = state.formErrors;
+            state.formErrors = filteredErrors;
+        },
+        resetForm() {
+            return initialState;
         },
     },
 });

@@ -31,9 +31,9 @@ const StyledThemeSwticher = styled.div`
         background-color: ${({ mode, theme }) => theme.palete[mode]['element-bg']};
     }
 
-    .button {
-        background-color: ${({ mode, theme }) => theme.palete[mode].title};
-        color: ${({ mode, theme }) => theme.palete[mode]['btn-text']};
+    .active {
+        background-color: ${({ mode, theme }) => theme.palete[mode]['btn-bg']};
+        color: var(--color-2);
     }
 `;
 

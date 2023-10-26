@@ -16,6 +16,7 @@ const GlobalStyles = createGlobalStyle`
     --accent-color-3: rgb(87 87 87);
     --element-radius: 2rem;
     --button-radius: 1rem;
+    --font-shadow-glow: 0 0 10px rgba(255, 255, 255, 0.7);
 
 
 
@@ -29,9 +30,6 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: 'PoppinsMedium', sans-serif;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   }
 
   h1,
@@ -48,6 +46,7 @@ const GlobalStyles = createGlobalStyle`
     /* font-family: 'PoppinsRegular', sans-serif; */
     font-family: 'PoppinsMedium', sans-serif;
   }
+
 `;
 
 export default GlobalStyles;

@@ -7,7 +7,6 @@ function Dashboard() {
     return (
         <StyledDasboard>
             <Header />
-            {/* <p>Dasboard</p> */}
         </StyledDasboard>
     );
 }

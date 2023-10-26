@@ -10,23 +10,40 @@ import { MoonIcon, SunIcon } from '../../assets/icons';
 import Button from '../Button/Button';
 import Wrapper from '../Wrapper/Wrapper';
 import Popup from '../Popup';
+import DatePicker from '../DatePicker';
+import * as db from '../../data';
 
 import { StyledThemeSwitch, StyledHeader } from './Header.styled';
 
+const data = {
+    label: 'Date',
+    name: 'date',
+    type: 'date',
+    required: true,
+    errorMessage: 'Wrong date format',
+    element: 'DatePicker',
+    value: '',
+};
+
 function Header() {
     const { toggleTheme } = useDarkMode(darkModeActions.toggleDarkMode);
-    const { isOpen } = useSelector((store) => store.form);
+    const {
+        isOpen,
+        formData: { date },
+    } = useSelector((store) => store.form);
     const dispatch = useDispatch();
 
     const togglePopup = () => {
         dispatch(formActions.toggleForm());
     };
 
+    const expandedData = { ...data, value: date };
+
     return (
         <StyledHeader className="element">
             {isOpen && (
                 <Popup className="element" handleClick={togglePopup}>
-                    <h2>Działa</h2>
+                    <DatePicker fieldData={expandedData} />
                 </Popup>
             )}
             <Button handleClick={togglePopup}>
