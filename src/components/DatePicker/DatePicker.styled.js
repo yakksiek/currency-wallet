@@ -27,9 +27,7 @@ export const StyledHeader = styled.div`
     }
 
     .month {
-        /* flex: 1 0 0; */
-        /* text-align: center; */
-        /* margin-bottom: 0.2em; */
+        font-size: 1.5rem;
     }
 `;
 
@@ -72,7 +70,6 @@ export const StyledColGrid = styled.div`
 
     button:disabled {
         text-decoration: line-through;
-        /* pointer-events: none; */
         border: none;
     }
 
@@ -84,11 +81,7 @@ export const StyledColGrid = styled.div`
     }
 
     .active {
-        /* border-color: var(--color-3); */
-        /* background-color: var(--accent-color-1); */
-        /* color: white; */
         font-family: 'PoppinsSemiBold', sans-serif;
-        /* background-color: var(--color-3); */
         height: 100%;
         width: 100%;
         border-radius: 50%;

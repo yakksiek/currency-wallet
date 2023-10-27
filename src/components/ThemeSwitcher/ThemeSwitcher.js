@@ -37,6 +37,10 @@ const StyledThemeSwticher = styled.div`
         }
     }
 
+    .background {
+        background-color: ${({ mode, theme }) => theme.palete[mode].body};
+    }
+
     .element {
         background-color: ${({ mode, theme }) => theme.palete[mode]['element-bg']};
     }

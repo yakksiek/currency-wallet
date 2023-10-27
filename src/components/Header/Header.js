@@ -42,7 +42,7 @@ function Header() {
     return (
         <StyledHeader className="element">
             {isOpen && (
-                <Popup className="element" handleClick={togglePopup}>
+                <Popup handleClick={togglePopup} classes="element">
                     <DatePicker fieldData={expandedData} />
                 </Popup>
             )}

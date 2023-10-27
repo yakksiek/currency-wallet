@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 
 import { StyledPopup, StyledButton } from './Popup.styled';
 
-function Popup({ handleClick, children, className }) {
+function Popup({ handleClick, children, classes }) {
     return (
         <StyledPopup onClick={handleClick}>
-            <div className="popup-content element" onClick={(e) => e.stopPropagation()}>
+            <div className={`popup-content ${classes}`} onClick={(e) => e.stopPropagation()}>
                 <StyledButton className="close-button" onClick={handleClick}>
                     &times;
                 </StyledButton>
@@ -19,13 +19,13 @@ function Popup({ handleClick, children, className }) {
 }
 
 Popup.defaultProps = {
-    className: '',
+    classes: '',
 };
 
 Popup.propTypes = {
     handleClick: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
-    className: PropTypes.string,
+    classes: PropTypes.string,
 };
 
 export default Popup;
