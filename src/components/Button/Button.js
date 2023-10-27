@@ -47,6 +47,10 @@ const StyledButton = styled.button`
     gap: 10px;
     min-height: 50px;
 
+    & > svg {
+        color: ${({ $darkMode, theme }) => theme.palete[$darkMode]['btn-text']};
+    }
+
     &:hover {
         color: white;
         cursor: pointer;
@@ -91,11 +95,19 @@ const StyledButton = styled.button`
                 padding: 0.3rem;
                 min-height: 0;
                 aspect-ratio: 1;
+                border-color: ${({ $darkMode, theme }) => theme.palete[$darkMode]['btn-border']};
+            }
+
+            & > svg {
+                color: ${({ $darkMode, theme }) => theme.palete[$darkMode].text};
+            }
+
+            &:disabled > svg {
+                color: inherit;
             }
         `}
     
     &:disabled {
-        pointer-events: none;
     }
 `;
 

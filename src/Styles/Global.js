@@ -7,7 +7,6 @@ const GlobalStyles = createGlobalStyle`
     --color-3: rgb(0 108 255);
     --color-4: rgb(42 46 49);
     --dark-color-1: rgb(15 15 15);
-    /* --dark-color-2: rgb(106 14 255); */
     --dark-color-2: rgb(76 51 205);
     --dark-color-3: rgb(245 237 226);
     --black: rgb(0 0 0);
@@ -42,8 +41,6 @@ const GlobalStyles = createGlobalStyle`
     }
 
   button {
-    /* font-family: 'PoppinsSemiBold', sans-serif; */
-    /* font-family: 'PoppinsRegular', sans-serif; */
     font-family: 'PoppinsMedium', sans-serif;
   }
 

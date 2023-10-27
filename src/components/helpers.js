@@ -101,10 +101,10 @@ export function range(start, end) {
 //     return hours;
 // }
 
-export function getYesterday() {
+export function getToday() {
     const today = new Date();
     const yesterday = new Date(today);
-    yesterday.setDate(today.getDate() - 1);
+    yesterday.setDate(today.getDate());
     return yesterday;
 }
 

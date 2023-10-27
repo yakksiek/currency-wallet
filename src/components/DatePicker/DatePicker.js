@@ -15,10 +15,10 @@ import Button from '../Button';
 import { StyledPickerWrapper, StyledHeader, StyledBody, StyledColGrid } from './DatePicker.styled';
 import { formActions } from '../../features/formSlice';
 
-// const min = h.getYesterday();
+const min = h.getToday();
 // console.log(min);
 
-function DatePicker({ fieldData }) {
+function DatePicker({ minDate, fieldData }) {
     const dispatch = useDispatch();
     const { name, error, value } = fieldData;
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
@@ -56,7 +56,11 @@ function DatePicker({ fieldData }) {
 
     const getTimeFromState = (day) => new Date(currentYear, currentMonth, day).getTime();
     const renderDayNames = () =>
-        h.getSortedDays(currentYear, currentMonth, db.days).map((day) => <h5 key={day}>{day}</h5>);
+        h.getSortedDays(currentYear, currentMonth, db.days).map((day) => (
+            <h5 className="header-color" key={day}>
+                {day}
+            </h5>
+        ));
 
     const renderDays = () => {
         return h.range(1, h.getNumbersOfDaysInMonth(currentYear, currentMonth, db.days) + 1).map((day) => {
@@ -66,7 +70,7 @@ function DatePicker({ fieldData }) {
             return (
                 <button
                     key={day}
-                    // disabled={minDate?.getTime() > getTimeFromState(day)}
+                    disabled={minDate?.getTime() < getTimeFromState(day)}
                     id="day"
                     data-day={day}
                     className={selected ? 'active' : ''}
@@ -82,20 +86,20 @@ function DatePicker({ fieldData }) {
         <Wrapper>
             <StyledPickerWrapper>
                 <StyledHeader>
-                    <Button
-                        type="button"
-                        handleClick={prevMonth}
-                        variant="transparent"
-                        shape="circle"
-                        // disabled={minDate?.getTime() > getTimeFromState(1)}
-                    >
+                    <Button type="button" handleClick={prevMonth} variant="transparent" shape="circle">
                         <UilAngleLeft />
                     </Button>
                     <div className="date-wrapper">
                         <h3 className="month">{db.months[currentMonth]}</h3>
                         <h5>{currentYear}</h5>
                     </div>
-                    <Button type="button" handleClick={nextMonth} variant="transparent" shape="circle">
+                    <Button
+                        type="button"
+                        handleClick={nextMonth}
+                        variant="transparent"
+                        shape="circle"
+                        disabled={currentMonth === new Date().getMonth()}
+                    >
                         <UilAngleRight />
                     </Button>
                 </StyledHeader>
@@ -111,9 +115,9 @@ function DatePicker({ fieldData }) {
     );
 }
 
-// DatePicker.defaultProps = {
-//     // minDate: min,
-// };
+DatePicker.defaultProps = {
+    minDate: min,
+};
 
 DatePicker.propTypes = {
     fieldData: PropTypes.shape({
@@ -126,7 +130,7 @@ DatePicker.propTypes = {
         errorMessage: PropTypes.string.isRequired,
         // value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     }).isRequired,
-    // minDate: PropTypes.instanceOf(Date),
+    minDate: PropTypes.instanceOf(Date),
 };
 
 export default DatePicker;

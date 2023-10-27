@@ -27,8 +27,22 @@ const StyledThemeSwticher = styled.div`
         color: ${({ mode, theme }) => theme.palete[mode].title};
     }
 
+    button:disabled {
+        color: ${({ mode, theme }) => theme.palete[mode]['btn-disabled']};
+        border-color: ${({ mode, theme }) => theme.palete[mode]['btn-disabled']};
+        pointer-events: none;
+
+        & > * {
+            color: ${({ mode, theme }) => theme.palete[mode]['btn-disabled']};
+        }
+    }
+
     .element {
         background-color: ${({ mode, theme }) => theme.palete[mode]['element-bg']};
+    }
+
+    .header-color {
+        color: ${({ mode, theme }) => theme.palete[mode]['btn-bg']};
     }
 
     .active {

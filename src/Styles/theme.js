@@ -10,6 +10,8 @@ const theme = {
             'btn-bg': 'var(--dark-color-2)',
             'btn-text': 'var(--dark-color-3)',
             'btn-hover': 'var(--color-2)',
+            'btn-disabled': 'var(--accent-color-3)',
+            'btn-border': 'var(--accent-color-3)',
         },
         light: {
             body: 'var(--color-1)',
@@ -19,6 +21,8 @@ const theme = {
             'btn-bg': 'var(--color-3)',
             'btn-text': 'var(--color-1)',
             'btn-hover': 'var(--color-3)',
+            'btn-disabled': 'var(--dark-color-3)',
+            'btn-border': 'var(--accent-color-3)',
         },
     },
     wrapper: {

@@ -72,12 +72,11 @@ export const StyledColGrid = styled.div`
 
     button:disabled {
         text-decoration: line-through;
-        color: var(--font-color-disabled);
-        pointer-events: none;
+        /* pointer-events: none; */
+        border: none;
     }
 
     button:hover {
-        /* color: white; */
         transform: scale(1.2);
         transition: transform 0.3s;
         font-family: 'PoppinsMedium', sans-serif;
