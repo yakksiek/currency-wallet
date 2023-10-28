@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     isOpen: true,
-    formData: { date: '2023-10-10T22:00:00.000Z' },
+    formData: { date: '', currency: '' },
     formErrors: {},
 };
 

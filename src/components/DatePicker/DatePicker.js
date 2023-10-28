@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { UilAngleLeft, UilAngleRight } from '@iconscout/react-unicons';
-import PropTypes from 'prop-types';
+import PropTypes, { number } from 'prop-types';
 
 // eslint-disable-next-line import/no-cycle
 import * as db from '../../data';
@@ -46,11 +46,11 @@ function DatePicker({ minDate, fieldData }) {
         event.preventDefault();
         if (event.target.id !== 'day') return;
 
-        const date = new Date(currentYear, currentMonth, event.target.getAttribute('data-day'));
+        const dateFormatted = h.dateToISOString(
+            new Date(currentYear, currentMonth, event.target.getAttribute('data-day')),
+        );
 
-        const dateString = date.toISOString();
-        console.log(dateString);
-        dispatch(formActions.setFormData({ name, value: dateString }));
+        dispatch(formActions.setFormData({ name, value: dateFormatted }));
         dispatch(formActions.removeError({ name }));
     };
 
@@ -62,10 +62,13 @@ function DatePicker({ minDate, fieldData }) {
             </h5>
         ));
 
-    const renderDays = () => {
-        return h.range(1, h.getNumbersOfDaysInMonth(currentYear, currentMonth, db.days) + 1).map((day) => {
-            const valueDateObject = new Date(value);
-            const selected = valueDateObject?.getTime() === new Date(currentYear, currentMonth, day).getTime();
+    const renderDays = (stateDate) => {
+        const numberOfDaysImMonth = h.getNumbersOfDaysInMonth(currentYear, currentMonth);
+        return h.createNumberRangeArray(1, numberOfDaysImMonth).map((day) => {
+            const selectedDateObj = new Date(stateDate);
+            const dateToRenderObj = new Date(currentYear, currentMonth, day);
+            const selected =
+                selectedDateObj.getTime() === dateToRenderObj.getTime() - dateToRenderObj.getTimezoneOffset() * 60000;
 
             return (
                 <button
@@ -107,7 +110,7 @@ function DatePicker({ minDate, fieldData }) {
                 <StyledBody>
                     <StyledColGrid $heading="true">{renderDayNames()}</StyledColGrid>
 
-                    <StyledColGrid onClick={handleSelection}>{renderDays()}</StyledColGrid>
+                    <StyledColGrid onClick={handleSelection}>{renderDays(value)}</StyledColGrid>
                 </StyledBody>
             </StyledPickerWrapper>
             {/* <Error>{error}</Error> */}

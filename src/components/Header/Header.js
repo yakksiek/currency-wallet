@@ -11,6 +11,7 @@ import Button from '../Button/Button';
 import Wrapper from '../Wrapper/Wrapper';
 import Popup from '../Popup';
 import DatePicker from '../DatePicker';
+import Select from '../Select';
 import * as db from '../../data';
 
 import { StyledThemeSwitch, StyledHeader } from './Header.styled';
@@ -25,8 +26,19 @@ const data = {
     value: '',
 };
 
+const currencyData = {
+    label: 'Currency',
+    name: 'currency',
+    type: 'currency',
+    required: true,
+    errorMessage: 'Pick currency to load the price',
+    element: 'TimePicker',
+    group: 2,
+};
+
 function Header() {
     const { toggleTheme } = useDarkMode(darkModeActions.toggleDarkMode);
+    const { currency } = useSelector((store) => store.form);
     const {
         isOpen,
         formData: { date },
@@ -43,7 +55,15 @@ function Header() {
         <StyledHeader className="element">
             {isOpen && (
                 <Popup handleClick={togglePopup} classes="element">
-                    <DatePicker fieldData={expandedData} />
+                    <div style={{ display: 'flex', gap: '3rem', alignItems: 'flex-start', minWidth: '500px' }}>
+                        <DatePicker fieldData={expandedData} />
+                        <Select
+                            optionsList={db.currencies}
+                            placeholder="choose currency"
+                            name="currency"
+                            value={currency}
+                        />
+                    </div>
                 </Popup>
             )}
             <Button handleClick={togglePopup}>

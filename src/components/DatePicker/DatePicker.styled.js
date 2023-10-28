@@ -4,6 +4,7 @@ export const StyledPickerWrapper = styled.div`
     background-color: var(--background-color-2);
     box-shadow: var(--box-shadow-flat);
     border-radius: var(--outer-radius);
+    min-width: 300px;
 
     .header-line {
         background-color: var(--font-color-color-2);

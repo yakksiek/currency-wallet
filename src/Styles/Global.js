@@ -27,7 +27,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
   }
 
-  body {
+  body, button, input {
     font-family: 'PoppinsMedium', sans-serif;
   }
 
@@ -40,9 +40,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'PoppinsSemiBold', sans-serif;
     }
 
-  button {
-    font-family: 'PoppinsMedium', sans-serif;
-  }
+  
 
 `;
 
