@@ -1,7 +1,6 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
-/* eslint-disable indent */
 import React, { useState, useEffect, useRef, createRef } from 'react';
 import { UilSearch, UilDirection } from '@iconscout/react-unicons';
 
@@ -78,7 +77,6 @@ function Select({ optionsList, placeholder, handleChange, name, value }) {
     };
 
     const handleKeyDown = (e) => {
-        // eslint-disable-next-line default-case
         switch (e.code) {
             case 'Space':
                 setListVisible((prevState) => !prevState);
@@ -102,6 +100,7 @@ function Select({ optionsList, placeholder, handleChange, name, value }) {
             case 'Escape':
                 setListVisible(false);
                 break;
+            default:
         }
     };
 
