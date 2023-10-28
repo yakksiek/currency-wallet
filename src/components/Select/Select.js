@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-case-declarations */
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useRef, createRef } from 'react';
-import { UilSearch, UilDirection } from '@iconscout/react-unicons';
+import { UilSearch, UilDirection, UilTimesCircle } from '@iconscout/react-unicons';
 
 import {
     StyledCustomSelect,
@@ -16,7 +18,7 @@ import {
 
 function Select({ optionsList, placeholder, handleChange, name, value }) {
     const [selectedValue, setselectedValue] = useState(placeholder);
-    const [optionsArr, setOptions] = useState(optionsList);
+    const [optionsArr, setOptionsArr] = useState(optionsList);
     const [inputValue, setInputValue] = useState('');
     const [listVisible, setListVisible] = useState(false);
     const [highlightedIndex, setHeighlitedIndex] = useState(0);
@@ -130,7 +132,7 @@ function Select({ optionsList, placeholder, handleChange, name, value }) {
 
     const filterOptions = (query) => {
         const filteredOptions = optionsList.filter((item) => item.includes(query));
-        setOptions(filteredOptions);
+        setOptionsArr(filteredOptions);
     };
 
     const handleInputChange = (e) => {
@@ -138,6 +140,25 @@ function Select({ optionsList, placeholder, handleChange, name, value }) {
         setInputValue(query);
         filterOptions(query);
     };
+
+    const handleResetValue = (e) => {
+        e.stopPropagation();
+        setInputValue('');
+        if (optionsArr.length !== optionsList.length) {
+            setOptionsArr(optionsList);
+        }
+    };
+
+    const renderInputIcon = (inputValue) =>
+        inputValue === '' ? (
+            <span>
+                <UilSearch />
+            </span>
+        ) : (
+            <span type="button" onClick={handleResetValue}>
+                <UilTimesCircle />
+            </span>
+        );
 
     return (
         <StyledCustomSelect
@@ -154,8 +175,7 @@ function Select({ optionsList, placeholder, handleChange, name, value }) {
             <StyledListContainer $listVisible={listVisible}>
                 <StyledInputContainer>
                     <StyledInput placeholder="search" onChange={handleInputChange} value={inputValue} />
-
-                    <UilSearch />
+                    {renderInputIcon(inputValue)}
                 </StyledInputContainer>
                 <StyledSelectOptions $listVisible={listVisible}>{renderOptions(optionsArr)}</StyledSelectOptions>
             </StyledListContainer>

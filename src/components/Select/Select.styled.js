@@ -83,10 +83,13 @@ export const StyledInputContainer = styled.div`
     /* width: 100%; */
     position: relative;
 
-    & > svg {
+    & > span {
         position: absolute;
         right: 1.5rem;
         top: 25%;
+    }
+
+    svg {
         transform: scale(0.8);
     }
 `;
