@@ -72,7 +72,8 @@ function Select({ optionsList, placeholder, handleChange, name, value }) {
         setHeighlitedIndex(index);
     };
 
-    const handleClick = () => {
+    const handleClick = (e) => {
+        if (e.target.tagName === 'INPUT') return;
         setListVisible((prevState) => !prevState);
     };
 
@@ -104,10 +105,6 @@ function Select({ optionsList, placeholder, handleChange, name, value }) {
         }
     };
 
-    const handleBlur = () => {
-        setListVisible(false);
-    };
-
     const selectOption = (e, name) => {
         e.stopPropagation();
         setselectedValue(name);
@@ -132,8 +129,6 @@ function Select({ optionsList, placeholder, handleChange, name, value }) {
             );
         });
 
-    console.log(`listvisibe: ${listVisible}`);
-
     const filterOptions = (query) => {
         const filteredOptions = optionsList.filter((item) => item.includes(query));
         setOptions(filteredOptions);
@@ -146,8 +141,14 @@ function Select({ optionsList, placeholder, handleChange, name, value }) {
     };
 
     return (
-        <StyledCustomSelect tabIndex="0" ref={selectContainerRef} onKeyDown={handleKeyDown} $listVisible={listVisible}>
-            <StyledValue onClick={handleClick}>
+        <StyledCustomSelect
+            onClick={handleClick}
+            tabIndex="0"
+            ref={selectContainerRef}
+            onKeyDown={handleKeyDown}
+            $listVisible={listVisible}
+        >
+            <StyledValue>
                 {selectedValue}
                 <UilDirection className="options-icon" />
             </StyledValue>
