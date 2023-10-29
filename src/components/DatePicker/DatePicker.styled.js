@@ -7,8 +7,8 @@ export const StyledPickerWrapper = styled.div`
     min-width: 300px;
 
     .header-line {
-        background-color: var(--font-color-color-2);
-        height: 1px;
+        background-color: var(--accent-color-3);
+        height: .5px;
         width: 100%;
     }
 `;

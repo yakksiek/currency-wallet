@@ -87,7 +87,7 @@ function DatePicker({ minDate, fieldData }) {
 
     return (
         <Wrapper>
-            <StyledPickerWrapper>
+            <StyledPickerWrapper className="element">
                 <StyledHeader>
                     <Button type="button" handleClick={prevMonth} variant="transparent" shape="circle">
                         <UilAngleLeft />

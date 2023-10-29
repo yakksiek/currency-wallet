@@ -43,10 +43,29 @@ const StyledThemeSwticher = styled.div`
 
     .element {
         background-color: ${({ mode, theme }) => theme.palete[mode]['element-bg']};
+        border-radius: var(--element-radius);
+        padding: var(--element-padding);
+        &:hover {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+        }
     }
 
-    .header-color {
+    .text-color {
+        color: ${({ mode, theme }) => theme.palete[mode].title};
+    }
+
+    .element-bg {
+        background-color: ${({ mode, theme }) => theme.palete[mode]['element-bg']};
+    }
+
+    .header-color,
+    .accent-color {
         color: ${({ mode, theme }) => theme.palete[mode]['btn-bg']};
+    }
+
+    .bg-color-hover:hover {
+        background-color: ${({ mode, theme }) => theme.palete[mode]['btn-bg']};
+        color: var(--color-1);
     }
 
     .active {

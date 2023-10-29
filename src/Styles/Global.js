@@ -14,6 +14,7 @@ const GlobalStyles = createGlobalStyle`
     --accent-color-2: rgb(242 85 82);
     --accent-color-3: rgb(87 87 87);
     --element-radius: 2rem;
+    --element-padding: 2rem;
     --button-radius: 1rem;
     --font-shadow-glow: 0 0 10px rgba(255, 255, 255, 0.7);
 

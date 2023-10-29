@@ -107,8 +107,6 @@ const StyledButton = styled.button`
             }
         `}
     
-    &:disabled {
-    }
 `;
 
 export default Button;

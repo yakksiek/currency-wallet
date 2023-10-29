@@ -1,29 +1,29 @@
 import styled, { css } from 'styled-components';
 
 const StyledCustomSelect = styled.div`
-    background-color: lightseagreen;
     display: flex;
     align-items: center;
-    padding: 0.75rem 1.5rem;
     outline: none;
     cursor: pointer;
     position: relative;
     min-width: 250px;
     min-height: 50px;
-    /* background-color: var(--background-color-2); */
-    /* box-shadow: var(--box-shadow-flat); */
-    /* border-radius: var(--outer-radius); */
     border-radius: 1rem;
     width: 100%;
+
+    &:hover {
+    }
 
     ${({ $listVisible }) =>
         $listVisible &&
         css`
-            display: block;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
+            && {
+                display: block;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
         `};
 
     ${({ $listVisible }) =>
@@ -35,7 +35,6 @@ const StyledCustomSelect = styled.div`
             }
             &:hover {
                 & > * {
-                    color: #fff;
                     text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
                 }
             }
@@ -43,7 +42,6 @@ const StyledCustomSelect = styled.div`
 `;
 
 const StyledValue = styled.span`
-    padding: 0.5rem 0;
     user-select: none;
     color: var(--font-color-1);
     transition: color 0.4s;
@@ -76,35 +74,38 @@ export const StyledListContainer = styled.div`
         $listVisible &&
         css`
             display: block;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         `};
 `;
 
 export const StyledInputContainer = styled.div`
-    /* width: 100%; */
     position: relative;
 
     & > span {
         position: absolute;
-        right: 1.5rem;
+        right: 2rem;
         top: 25%;
     }
 
     svg {
         transform: scale(0.8);
+        color: var(--accent-color-3);
+    }
+
+    .search-icon {
+        pointer-events: none;
     }
 `;
 
 export const StyledInput = styled.input`
     width: 100%;
     border: none;
-    background-color: lightseagreen;
-    border-top: 1px solid blue;
-    padding: 1rem;
-    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--accent-color-3);
+    border-bottom: 1px solid var(--accent-color-3);
+    padding: 1rem 2rem;
 `;
 
 const StyledSelectOptions = styled.ul`
-    /* display: none; */
     margin: 0;
     padding: 0;
     position: absolute;
@@ -112,16 +113,11 @@ const StyledSelectOptions = styled.ul`
     top: 100%;
     list-style: none;
     z-index: 100;
-    max-height: 10em;
+    max-height: 10rem;
     overflow-y: auto;
-    /* width: calc(100% - 3em); */
     width: 100%;
-    /* padding: 0.5em 1.5em; */
-    background-color: var(--background-color-2);
-    background-color: lightseagreen;
     box-shadow: var(--box-shadow-flat);
     border: none;
-    border-top: 1px solid blue;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -142,7 +138,6 @@ const StyledSelectOptions = styled.ul`
     ${({ $listVisible }) =>
         $listVisible &&
         css`
-            /* display: block; */
             border-top-left-radius: 0;
             border-top-right-radius: 0;
             border-bottom-right-radius: 10px;
@@ -151,7 +146,7 @@ const StyledSelectOptions = styled.ul`
 `;
 
 const StyledOptionItem = styled.li`
-    padding: 0.4em 0.5em;
+    padding: 0.4em 2em;
     cursor: pointer;
     user-select: none;
     font-family: 'PoppinsLight', sans-serif;
@@ -160,10 +155,10 @@ const StyledOptionItem = styled.li`
     ${({ $isOver }) =>
         $isOver &&
         css`
-            background: var(--color-3);
-            color: white;
+            background: lightgray;
             font-family: 'PoppinsSemiBold', sans-serif;
             font-size: 1.3em;
+            color: #000;
         `}
 `;
 

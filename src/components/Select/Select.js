@@ -158,6 +158,7 @@ function Select({ optionsList, placeholder, handleChange, name, value }) {
                     onMouseOver={() => handleOver(index)}
                     $isOver={isOver}
                     onClick={(e) => selectOption(e, item)}
+                    className="bg-color-hover"
                 >
                     {item}
                 </StyledOptionItem>
@@ -166,7 +167,7 @@ function Select({ optionsList, placeholder, handleChange, name, value }) {
 
     const renderInputIcon = (input) =>
         input === '' ? (
-            <span>
+            <span className="search-icon">
                 <UilSearch />
             </span>
         ) : (
@@ -182,6 +183,7 @@ function Select({ optionsList, placeholder, handleChange, name, value }) {
             ref={selectContainerRef}
             onKeyDown={handleKeyDown}
             $listVisible={listVisible}
+            className="element"
         >
             <StyledValue>
                 {selectedValue}
@@ -189,10 +191,18 @@ function Select({ optionsList, placeholder, handleChange, name, value }) {
             </StyledValue>
             <StyledListContainer $listVisible={listVisible}>
                 <StyledInputContainer>
-                    <StyledInput tabIndex="0" placeholder="search" onChange={handleInputChange} value={inputValue} />
+                    <StyledInput
+                        className="element-bg text-color"
+                        tabIndex="0"
+                        placeholder="search"
+                        onChange={handleInputChange}
+                        value={inputValue}
+                    />
                     {renderInputIcon(inputValue)}
                 </StyledInputContainer>
-                <StyledSelectOptions $listVisible={listVisible}>{renderOptions(optionsArr)}</StyledSelectOptions>
+                <StyledSelectOptions className="element-bg" $listVisible={listVisible}>
+                    {renderOptions(optionsArr)}
+                </StyledSelectOptions>
             </StyledListContainer>
         </StyledCustomSelect>
     );
