@@ -13,7 +13,6 @@ export const formSlice = createSlice({
     reducers: {
         toggleForm(state) {
             state.isOpen = !state.isOpen;
-            console.log(`form open: ${state.isOpen}`);
         },
         setFormData(state, { payload }) {
             const { name, value } = payload;

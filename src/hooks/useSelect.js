@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-function useSelect(optionsList, placeholder, value) {
+function useSelect(optionsList, placeholder, value, name, changeHandler) {
     const [selectedValue, setSelectedValue] = useState(placeholder);
     const [optionsArr, setOptionsArr] = useState(optionsList);
     const [inputValue, setInputValue] = useState('');
@@ -25,8 +25,7 @@ function useSelect(optionsList, placeholder, value) {
     useEffect(() => {
         if (selectedValue === placeholder) return;
 
-        // handleChange(name, selectedValue);
-        console.log(selectedValue);
+        changeHandler(name, selectedValue);
     }, [selectedValue]);
 
     useEffect(() => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { formActions } from '../../features/formSlice';
@@ -29,14 +29,29 @@ const currencyData = {
 const formStyles = { display: 'flex', gap: '3rem', alignItems: 'flex-start', minWidth: '500px' };
 
 function Form() {
-    const { currency } = useSelector((store) => store.form);
     const {
-        formData: { date },
+        formData: { date, currency },
     } = useSelector((store) => store.form);
+    const dispatch = useDispatch();
     const expandedData = { ...data, value: date };
+
+    useEffect(() => {
+        if (date !== '' && currency !== '') {
+            console.log('date');
+            console.log(date);
+            console.log('currency');
+            console.log(currency);
+        }
+    }, [date, currency]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+    };
+
+    const handleChange = (name, value) => {
+        if (value === '') throw new Error('empty value');
+
+        dispatch(formActions.setFormData({ name, value }));
     };
 
     return (
@@ -44,7 +59,13 @@ function Form() {
             <h2 style={{ margin: '0 0 1rem 0' }}>Add new transation</h2>
             <form action="" onSubmit={handleSubmit} style={formStyles}>
                 <DatePicker fieldData={expandedData} />
-                <Select optionsList={db.currencies} placeholder="choose currency" name="currency" value={currency} />
+                <Select
+                    optionsList={db.currencies}
+                    placeholder="choose currency"
+                    name="currency"
+                    value={currency}
+                    changeHandler={handleChange}
+                />
             </form>
         </div>
     );

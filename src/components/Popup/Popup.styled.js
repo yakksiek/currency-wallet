@@ -9,6 +9,7 @@ export const StyledPopup = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
     z-index: 999;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(4px);
@@ -20,7 +21,6 @@ export const StyledPopup = styled.div`
         border-radius: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
-
 `;
 
 export const StyledButton = styled.button`
