@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     isOpen: true,
-    formData: { date: '', currency: '' },
+    formData: { date: '', currency: '', price: '', amount: '' },
     formErrors: {},
 };
 

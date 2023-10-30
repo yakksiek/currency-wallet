@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -5,35 +6,15 @@ import { formActions } from '../../features/formSlice';
 import * as db from '../../data';
 import DatePicker from '../DatePicker';
 import Select from '../Select';
+import Input from '../Input';
 
-const data = {
-    label: 'Date',
-    name: 'date',
-    type: 'date',
-    required: true,
-    errorMessage: 'Wrong date format',
-    element: 'DatePicker',
-    value: '',
-};
-
-const currencyData = {
-    label: 'Currency',
-    name: 'currency',
-    type: 'currency',
-    required: true,
-    errorMessage: 'Pick currency to load the price',
-    element: 'Select',
-    group: 2,
-};
 
 const formStyles = { display: 'flex', gap: '3rem', alignItems: 'flex-start', minWidth: '500px' };
 
 function Form() {
-    const {
-        formData: { date, currency },
-    } = useSelector((store) => store.form);
+    const { formData } = useSelector((store) => store.form);
     const dispatch = useDispatch();
-    const expandedData = { ...data, value: date };
+    const { date, currency, price } = formData;
 
     useEffect(() => {
         if (date !== '' && currency !== '') {
@@ -41,6 +22,8 @@ function Form() {
             console.log(date);
             console.log('currency');
             console.log(currency);
+            console.log('price');
+            console.log(price);
         }
     }, [date, currency]);
 
@@ -48,24 +31,43 @@ function Form() {
         e.preventDefault();
     };
 
-    const handleChange = (name, value) => {
-        if (value === '') throw new Error('empty value');
-
+    const handleFieldChange = (name, value) => {
         dispatch(formActions.setFormData({ name, value }));
+    };
+
+    const renderInputs = (fields) => {
+        const groupedFields = {};
+        fields.forEach((field) => {
+            const group = field.group || 'default';
+            if (!groupedFields[group]) {
+                groupedFields[group] = [];
+            }
+
+            groupedFields[group].push(field);
+        });
+
+        const inputGroups = Object.values(groupedFields).map((fieldSet, index) => (
+            <div key={index} id={`item${index + 1}`} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {fieldSet.map((field) => {
+                    const { name, element } = field;
+                    // const error = formErrors[name];
+                    const value = formData[name];
+                    const fieldData = { ...field, onChange: handleFieldChange, value };
+                    const TagEl = element;
+
+                    return <TagEl key={name} fieldData={fieldData} />;
+                })}
+            </div>
+        ));
+
+        return inputGroups;
     };
 
     return (
         <div className="background">
             <h2 style={{ margin: '0 0 1rem 0' }}>Add new transation</h2>
             <form action="" onSubmit={handleSubmit} style={formStyles}>
-                <DatePicker fieldData={expandedData} />
-                <Select
-                    optionsList={db.currencies}
-                    placeholder="choose currency"
-                    name="currency"
-                    value={currency}
-                    changeHandler={handleChange}
-                />
+                {renderInputs(db.formFields)}
             </form>
         </div>
     );

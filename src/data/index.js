@@ -1,48 +1,7 @@
-// import DatePicker from '../components/DatePicker';
-
-export const formFields = [
-    {
-        label: 'Date',
-        name: 'date',
-        type: 'date',
-        required: true,
-        errorMessage: 'Wrong date format',
-        element: 'DatePicker',
-    },
-    {
-        label: 'Currency',
-        name: 'currency',
-        type: 'text',
-        required: true,
-        errorMessage: 'Cannot recognise currency',
-        element: '',
-    },
-    {
-        label: 'Amount',
-        name: 'amount',
-        type: 'number',
-        required: true,
-        errorMessage: 'Input must be a number',
-        element: '',
-    },
-];
-
-export const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-];
-
-export const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+/* eslint-disable import/no-cycle */
+import DatePicker from '../components/DatePicker';
+import Input from '../components/Input';
+import Select from '../components/Select';
 
 export const currencies = [
     '🇺🇸 USD', // United States Dollar
@@ -70,3 +29,65 @@ export const currencies = [
     '🇮🇩 IDR', // Indonesian Rupiah
     '🇲🇾 MYR', // Malaysian Ringgit
 ];
+
+export const formFields = [
+    {
+        label: 'Currency',
+        name: 'currency',
+        type: 'text',
+        required: true,
+        errorMessage: 'Cannot recognise currency',
+        element: Select,
+        group: 1,
+        optionsList: currencies,
+        placeholder: 'choose currency ',
+    },
+    {
+        label: 'Date',
+        name: 'date',
+        type: 'date',
+        required: true,
+        errorMessage: 'Wrong date format',
+        element: DatePicker,
+        group: 1,
+    },
+
+    {
+        label: 'Pick date and currency for loading the price',
+        name: 'price',
+        type: 'text',
+        required: true,
+        errorMessage: 'Input must be a number',
+        element: Input,
+        placeholder: '0,00',
+        group: 2,
+    },
+    {
+        label: 'Amount',
+        name: 'amount',
+        type: 'text',
+        required: true,
+        errorMessage: 'Input must be a number',
+        element: Input,
+        placeholder: '0',
+        defaultValues: ['100', '250', '500', '1000', '5000'],
+        group: 2,
+    },
+];
+
+export const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+];
+
+export const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];

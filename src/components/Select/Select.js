@@ -16,7 +16,8 @@ import {
     StyledInputContainer,
 } from './Select.styled';
 
-function Select({ optionsList, placeholder, changeHandler, name, value }) {
+function Select({ fieldData }) {
+    const { optionsList, placeholder, onChange, name, value } = fieldData;
     const {
         selectedValue,
         optionsArr,
@@ -31,7 +32,7 @@ function Select({ optionsList, placeholder, changeHandler, name, value }) {
         handleInputChange,
         handleResetValue,
         selectContainerRef,
-    } = useSelect(optionsList, placeholder, value, name, changeHandler);
+    } = useSelect(optionsList, placeholder, value, name, onChange);
 
     const renderOptions = (itemsArr) =>
         itemsArr.map((item, index) => {

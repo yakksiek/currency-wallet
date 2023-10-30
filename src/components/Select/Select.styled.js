@@ -7,9 +7,12 @@ const StyledCustomSelect = styled.div`
     cursor: pointer;
     position: relative;
     min-width: 250px;
-    min-height: 50px;
+    min-height: var(--min-input-height);
     border-radius: 1rem;
     width: 100%;
+    && {
+        padding: 1.5rem;
+    }
 
     &:hover {
     }

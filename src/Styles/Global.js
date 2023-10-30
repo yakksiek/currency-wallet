@@ -2,7 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    --color-1: rgb(250 250 250);
+    /* --color-1: rgb(250 250 250); */
+    --color-1: rgb(245 245 245);
     --color-2: rgb(255 255 255);
     --color-3: rgb(0 108 255);
     --color-4: rgb(42 46 49);
@@ -17,6 +18,7 @@ const GlobalStyles = createGlobalStyle`
     --element-padding: 2rem;
     --button-radius: 1rem;
     --font-shadow-glow: 0 0 10px rgba(255, 255, 255, 0.7);
+    --min-input-height: 4rem;
 
 
 
