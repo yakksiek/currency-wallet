@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { formActions } from '../../features/formSlice';
 import { fetchData, currenyActions } from '../../features/currencySlice';
 import Button from '../Button';
-import Spinner from '../Spinner';
 import * as db from '../../data';
 
 import { StyledHeader } from './Form.styled';
@@ -56,7 +55,7 @@ function Form() {
                     const { name, element } = field;
                     // const error = formErrors[name];
                     const value = formData[name];
-                    const fieldData = { ...field, onChange: handleFieldChange, value };
+                    const fieldData = { ...field, onChange: handleFieldChange, value, loading };
                     const TagEl = element;
 
                     return <TagEl key={name} fieldData={fieldData} />;
@@ -86,9 +85,11 @@ function Form() {
 
     return (
         <div className="background">
-            <StyledHeader style={{ display: 'flex' }}>
-                <h2>Add new transaction</h2>
-                {loading === 'pending' ? <Spinner /> : ''}
+            <StyledHeader>
+                <div>
+                    <h2>Add new transaction</h2>
+                    <h4 className="header-color">Pick date and currency to load the price</h4>
+                </div>
             </StyledHeader>
             <form action="" onSubmit={handleSubmit} style={formStyles}>
                 {renderInputs(db.formFields)}

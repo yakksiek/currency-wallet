@@ -39,7 +39,7 @@ export const formSlice = createSlice({
         // wykonianie obietnicy
         builder.addCase(fetchData.fulfilled, (state, action) => {
             if (action.payload) {
-                const value = action.payload.rates.PLN;
+                const value = Number(action.payload.rates.PLN).toFixed(4);
                 state.formData.price = value;
             }
         });

@@ -19,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
     --button-radius: 1rem;
     --font-shadow-glow: 0 0 10px rgba(255, 255, 255, 0.7);
     --min-input-height: 4rem;
+    --min-input-width:  18.75rem;
 
 
 

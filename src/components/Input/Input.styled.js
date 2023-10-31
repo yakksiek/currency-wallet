@@ -4,9 +4,18 @@ export const StyledFieldWrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 0.5rem;
+    min-width: var(--min-input-width);
 `;
 
-export const StyledInputWrapper = styled.div``;
+export const StyledInputWrapper = styled.div`
+    position: relative;
+
+    .spinner-wrapper {
+        position: absolute;
+        top: 35%;
+        left: 30%;
+    }
+`;
 
 export const StyledLabel = styled.label`
     margin-bottom: 0.5rem;

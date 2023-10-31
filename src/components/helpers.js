@@ -47,7 +47,7 @@ export function getUserLocale() {
     return userLanguage;
 }
 
-function formatNumber(numberString, locale) {
+export function formatNumber(numberString, locale) {
     try {
         const number = parseFloat(numberString);
 
@@ -61,8 +61,19 @@ function formatNumber(numberString, locale) {
     }
 }
 
-// // Example usage:
-// const numberString = '12345.67';
-// const locale = 'fr-FR'; // French locale
-// const formattedNumber = formatNumber(numberString, locale);
-// console.log(formattedNumber);
+export function formatCurrency(value, locale = 'en-US', currencySymbol = 'PLN') {
+    console.log(value);
+    // Parse the input string to a number
+    const numericValue = parseFloat(value);
+
+    // Check if it's a valid number
+    if (Number.isNaN(numericValue)) {
+        return 'Invalid Number';
+    }
+
+    // Use the toLocaleString function to format as currency
+    return numericValue.toLocaleString(locale, {
+        style: 'currency',
+        currency: currencySymbol,
+    });
+}

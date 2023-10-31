@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import * as h from '../helpers';
 import { formActions } from '../../features/formSlice';
 
 import Wrapper from '../Wrapper';
@@ -21,15 +22,30 @@ import {
 
 function Input({ fieldData }) {
     const dispatch = useDispatch();
-    const { name, type, value: inputValue, error, label, onChange, min, placeholder, defaultValues } = fieldData;
+    const {
+        name,
+        type,
+        value: inputValue,
+        error,
+        label,
+        onChange,
+        min,
+        placeholder,
+        defaultValues,
+        loader,
+        loading,
+    } = fieldData;
 
     useEffect(() => {
         // console.log('rerendered');
     }, []);
 
+    if (name === 'price') {
+        console.log(inputValue);
+    }
+
     const handleChange = (e) => {
         const { value } = e.target;
-        console.log(value);
         onChange(name, value);
     };
 
@@ -48,10 +64,19 @@ function Input({ fieldData }) {
         return <StyledDefaultList>{defaults}</StyledDefaultList>;
     };
 
+    const renderLoader = () => {
+        const Spinner = loader;
+        return (
+            <div className="spinner-wrapper">
+                <Spinner />
+            </div>
+        );
+    };
+
     return (
         <div>
             <StyledFieldWrapper>
-                <StyledLabel htmlFor={name}>{label}: </StyledLabel>
+                <StyledLabel htmlFor={name}>{label}:</StyledLabel>
                 <StyledInputWrapper>
                     <StyledInput
                         className="element"
@@ -63,6 +88,7 @@ function Input({ fieldData }) {
                         min={min}
                         placeholder={placeholder}
                     />
+                    {loader && loading === 'pending' && renderLoader()}
                     {defaultValues && renderDefaults(defaultValues)}
                 </StyledInputWrapper>
             </StyledFieldWrapper>

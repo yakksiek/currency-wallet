@@ -5,6 +5,8 @@ export const StyledHeader = styled.div`
     align-items: center;
     gap: 1rem;
     min-height: 3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
 `;
 
 export const StyledForm = styled.form``;

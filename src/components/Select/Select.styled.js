@@ -6,7 +6,7 @@ const StyledCustomSelect = styled.div`
     outline: none;
     cursor: pointer;
     position: relative;
-    min-width: 250px;
+    min-width: var(--min-input-width);
     min-height: var(--min-input-height);
     border-radius: 1rem;
     width: 100%;

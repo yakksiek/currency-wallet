@@ -2,6 +2,7 @@
 import DatePicker from '../components/DatePicker';
 import Input from '../components/Input';
 import Select from '../components/Select';
+import Spinner from '../components/Spinner';
 
 export const currencies = [
     '🇺🇸 USD', // United States Dollar
@@ -59,14 +60,15 @@ export const formFields = [
     },
 
     {
-        label: 'Pick date and currency for loading the price',
+        label: 'Price',
         name: 'price',
-        type: 'text',
+        type: 'number',
         required: true,
         errorMessage: 'Input must be a number',
         element: Input,
         placeholder: '0,00',
         group: 2,
+        loader: Spinner,
     },
     {
         label: 'Amount',
