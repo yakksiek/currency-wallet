@@ -117,15 +117,7 @@ export function findInputElementsInForm(form) {
     return inputElements;
 }
 
-// export function getFieldsData(state) {
-//     const fieldsData = { ...state};
-//     delete fieldsData['errors'];
-
-//     return fieldsData;
-// }
-
 export function customValidation(formFields, formData) {
-    // const fields = getFieldsData(formData);
     const errors = formFields.reduce((acc, field) => {
         const { name, required, label } = field;
         const isFieldEmpty = formData[name].length === 0;

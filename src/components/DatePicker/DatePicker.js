@@ -8,7 +8,7 @@ import PropTypes, { number } from 'prop-types';
 // eslint-disable-next-line import/no-cycle
 import * as db from '../../data';
 import * as h from '../helpers';
-// import Error from '../Error';
+import Error from '../Error';
 import Wrapper from '../Wrapper';
 import Button from '../Button';
 
@@ -112,7 +112,7 @@ function DatePicker({ minDate, fieldData }) {
                     <StyledColGrid onClick={handleSelection}>{renderDays(value)}</StyledColGrid>
                 </StyledBody>
             </StyledPickerWrapper>
-            {/* <Error>{error}</Error> */}
+            <Error>{error}</Error>
         </Wrapper>
     );
 }

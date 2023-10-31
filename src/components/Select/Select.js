@@ -5,6 +5,7 @@ import React, { createRef } from 'react';
 import { UilSearch, UilDirection, UilTimesCircle } from '@iconscout/react-unicons';
 
 import useSelect from '../../hooks/useSelect';
+import Error from '../Error';
 
 import {
     StyledCustomSelect,
@@ -17,7 +18,7 @@ import {
 } from './Select.styled';
 
 function Select({ fieldData }) {
-    const { optionsList, placeholder, onChange, name, value } = fieldData;
+    const { optionsList, placeholder, onChange, name, value, error } = fieldData;
     const {
         selectedValue,
         optionsArr,
@@ -65,34 +66,37 @@ function Select({ fieldData }) {
         );
 
     return (
-        <StyledCustomSelect
-            onClick={handleClick}
-            tabIndex="0"
-            ref={selectContainerRef}
-            onKeyDown={handleKeyDown}
-            $listVisible={listVisible}
-            className="element"
-        >
-            <StyledValue>
-                {selectedValue}
-                <UilDirection className="options-icon" />
-            </StyledValue>
-            <StyledListContainer $listVisible={listVisible}>
-                <StyledInputContainer>
-                    <StyledInput
-                        className="element-bg text-color"
-                        tabIndex="0"
-                        placeholder="search"
-                        onChange={handleInputChange}
-                        value={inputValue}
-                    />
-                    {renderInputIcon(inputValue)}
-                </StyledInputContainer>
-                <StyledSelectOptions className="element-bg" $listVisible={listVisible}>
-                    {renderOptions(optionsArr)}
-                </StyledSelectOptions>
-            </StyledListContainer>
-        </StyledCustomSelect>
+        <>
+            <StyledCustomSelect
+                onClick={handleClick}
+                tabIndex="0"
+                ref={selectContainerRef}
+                onKeyDown={handleKeyDown}
+                $listVisible={listVisible}
+                className="element"
+            >
+                <StyledValue>
+                    {selectedValue}
+                    <UilDirection className="options-icon" />
+                </StyledValue>
+                <StyledListContainer $listVisible={listVisible}>
+                    <StyledInputContainer>
+                        <StyledInput
+                            className="element-bg text-color"
+                            tabIndex="0"
+                            placeholder="search"
+                            onChange={handleInputChange}
+                            value={inputValue}
+                        />
+                        {renderInputIcon(inputValue)}
+                    </StyledInputContainer>
+                    <StyledSelectOptions className="element-bg" $listVisible={listVisible}>
+                        {renderOptions(optionsArr)}
+                    </StyledSelectOptions>
+                </StyledListContainer>
+            </StyledCustomSelect>
+            <Error>{error}</Error>
+        </>
     );
 }
 
