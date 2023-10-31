@@ -61,19 +61,83 @@ export function formatNumber(numberString, locale) {
     }
 }
 
-export function formatCurrency(value, locale = 'en-US', currencySymbol = 'PLN') {
-    console.log(value);
-    // Parse the input string to a number
-    const numericValue = parseFloat(value);
+// export function formatCurrency(value, locale = 'en-US', currencySymbol = 'PLN') {
+//     console.log(value);
+//     // Parse the input string to a number
+//     const numericValue = parseFloat(value);
 
-    // Check if it's a valid number
-    if (Number.isNaN(numericValue)) {
-        return 'Invalid Number';
-    }
+//     // Check if it's a valid number
+//     if (Number.isNaN(numericValue)) {
+//         return 'Invalid Number';
+//     }
 
-    // Use the toLocaleString function to format as currency
-    return numericValue.toLocaleString(locale, {
-        style: 'currency',
-        currency: currencySymbol,
+//     // Use the toLocaleString function to format as currency
+//     return numericValue.toLocaleString(locale, {
+//         style: 'currency',
+//         currency: currencySymbol,
+//     });
+// }
+
+export function validate(validationFields, inputElementsArr) {
+    let errors = {};
+    inputElementsArr.forEach((input) => {
+        const { name: inputName, value: inputValue } = input;
+        const validationField = validationFields.find((el) => el.name === inputName);
+        if (!validationField) throw new Error('no validation field');
+
+        const { label, pattern, required, name } = validationField;
+
+        if (required) {
+            if (inputValue.length === 0) {
+                const message = `[${label}] input is required`;
+                errors = { ...errors, [name]: message };
+                return;
+            }
+        }
+
+        if (pattern) {
+            const reg = new RegExp(pattern);
+            const isPatternMatch = reg.test(inputValue);
+            if (!isPatternMatch) {
+                const message = `Provided data in [${label}] not valid`;
+                errors = { ...errors, [name]: message };
+            }
+        }
     });
+
+    return errors;
+}
+
+export function findInputElementsInForm(form) {
+    const inputElements = Array.from(form.elements).filter(
+        (element) => element.tagName.toLowerCase() === 'input' && element.name,
+    );
+
+    return inputElements;
+}
+
+// export function getFieldsData(state) {
+//     const fieldsData = { ...state};
+//     delete fieldsData['errors'];
+
+//     return fieldsData;
+// }
+
+export function customValidation(formFields, formData) {
+    // const fields = getFieldsData(formData);
+    const errors = formFields.reduce((acc, field) => {
+        const { name, required, label } = field;
+        const isFieldEmpty = formData[name].length === 0;
+        if (!required || !isFieldEmpty) return acc;
+
+        return { ...acc, [name]: `[${label}] input is required` };
+    }, {});
+
+    return errors;
+}
+
+export function checkErrors(objectsArr) {
+    const isClean = objectsArr.every((obj) => Object.keys(obj).length === 0 && obj.constructor === Object);
+
+    return isClean;
 }

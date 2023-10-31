@@ -6,13 +6,14 @@ import { formActions } from '../../features/formSlice';
 import { fetchData, currenyActions } from '../../features/currencySlice';
 import Button from '../Button';
 import * as db from '../../data';
+import * as h from '../helpers';
 
 import { StyledHeader, StyledForm } from './Form.styled';
 
 const formStyles = { display: 'flex', gap: '3rem', alignItems: 'flex-start', minWidth: '500px' };
 
 function Form() {
-    const { formData } = useSelector((store) => store.form);
+    const { formData, formErrors } = useSelector((store) => store.form);
     const { data, loading, error: fetchError } = useSelector((store) => store.currency);
     const dispatch = useDispatch();
     const { date, currency, price } = formData;
@@ -33,7 +34,26 @@ function Form() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        const form = e.target;
+
+        // input validation
+        const inputElements = h.findInputElementsInForm(form);
+        const fieldErrors = h.validate(db.formFields, inputElements);
+
+        // custom validation
+        const customInputsErrors = h.customValidation(db.formFields, formData);
+        const updatedErrors = { ...fieldErrors, ...customInputsErrors };
+
+        dispatch(formActions.setErrors(updatedErrors));
+
+        const isFormClean = h.checkErrors([formErrors, updatedErrors]);
+        if (!isFormClean) {
+            console.log('errors');
+            return;
+        }
+
         console.log('submitted');
+        console.log(formData);
     };
 
     const handleFieldChange = (name, value) => {
@@ -55,9 +75,9 @@ function Form() {
             <div key={index} id={`item${index + 1}`} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {fieldSet.map((field) => {
                     const { name, element } = field;
-                    // const error = formErrors[name];
+                    const error = formErrors[name];
                     const value = formData[name];
-                    const fieldData = { ...field, onChange: handleFieldChange, value, loading };
+                    const fieldData = { ...field, onChange: handleFieldChange, value, loading, error };
                     const TagEl = element;
 
                     return <TagEl key={name} fieldData={fieldData} />;
