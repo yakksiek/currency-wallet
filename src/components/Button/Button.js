@@ -25,10 +25,11 @@ Button.defaultProps = {
     variant: '',
     shape: '',
     disabled: false,
+    handleClick: null,
 };
 
 Button.propTypes = {
-    handleClick: PropTypes.func.isRequired,
+    handleClick: PropTypes.func,
     children: PropTypes.node.isRequired,
     variant: PropTypes.string,
     shape: PropTypes.string,
@@ -106,7 +107,6 @@ const StyledButton = styled.button`
                 color: inherit;
             }
         `}
-    
 `;
 
 export default Button;

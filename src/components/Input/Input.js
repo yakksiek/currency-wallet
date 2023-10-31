@@ -34,6 +34,7 @@ function Input({ fieldData }) {
         defaultValues,
         loader,
         loading,
+        max,
     } = fieldData;
 
     useEffect(() => {
@@ -87,6 +88,7 @@ function Input({ fieldData }) {
                         value={inputValue}
                         min={min}
                         placeholder={placeholder}
+                        max={max}
                     />
                     {loader && loading === 'pending' && renderLoader()}
                     {defaultValues && renderDefaults(defaultValues)}

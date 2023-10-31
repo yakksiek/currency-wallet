@@ -60,7 +60,7 @@ export const formFields = [
     },
 
     {
-        label: 'Price',
+        label: 'Price in PLN',
         name: 'price',
         type: 'number',
         required: true,
@@ -69,9 +69,11 @@ export const formFields = [
         placeholder: '0,00',
         group: 2,
         loader: Spinner,
+        min: 0,
+        max: 10,
     },
     {
-        label: 'Amount',
+        label: 'Amount of currency bought',
         name: 'amount',
         type: 'text',
         required: true,

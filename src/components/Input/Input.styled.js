@@ -55,5 +55,6 @@ export const StyledDefaultItem = styled.li`
     &:hover {
         color: var(--color-3);
         border-color: var(--color-3);
+        transition: color 0.3s, border-color 0.3s;
     }
 `;

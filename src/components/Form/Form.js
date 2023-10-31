@@ -7,7 +7,7 @@ import { fetchData, currenyActions } from '../../features/currencySlice';
 import Button from '../Button';
 import * as db from '../../data';
 
-import { StyledHeader } from './Form.styled';
+import { StyledHeader, StyledForm } from './Form.styled';
 
 const formStyles = { display: 'flex', gap: '3rem', alignItems: 'flex-start', minWidth: '500px' };
 
@@ -32,6 +32,8 @@ function Form() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        console.log('submitted');
     };
 
     const handleFieldChange = (name, value) => {
@@ -91,9 +93,10 @@ function Form() {
                     <h4 className="header-color">Pick date and currency to load the price</h4>
                 </div>
             </StyledHeader>
-            <form action="" onSubmit={handleSubmit} style={formStyles}>
+            <StyledForm action="" onSubmit={handleSubmit} style={formStyles}>
                 {renderInputs(db.formFields)}
-            </form>
+                <input className="btn-submit text-color" type="submit" value="Add transaction" />
+            </StyledForm>
         </div>
     );
 }
