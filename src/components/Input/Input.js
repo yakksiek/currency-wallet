@@ -24,7 +24,7 @@ function Input({ fieldData }) {
     const { name, type, value: inputValue, error, label, onChange, min, placeholder, defaultValues } = fieldData;
 
     useEffect(() => {
-        console.log('rerendered');
+        // console.log('rerendered');
     }, []);
 
     const handleChange = (e) => {

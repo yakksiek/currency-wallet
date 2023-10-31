@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect, useRef, createRef } from 'react';
+import React, { createRef } from 'react';
 import { UilSearch, UilDirection, UilTimesCircle } from '@iconscout/react-unicons';
 
 import useSelect from '../../hooks/useSelect';

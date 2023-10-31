@@ -3,29 +3,31 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { formActions } from '../../features/formSlice';
+import { fetchData, currenyActions } from '../../features/currencySlice';
+import Button from '../Button';
 import * as db from '../../data';
-import DatePicker from '../DatePicker';
-import Select from '../Select';
-import Input from '../Input';
-
 
 const formStyles = { display: 'flex', gap: '3rem', alignItems: 'flex-start', minWidth: '500px' };
 
 function Form() {
     const { formData } = useSelector((store) => store.form);
+    const { data, loading, error: fetchError } = useSelector((store) => store.currency);
     const dispatch = useDispatch();
     const { date, currency, price } = formData;
 
     useEffect(() => {
         if (date !== '' && currency !== '') {
-            console.log('date');
-            console.log(date);
-            console.log('currency');
-            console.log(currency);
-            console.log('price');
-            console.log(price);
+            const dateString = date.split('T')[0];
+            const currencyString = currency.split(' ')[1];
+            console.log(currencyString, dateString);
+
+            dispatch(fetchData({ currency: currencyString, date: dateString }));
         }
     }, [date, currency]);
+
+    useEffect(() => {
+        console.log(fetchError);
+    }, [fetchError]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -62,6 +64,23 @@ function Form() {
 
         return inputGroups;
     };
+
+    const handleFetchErrorReset = () => {
+        dispatch(currenyActions.resetFetchError());
+    };
+
+    if (fetchError) {
+        return (
+            <div className="background">
+                <h2>{fetchError}</h2>
+                <hr />
+                <p>Problem getting the data. Try again or enter value manually</p>
+                <Button handleClick={handleFetchErrorReset} type="button">
+                    OK!
+                </Button>
+            </div>
+        );
+    }
 
     return (
         <div className="background">

@@ -1,6 +1,9 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
+// eslint-disable-next-line import/no-cycle
+import { fetchData } from './currencySlice';
+
 const initialState = {
     isOpen: true,
     formData: { date: '', currency: '', price: '', amount: '' },
@@ -29,6 +32,17 @@ export const formSlice = createSlice({
         resetForm() {
             return initialState;
         },
+    },
+    extraReducers: (builder) => {
+        // nie wiem, czy to zrobiłem w dobry sposób,
+        // zamysł był, żeby nastawić nasłuchwianie na
+        // wykonianie obietnicy
+        builder.addCase(fetchData.fulfilled, (state, action) => {
+            if (action.payload) {
+                const value = action.payload.rates.PLN;
+                state.formData.price = value;
+            }
+        });
     },
 });
 

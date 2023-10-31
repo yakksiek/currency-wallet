@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 
 function useSelect(optionsList, placeholder, value, name, changeHandler) {
-    const [selectedValue, setSelectedValue] = useState(placeholder);
+    const checkInitialValue = value.length === 0 ? placeholder : value;
+    const [selectedValue, setSelectedValue] = useState(checkInitialValue);
     const [optionsArr, setOptionsArr] = useState(optionsList);
     const [inputValue, setInputValue] = useState('');
     const [listVisible, setListVisible] = useState(false);
