@@ -7,7 +7,7 @@ const requestOptions = {
 };
 
 class CurrencyAPI {
-    url = `https://api.apilayer.com/exchangerates_dta`;
+    url = `https://api.apilayer.com/exchangerates_data`;
 
     getRates(options) {
         const { date, currency } = options;

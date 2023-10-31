@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { formActions } from '../../features/formSlice';
 import { fetchData, currenyActions } from '../../features/currencySlice';
 import Button from '../Button';
+import Spinner from '../Spinner';
 import * as db from '../../data';
+
+import { StyledHeader } from './Form.styled';
 
 const formStyles = { display: 'flex', gap: '3rem', alignItems: 'flex-start', minWidth: '500px' };
 
@@ -19,7 +22,6 @@ function Form() {
         if (date !== '' && currency !== '') {
             const dateString = date.split('T')[0];
             const currencyString = currency.split(' ')[1];
-            console.log(currencyString, dateString);
 
             dispatch(fetchData({ currency: currencyString, date: dateString }));
         }
@@ -84,7 +86,10 @@ function Form() {
 
     return (
         <div className="background">
-            <h2 style={{ margin: '0 0 1rem 0' }}>Add new transation</h2>
+            <StyledHeader style={{ display: 'flex' }}>
+                <h2>Add new transaction</h2>
+                {loading === 'pending' ? <Spinner /> : ''}
+            </StyledHeader>
             <form action="" onSubmit={handleSubmit} style={formStyles}>
                 {renderInputs(db.formFields)}
             </form>

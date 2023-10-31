@@ -16,7 +16,6 @@ import { StyledPickerWrapper, StyledHeader, StyledBody, StyledColGrid } from './
 import { formActions } from '../../features/formSlice';
 
 const min = h.getToday();
-// console.log(min);
 
 function DatePicker({ minDate, fieldData }) {
     const dispatch = useDispatch();
