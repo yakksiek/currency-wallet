@@ -6,30 +6,16 @@ export const StyledFieldWrapper = styled.div`
     margin-top: 0.5rem;
 `;
 
-export const StyledInputWrapper = styled.div`
-    /* padding: 0.3em; */
-    /* border-radius: 20px; */
-    /* border: double 2px transparent; */
-    /* background-image: linear-gradient(rgb(51 56 62), rgb(51 56 62)),
-        linear-gradient(to right, rgba(75, 81, 84, 1), rgba(52, 57, 63, 1));
-    background-origin: border-box;
-    background-clip: padding-box, border-box; */
-    /* box-shadow: var(--box-shadow-flat); */
-`;
+export const StyledInputWrapper = styled.div``;
 
 export const StyledLabel = styled.label`
     margin-bottom: 0.5rem;
 `;
 
 export const StyledInput = styled.input`
-    /* background-color: transparent; */
     width: 100%;
     min-height: var(--min-input-height);
-    /* padding: 1.1em 0; */
-    /* border-radius: var(--border-radius-inner); */
     border: none;
-    /* box-shadow: inset 9px 9px 18px #1c1f22, inset -9px -9px 18px #32373c; */
-    /* font-size: 1em; */
     color: var(--font-color-1);
     text-align: center;
     caret-color: var(--color-3);
@@ -55,4 +41,10 @@ export const StyledDefaultItem = styled.li`
     padding: 0.5rem;
     font-size: 0.75rem;
     cursor: pointer;
+    font-family: 'PoppinsSemiBold', sans-serif;
+
+    &:hover {
+        color: var(--color-3);
+        border-color: var(--color-3);
+    }
 `;
