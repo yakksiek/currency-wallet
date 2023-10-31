@@ -9,7 +9,7 @@ import { formActions } from '../../features/formSlice';
 
 import Wrapper from '../Wrapper';
 // import Label from '../Label';
-// import Error from '../Error';
+import Error from '../Error'
 
 import {
     StyledFieldWrapper,
@@ -94,7 +94,7 @@ function Input({ fieldData }) {
                     {defaultValues && renderDefaults(defaultValues)}
                 </StyledInputWrapper>
             </StyledFieldWrapper>
-            {/* <Error>{error}</Error> */}
+            <Error>{error}</Error>
         </div>
     );
 }

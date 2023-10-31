@@ -89,7 +89,7 @@ export function validate(validationFields, inputElementsArr) {
 
         if (required) {
             if (inputValue.length === 0) {
-                const message = `[${label}] input is required`;
+                const message = `Value is required`;
                 errors = { ...errors, [name]: message };
                 return;
             }
@@ -97,9 +97,10 @@ export function validate(validationFields, inputElementsArr) {
 
         if (pattern) {
             const reg = new RegExp(pattern);
+            console.log(reg);
             const isPatternMatch = reg.test(inputValue);
             if (!isPatternMatch) {
-                const message = `Provided data in [${label}] not valid`;
+                const message = `Provided input in wrong format`;
                 errors = { ...errors, [name]: message };
             }
         }
@@ -130,7 +131,7 @@ export function customValidation(formFields, formData) {
         const isFieldEmpty = formData[name].length === 0;
         if (!required || !isFieldEmpty) return acc;
 
-        return { ...acc, [name]: `[${label}] input is required` };
+        return { ...acc, [name]: `Value is required` };
     }, {});
 
     return errors;
