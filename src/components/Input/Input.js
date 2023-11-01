@@ -9,7 +9,7 @@ import { formActions } from '../../features/formSlice';
 
 import Wrapper from '../Wrapper';
 // import Label from '../Label';
-import Error from '../Error'
+import Error from '../Error';
 
 import {
     StyledFieldWrapper,
@@ -47,7 +47,7 @@ function Input({ fieldData }) {
 
     const handleChange = (e) => {
         const { value } = e.target;
-        onChange(name, value);
+        onChange(e);
     };
 
     const handleClick = (value) => {

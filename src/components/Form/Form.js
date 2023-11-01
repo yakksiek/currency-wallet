@@ -68,7 +68,8 @@ function Form() {
         dispatch(formActions.removeError({ name }));
     };
 
-    const handleFieldChange = (name, value) => {
+    const handleFieldChange = (e) => {
+        const { name, value } = e.target;
         dispatch(formActions.setFormData({ name, value }));
     };
 
