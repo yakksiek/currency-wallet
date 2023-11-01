@@ -18,7 +18,6 @@ class CurrencyAPI {
 
     // eslint-disable-next-line class-methods-use-this
     handleErrors(resp) {
-        console.log(resp);
         if (!resp.ok) {
             throw Error('Problem fetching data');
         }

@@ -34,10 +34,6 @@ function Input({ fieldData }) {
         max,
     } = fieldData;
 
-    if (name === 'price') {
-        console.log(inputValue);
-    }
-
     const handleChange = (e) => {
         onChange(e);
     };

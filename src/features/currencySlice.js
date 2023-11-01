@@ -37,12 +37,10 @@ export const currencySlice = createSlice({
                 state.loading = 'pending';
             })
             .addCase(fetchData.fulfilled, (state, action) => {
-                console.log(action.payload);
                 state.loading = 'succeeded';
                 state.data = action.payload;
             })
             .addCase(fetchData.rejected, (state, action) => {
-                console.log(action.payload);
                 state.loading = 'failed';
                 state.error = action.payload;
             });
