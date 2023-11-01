@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { useSelector } from 'react-redux';
 
-function Button({ handleClick, children, variant, shape, disabled }) {
+function Button({ handleClick, children, variant, shape, disabled, type }) {
     const { darkMode } = useSelector((store) => store.darkMode);
     const theme = darkMode ? 'dark' : 'light';
 
@@ -15,6 +15,7 @@ function Button({ handleClick, children, variant, shape, disabled }) {
             $shape={shape}
             disabled={disabled}
             $darkMode={theme}
+            type={type}
         >
             {children}
         </StyledButton>
@@ -26,6 +27,7 @@ Button.defaultProps = {
     shape: '',
     disabled: false,
     handleClick: null,
+    type: 'button',
 };
 
 Button.propTypes = {
@@ -34,6 +36,7 @@ Button.propTypes = {
     variant: PropTypes.string,
     shape: PropTypes.string,
     disabled: PropTypes.bool,
+    type: PropTypes.string,
 };
 
 const StyledButton = styled.button`

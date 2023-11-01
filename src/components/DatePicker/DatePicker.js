@@ -23,7 +23,7 @@ function DatePicker({ minDate, fieldData }) {
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
     const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
-    const nextMonth = () => {
+    const nextMonth = (e) => {
         if (currentMonth < 11) {
             setCurrentMonth((prev) => prev + 1);
         } else {
@@ -32,7 +32,7 @@ function DatePicker({ minDate, fieldData }) {
         }
     };
 
-    const prevMonth = () => {
+    const prevMonth = (e) => {
         if (currentMonth > 0) {
             setCurrentMonth((prev) => prev - 1);
         } else {

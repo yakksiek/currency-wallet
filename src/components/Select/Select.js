@@ -66,7 +66,7 @@ function Select({ fieldData }) {
         );
 
     return (
-        <>
+        <div>
             <StyledCustomSelect
                 onClick={handleClick}
                 tabIndex="0"
@@ -96,7 +96,7 @@ function Select({ fieldData }) {
                 </StyledListContainer>
             </StyledCustomSelect>
             <Error>{error}</Error>
-        </>
+        </div>
     );
 }
 
