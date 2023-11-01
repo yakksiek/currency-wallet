@@ -33,7 +33,6 @@ function Form() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
 
         const form = e.target;
 
@@ -55,6 +54,18 @@ function Form() {
 
         console.log('submitted');
         console.log(formData);
+    };
+
+    const liveValidation = (input) => {
+        const { name } = input;
+        const isErrorInState = formErrors[name];
+        if (!isErrorInState) return;
+
+        const inputError = h.validate(db.formFields, [input]);
+        const isErrorObjEmpty = h.isObjectEmpty(inputError);
+        if (!isErrorObjEmpty) return;
+
+        dispatch(formActions.removeError({ name }));
     };
 
     const handleFieldChange = (name, value) => {

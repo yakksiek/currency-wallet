@@ -129,8 +129,12 @@ export function customValidation(formFields, formData) {
     return errors;
 }
 
+export function isObjectEmpty(obj) {
+    return Object.keys(obj).length === 0 && obj.constructor === Object;
+}
+
 export function checkErrors(objectsArr) {
-    const isClean = objectsArr.every((obj) => Object.keys(obj).length === 0 && obj.constructor === Object);
+    const isClean = objectsArr.every((obj) => isObjectEmpty(obj));
 
     return isClean;
 }

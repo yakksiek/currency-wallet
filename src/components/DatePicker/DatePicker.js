@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { UilAngleLeft, UilAngleRight } from '@iconscout/react-unicons';
-import PropTypes, { number } from 'prop-types';
+import PropTypes from 'prop-types';
 
 // eslint-disable-next-line import/no-cycle
 import * as db from '../../data';
