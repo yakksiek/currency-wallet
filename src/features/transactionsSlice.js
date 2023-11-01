@@ -11,7 +11,9 @@ export const transactionsSlice = createSlice({
     reducers: {
         addTransaction(state, action) {
             const { transaction } = action.payload;
+
             const objWithID = { ...transaction, id: uuid() };
+            console.log(objWithID);
             state.transactions.push(objWithID);
             console.log('added transaction');
         },

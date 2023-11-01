@@ -5,7 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchData } from './currencySlice';
 
 const initialState = {
-    isOpen: true,
+    isOpen: false,
     formData: { date: '', currency: '', price: '', amount: '' },
     formErrors: {},
 };

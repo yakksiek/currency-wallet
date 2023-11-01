@@ -59,8 +59,7 @@ function useForm() {
         }
 
         console.log('submitted');
-        console.log(formData);
-        dispatch(transactionsActions.addTransaction(formData));
+        dispatch(transactionsActions.addTransaction({ transaction: formData }));
         dispatch(formActions.resetForm());
     };
 

@@ -16,7 +16,6 @@ import { StyledThemeSwitch, StyledHeader } from './Header.styled';
 
 function Header() {
     const { toggleTheme } = useDarkMode(darkModeActions.toggleDarkMode);
-    const { currency } = useSelector((store) => store.form);
     const { isOpen } = useSelector((store) => store.form);
     const dispatch = useDispatch();
 
