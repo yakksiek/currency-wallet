@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as h from '../components/helpers';
 import { formActions } from '../features/formSlice';
 import { fetchData, currencyActions } from '../features/currencySlice';
+import { transactionsActions } from '../features/transactionsSlice';
 import * as db from '../data';
 
 function useForm() {
@@ -59,6 +60,7 @@ function useForm() {
 
         console.log('submitted');
         console.log(formData);
+        dispatch(transactionsActions.addTransaction(formData));
         dispatch(formActions.resetForm());
     };
 
@@ -81,7 +83,7 @@ function useForm() {
         handleCustomInputSelection,
         handleSubmit,
         handleFetchErrorReset,
-        handleFieldChange
+        handleFieldChange,
     };
 }
 
