@@ -1,4 +1,5 @@
 /* global navigator */
+import React from 'react';
 
 export function getNumbersOfDaysInMonth(year, month) {
     const date = new Date(year, month, 1);

@@ -37,6 +37,7 @@ export const formSlice = createSlice({
         // nie wiem, czy to zrobiłem w dobry sposób,
         // zamysł był, żeby nastawić nasłuchwianie na
         // wykonianie obietnicy
+        // celem załadowania na bieżąco ceny w formularzu
         builder.addCase(fetchData.fulfilled, (state, action) => {
             if (action.payload) {
                 const value = Number(action.payload.rates.PLN).toFixed(4);

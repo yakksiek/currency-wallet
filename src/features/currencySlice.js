@@ -49,4 +49,4 @@ export const currencySlice = createSlice({
     },
 });
 
-export const currenyActions = currencySlice.actions;
+export const currencyActions = currencySlice.actions;

@@ -1,79 +1,23 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 
-import { formActions } from '../../features/formSlice';
-import { fetchData, currenyActions } from '../../features/currencySlice';
 import Button from '../Button';
 import * as db from '../../data';
-import * as h from '../helpers';
+import useForm from '../../hooks/useForm';
 
 import { StyledHeader, StyledForm } from './Form.styled';
 
-const formStyles = { display: 'flex', gap: '3rem', alignItems: 'flex-start', minWidth: '500px' };
-
 function Form() {
-    const { formData, formErrors } = useSelector((store) => store.form);
-    const { data, loading, error: fetchError } = useSelector((store) => store.currency);
-    const dispatch = useDispatch();
-    const { date, currency, price } = formData;
-
-    useEffect(() => {
-        if (date !== '' && currency !== '') {
-            const dateString = date.split('T')[0];
-            const currencyString = currency.split(' ')[1];
-
-            dispatch(fetchData({ currency: currencyString, date: dateString }));
-        }
-    }, [date, currency]);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        const form = e.target;
-
-        // input validation
-        const inputElements = h.findInputElementsInForm(form);
-        const fieldErrors = h.validate(db.formFields, inputElements);
-
-        // custom validation
-        const customInputsErrors = h.customValidation(db.formFields, formData);
-        const updatedErrors = { ...fieldErrors, ...customInputsErrors };
-
-        dispatch(formActions.setErrors(updatedErrors));
-
-        const isFormClean = h.checkErrors([formErrors, updatedErrors]);
-        if (!isFormClean) {
-            console.log('errors');
-            return;
-        }
-
-        console.log('submitted');
-        console.log(formData);
-    };
-
-    const liveValidation = (input) => {
-        const { name } = input;
-        const errorInState = formErrors[name];
-        if (!errorInState) return;
-
-        const inputError = h.validate(db.formFields, [input]);
-        const isErrorObjEmpty = h.isObjectEmpty(inputError);
-        if (!isErrorObjEmpty) return;
-
-        dispatch(formActions.removeError({ name }));
-    };
-
-    const handleFieldChange = (e) => {
-        const { name, value } = e.target;
-        dispatch(formActions.setFormData({ name, value }));
-        liveValidation(e.target);
-    };
-
-    const handleCustomInputSelection = (name, value) => {
-        dispatch(formActions.setFormData({ name, value }));
-        dispatch(formActions.removeError({ name }));
-    };
+    const {
+        formData,
+        formErrors,
+        loading,
+        fetchError,
+        handleCustomInputSelection,
+        handleSubmit,
+        handleFetchErrorReset,
+        handleFieldChange,
+    } = useForm();
 
     const renderInputs = (fields) => {
         const groupedFields = {};
@@ -110,10 +54,6 @@ function Form() {
         return inputGroups;
     };
 
-    const handleFetchErrorReset = () => {
-        dispatch(currenyActions.resetFetchError());
-    };
-
     if (fetchError) {
         return (
             <div className="background">
@@ -135,7 +75,7 @@ function Form() {
                     <h4 className="header-color">Pick date and currency to load the price</h4>
                 </div>
             </StyledHeader>
-            <StyledForm action="" onSubmit={handleSubmit} style={formStyles}>
+            <StyledForm action="" onSubmit={handleSubmit}>
                 {renderInputs(db.formFields)}
                 <input className="btn-submit text-color" type="submit" value="Add transaction" />
             </StyledForm>

@@ -24,10 +24,14 @@ function Header() {
         dispatch(formActions.toggleForm());
     };
 
+    const closePopup = () => {
+        dispatch(formActions.resetForm());
+    };
+
     return (
         <StyledHeader className="element">
             {isOpen && (
-                <Popup handleClick={togglePopup} classes="background">
+                <Popup handleClick={closePopup} classes="background">
                     <Form />
                 </Popup>
             )}

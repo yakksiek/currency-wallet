@@ -12,6 +12,9 @@ export const StyledHeader = styled.div`
 export const StyledForm = styled.form`
     display: flex;
     position: relative;
+    gap: 3rem;
+    align-items: flex-start;
+    min-width: 500px;
 
     .btn-submit {
         position: absolute;
