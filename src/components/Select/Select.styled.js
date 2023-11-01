@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const StyledCustomSelect = styled.div`
+export const StyledCustomSelect = styled.div`
     display: flex;
     align-items: center;
     outline: none;
@@ -44,7 +44,7 @@ const StyledCustomSelect = styled.div`
         `}
 `;
 
-const StyledValue = styled.span`
+export const StyledValue = styled.span`
     user-select: none;
     color: var(--font-color-1);
     transition: color 0.4s;
@@ -108,7 +108,7 @@ export const StyledInput = styled.input`
     padding: 1rem 2rem;
 `;
 
-const StyledSelectOptions = styled.ul`
+export const StyledSelectOptions = styled.ul`
     margin: 0;
     padding: 0;
     position: absolute;
@@ -148,7 +148,7 @@ const StyledSelectOptions = styled.ul`
         `};
 `;
 
-const StyledOptionItem = styled.li`
+export const StyledOptionItem = styled.li`
     padding: 0.4em 2em;
     cursor: pointer;
     user-select: none;
@@ -164,5 +164,3 @@ const StyledOptionItem = styled.li`
             color: #000;
         `}
 `;
-
-export { StyledCustomSelect, StyledValue, StyledSelectOptions, StyledOptionItem };
