@@ -27,10 +27,6 @@ function Form() {
         }
     }, [date, currency]);
 
-    useEffect(() => {
-        console.log(fetchError);
-    }, [fetchError]);
-
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -58,8 +54,8 @@ function Form() {
 
     const liveValidation = (input) => {
         const { name } = input;
-        const isErrorInState = formErrors[name];
-        if (!isErrorInState) return;
+        const errorInState = formErrors[name];
+        if (!errorInState) return;
 
         const inputError = h.validate(db.formFields, [input]);
         const isErrorObjEmpty = h.isObjectEmpty(inputError);
@@ -71,6 +67,12 @@ function Form() {
     const handleFieldChange = (e) => {
         const { name, value } = e.target;
         dispatch(formActions.setFormData({ name, value }));
+        liveValidation(e.target);
+    };
+
+    const handleCustomInputSelection = (name, value) => {
+        dispatch(formActions.setFormData({ name, value }));
+        dispatch(formActions.removeError({ name }));
     };
 
     const renderInputs = (fields) => {
@@ -90,7 +92,14 @@ function Form() {
                     const { name, element } = field;
                     const error = formErrors[name];
                     const value = formData[name];
-                    const fieldData = { ...field, onChange: handleFieldChange, value, loading, error };
+                    const fieldData = {
+                        ...field,
+                        onChange: handleFieldChange,
+                        value,
+                        loading,
+                        error,
+                        handleCustomSelection: handleCustomInputSelection,
+                    };
                     const TagEl = element;
 
                     return <TagEl key={name} fieldData={fieldData} />;

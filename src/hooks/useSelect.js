@@ -1,7 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { formActions } from '../features/formSlice';
 
 function useSelect(optionsList, placeholder, value, name, changeHandler) {
     const checkInitialValue = value.length === 0 ? placeholder : value;
@@ -12,7 +9,6 @@ function useSelect(optionsList, placeholder, value, name, changeHandler) {
     const [highlightedIndex, setHighlightedIndex] = useState(0);
     const optionRefs = useRef([]);
     const selectContainerRef = useRef(null);
-    const dispatch = useDispatch();
 
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -30,8 +26,7 @@ function useSelect(optionsList, placeholder, value, name, changeHandler) {
     useEffect(() => {
         if (selectedValue === placeholder) return;
 
-        dispatch(formActions.setFormData({ name, value: selectedValue }));
-        dispatch(formActions.removeError({ name }));
+        changeHandler(name, selectedValue);
     }, [selectedValue]);
 
     useEffect(() => {

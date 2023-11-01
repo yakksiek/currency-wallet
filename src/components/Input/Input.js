@@ -4,11 +4,8 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import * as h from '../helpers';
 import { formActions } from '../../features/formSlice';
 
-import Wrapper from '../Wrapper';
-// import Label from '../Label';
 import Error from '../Error';
 
 import {
@@ -37,22 +34,17 @@ function Input({ fieldData }) {
         max,
     } = fieldData;
 
-    useEffect(() => {
-        // console.log('rerendered');
-    }, []);
-
     if (name === 'price') {
         console.log(inputValue);
     }
 
     const handleChange = (e) => {
-        const { value } = e.target;
         onChange(e);
     };
 
     const handleClick = (value) => {
-        console.log(value);
         dispatch(formActions.setFormData({ name, value }));
+        dispatch(formActions.removeError({ name }));
     };
 
     const renderDefaults = (defaultsArr) => {

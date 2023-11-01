@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable arrow-body-style */
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { UilAngleLeft, UilAngleRight } from '@iconscout/react-unicons';
 import PropTypes from 'prop-types';
 
@@ -13,13 +12,11 @@ import Wrapper from '../Wrapper';
 import Button from '../Button';
 
 import { StyledPickerWrapper, StyledHeader, StyledBody, StyledColGrid } from './DatePicker.styled';
-import { formActions } from '../../features/formSlice';
 
 const min = h.getToday();
 
 function DatePicker({ minDate, fieldData }) {
-    const dispatch = useDispatch();
-    const { name, error, value } = fieldData;
+    const { name, error, value, handleCustomSelection } = fieldData;
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
     const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
@@ -49,8 +46,7 @@ function DatePicker({ minDate, fieldData }) {
             new Date(currentYear, currentMonth, event.target.getAttribute('data-day')),
         );
 
-        dispatch(formActions.setFormData({ name, value: dateFormatted }));
-        dispatch(formActions.removeError({ name }));
+        handleCustomSelection(name, dateFormatted);
     };
 
     const getTimeFromState = (day) => new Date(currentYear, currentMonth, day).getTime();

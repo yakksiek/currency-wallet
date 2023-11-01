@@ -97,7 +97,6 @@ export function validate(validationFields, inputElementsArr) {
 
         if (pattern) {
             const reg = new RegExp(pattern);
-            console.log(reg);
             const isPatternMatch = reg.test(inputValue);
             if (!isPatternMatch) {
                 const message = `Provided input in wrong format`;

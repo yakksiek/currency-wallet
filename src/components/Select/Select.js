@@ -18,7 +18,7 @@ import {
 } from './Select.styled';
 
 function Select({ fieldData }) {
-    const { optionsList, placeholder, onChange, name, value, error } = fieldData;
+    const { optionsList, placeholder, handleCustomSelection, name, value, error } = fieldData;
     const {
         selectedValue,
         optionsArr,
@@ -33,7 +33,7 @@ function Select({ fieldData }) {
         handleInputChange,
         handleResetValue,
         selectContainerRef,
-    } = useSelect(optionsList, placeholder, value, name, onChange);
+    } = useSelect(optionsList, placeholder, value, name, handleCustomSelection);
 
     const renderOptions = (itemsArr) =>
         itemsArr.map((item, index) => {

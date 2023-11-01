@@ -69,7 +69,7 @@ export const formFields = [
         placeholder: '0,00',
         group: 2,
         loader: Spinner,
-        pattern: '^\\d[,.]\\d{1,4}$',
+        pattern: '^\\d[.]\\d{1,4}$',
     },
     {
         label: 'Amount of currency bought',
