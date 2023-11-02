@@ -1,5 +1,6 @@
 /* eslint-disable arrow-body-style */
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import Table from '../Table';
@@ -100,11 +101,16 @@ const data = [
 const columnHeadings = ['Date', 'Symbol', 'Volume', 'Rates', 'Current rates', 'Value', 'Current Value', 'Profit'];
 
 function Trades() {
+    const { transactions } = useSelector((store) => store.transactions);
+    const { data: fetchData } = useSelector((store) => store.currency);
+    console.log(transactions);
+    console.log(fetchData);
+
     return (
         <div className="element">
             <h2 className="element-header">Trades</h2>
             <StyledTableContainer>
-                <Table headings={columnHeadings} tableData={data} />
+                <Table headings={columnHeadings} tableData={transactions} />
             </StyledTableContainer>
         </div>
     );
