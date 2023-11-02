@@ -48,6 +48,10 @@ const StyledThemeSwticher = styled.div`
         &:hover {
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
         }
+
+        h2 {
+            margin-bottom: 2rem;
+        }
     }
 
     .text-color {
@@ -71,6 +75,17 @@ const StyledThemeSwticher = styled.div`
     .active {
         background-color: ${({ mode, theme }) => theme.palete[mode]['btn-bg']};
         color: var(--color-2);
+    }
+
+    .border-color {
+        border-color: ${({ mode, theme }) => theme.palete[mode]['border-color']};
+    }
+
+    .border-color-table {
+        &:not(:last-child) {
+            border-bottom: 0.1px solid transparent;
+            border-bottom-color: ${({ mode, theme }) => theme.palete[mode]['border-color']};
+        }
     }
 `;
 

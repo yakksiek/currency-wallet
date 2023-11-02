@@ -13,6 +13,7 @@ const theme = {
             'btn-hover': 'var(--color-2)',
             'btn-disabled': 'var(--accent-color-3)',
             'btn-border': 'var(--accent-color-3)',
+            'border-color': 'var(--border-color-dark)',
         },
         light: {
             body: 'var(--color-1)',
@@ -25,6 +26,7 @@ const theme = {
             'btn-hover': 'var(--color-3)',
             'btn-disabled': 'var(--dark-color-3)',
             'btn-border': 'var(--accent-color-3)',
+            'border-color': 'var(--border-color-light)',
         },
     },
     wrapper: {

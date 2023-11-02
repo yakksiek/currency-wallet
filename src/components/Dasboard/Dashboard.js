@@ -14,7 +14,7 @@ function Dashboard() {
 }
 
 const StyledDasboard = styled.div`
-    max-width: 1600px;
+    max-width: 1200px;
     margin: 1rem auto;
     background-color: transparent;
     display: flex;
