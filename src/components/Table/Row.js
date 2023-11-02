@@ -21,7 +21,7 @@ const rowDataPropTypes = {
     currency: PropTypes.string.isRequired,
     amount: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    currentRate: PropTypes.number.isRequired,
+    currentRate: PropTypes.string.isRequired,
     totalPrice: PropTypes.string.isRequired,
     currentPrice: PropTypes.string.isRequired,
     summary: PropTypes.node.isRequired,

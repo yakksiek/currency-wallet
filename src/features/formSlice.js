@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 // eslint-disable-next-line import/no-cycle
-import { fetchData } from './currencySlice';
+import { fetchHistorical } from './currencySlice';
 
 const initialState = {
     isOpen: false,
@@ -38,10 +38,12 @@ export const formSlice = createSlice({
         // zamysł był, żeby nastawić nasłuchwianie na
         // wykonianie obietnicy
         // celem załadowania na bieżąco ceny w formularzu
-        builder.addCase(fetchData.fulfilled, (state, action) => {
+        builder.addCase(fetchHistorical.fulfilled, (state, action) => {
             if (action.payload) {
-                const value = Number(action.payload.rates.PLN).toFixed(4);
-                state.formData.price = value;
+                const [_, currency] = state.formData.currency.split(' ');
+                const value = Number(action.payload.rates[currency]);
+                const rate = (1 / value).toFixed(4);
+                state.formData.price = rate;
             }
         });
     },

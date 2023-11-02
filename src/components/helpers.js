@@ -62,23 +62,6 @@ export function formatNumber(numberString, locale) {
     }
 }
 
-// export function formatCurrency(value, locale = 'en-US', currencySymbol = 'PLN') {
-//     console.log(value);
-//     // Parse the input string to a number
-//     const numericValue = parseFloat(value);
-
-//     // Check if it's a valid number
-//     if (Number.isNaN(numericValue)) {
-//         return 'Invalid Number';
-//     }
-
-//     // Use the toLocaleString function to format as currency
-//     return numericValue.toLocaleString(locale, {
-//         style: 'currency',
-//         currency: currencySymbol,
-//     });
-// }
-
 export function validate(validationFields, inputElementsArr) {
     let errors = {};
     inputElementsArr.forEach((input) => {
@@ -137,4 +120,15 @@ export function checkErrors(objectsArr) {
     const isClean = objectsArr.every((obj) => isObjectEmpty(obj));
 
     return isClean;
+}
+
+export function getCurrencySymbols(objArr) {
+    const currencySymbols = new Set(
+        objArr.map((item) => {
+            const [_, symbol] = item.currency.split(' ');
+            return symbol;
+        }),
+    );
+
+    return [...currencySymbols];
 }

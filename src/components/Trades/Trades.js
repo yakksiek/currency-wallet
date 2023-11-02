@@ -1,9 +1,11 @@
 /* eslint-disable arrow-body-style */
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
+import * as h from '../helpers';
 import Table from '../Table';
+import { fetchLatest } from '../../features/currencySlice';
 
 const currentRates = {
     EUR: 4.49,
@@ -101,10 +103,13 @@ const data = [
 const columnHeadings = ['Date', 'Symbol', 'Volume', 'Rates', 'Current rates', 'Value', 'Current Value', 'Profit'];
 
 function Trades() {
+    const dispatch = useDispatch();
     const { transactions } = useSelector((store) => store.transactions);
-    const { data: fetchData } = useSelector((store) => store.currency);
-    console.log(transactions);
-    console.log(fetchData);
+    const currencySymbolsArr = h.getCurrencySymbols(transactions);
+
+    useEffect(() => {
+        dispatch(fetchLatest({ currency: currencySymbolsArr }));
+    }, []);
 
     return (
         <div className="element">

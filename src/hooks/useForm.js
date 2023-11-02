@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as h from '../components/helpers';
 import { formActions } from '../features/formSlice';
-import { fetchData, currencyActions } from '../features/currencySlice';
+import { fetchHistorical, currencyActions } from '../features/currencySlice';
 import { transactionsActions } from '../features/transactionsSlice';
 import * as db from '../data';
 
 function useForm() {
     const { formData, formErrors } = useSelector((store) => store.form);
-    const { loading, error: fetchError } = useSelector((store) => store.currency);
+    const { loading, error: fetchError } = useSelector((store) => store.currency.historical);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -16,7 +16,7 @@ function useForm() {
             const dateString = formData.date.split('T')[0];
             const currencyString = formData.currency.split(' ')[1];
 
-            dispatch(fetchData({ currency: currencyString, date: dateString }));
+            dispatch(fetchHistorical({ currency: currencyString, date: dateString, historical: true }));
         }
     }, [formData.date, formData.currency]);
 

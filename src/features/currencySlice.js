@@ -6,12 +6,11 @@ import CurrencyAPI from '../api/currencyProvider';
 const api = new CurrencyAPI();
 
 const initialState = {
-    data: null,
-    loading: 'idle',
-    error: null,
+    historical: { data: null, loading: 'idle', error: null },
+    latest: { data: null, loading: 'idle', error: null },
 };
 
-export const fetchData = createAsyncThunk('data/fetchData', async (options, { rejectWithValue }) => {
+export const fetchHistorical = createAsyncThunk('data/fetchHistorical', async (options, { rejectWithValue }) => {
     // w sumie to nie jestem pewien, czy dobrze to poniżej zrobiłem z await
     // może łatwiej/lepiej było zrobić z then().catch()
     try {
@@ -22,27 +21,49 @@ export const fetchData = createAsyncThunk('data/fetchData', async (options, { re
     }
 });
 
+export const fetchLatest = createAsyncThunk('data/fetchLatest', async (options, { rejectWithValue }) => {
+    try {
+        const data = await api.getRates(options);
+        return data;
+    } catch {
+        return rejectWithValue('Could not fetch latest rates. Try again later');
+    }
+});
+
 export const currencySlice = createSlice({
     name: 'data',
     initialState,
     reducers: {
         resetFetchError(state) {
-            state.error = null;
-            state.loading = 'idle';
+            state.historical.error = null;
+            state.historical.loading = 'idle';
         },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchData.pending, (state) => {
-                state.loading = 'pending';
+            .addCase(fetchHistorical.pending, (state) => {
+                state.historical.loading = 'pending';
             })
-            .addCase(fetchData.fulfilled, (state, action) => {
-                state.loading = 'succeeded';
-                state.data = action.payload;
+            .addCase(fetchHistorical.fulfilled, (state, action) => {
+                console.log(action.payload);
+                state.historical.loading = 'succeeded';
+                state.historical.data = action.payload;
             })
-            .addCase(fetchData.rejected, (state, action) => {
-                state.loading = 'failed';
-                state.error = action.payload;
+            .addCase(fetchHistorical.rejected, (state, action) => {
+                state.historical.loading = 'failed';
+                state.historical.error = action.payload;
+            })
+            .addCase(fetchLatest.pending, (state) => {
+                state.latest.loading = 'pending';
+            })
+            .addCase(fetchLatest.fulfilled, (state, action) => {
+                console.log(action.payload);
+                state.latest.loading = 'succeeded';
+                state.latest.data = action.payload;
+            })
+            .addCase(fetchLatest.rejected, (state, action) => {
+                state.latest.loading = 'failed';
+                state.latest.error = action.payload;
             });
     },
 });

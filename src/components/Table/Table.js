@@ -2,22 +2,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import { UilMultiply } from '@iconscout/react-unicons';
+import { useSelector } from 'react-redux';
 
 import Row from './Row';
 import Arrow from '../Arrow';
 import Button from '../Button';
 
-const currentRates = {
-    EUR: 4.49,
-    USD: 4.2701,
-    GBP: 5.172,
-};
+// const currentRates = {
+//     EUR: 4.49,
+//     USD: 4.2701,
+//     GBP: 5.172,
+// };
 
 function Table({ headings, tableData }) {
+    const {
+        data: { rates: currentRates },
+    } = useSelector((store) => store.currency.latest);
+    console.log(currentRates);
+
     const calculateProfitLoss = (transaction) => {
         const { currency, price, amount } = transaction;
-        const [flag, symbol] = currency.split(' ');
-        const rate = currentRates[symbol];
+        const [_, symbol] = currency.split(' ');
+        const rate = (1 / currentRates[symbol]).toFixed(4);
 
         const volume = parseFloat(amount);
         const totalPrice = parseFloat(price) * volume;
