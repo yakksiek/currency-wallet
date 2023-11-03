@@ -73,7 +73,12 @@ const StyledButton = styled.button`
             && {
                 background-color: transparent;
                 border: 1px solid var(--accent-color-3);
-                color: var(--accent-color-3);
+                /* color: var(--accent-color-3); */
+                color: ${({ $darkMode, theme }) => theme.palete[$darkMode]['btn-transparent-text']};
+            }
+
+            && > * {
+                color: ${({ $darkMode, theme }) => theme.palete[$darkMode]['btn-transparent-text']};
             }
 
             &&:hover {

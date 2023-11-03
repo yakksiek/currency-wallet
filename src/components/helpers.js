@@ -1,3 +1,4 @@
+/* eslint-disable no-else-return */
 /* global navigator */
 import React from 'react';
 
@@ -135,4 +136,30 @@ export function getCurrencySymbols(objArr) {
 
 export function removeObjectById(id, array) {
     return array.filter((item) => item.id !== id);
+}
+
+export function formatTimeDifference(timestamp) {
+    const currentTime = new Date();
+    const targetTime = new Date(timestamp * 1000); // Convert timestamp to milliseconds
+
+    const timeDifference = currentTime - targetTime;
+
+    const secondsAgo = Math.floor(timeDifference / 1000);
+
+    if (secondsAgo < 60) {
+        // Less than a minute
+        return 'updated a few seconds ago';
+    } else if (secondsAgo < 3600) {
+        // Less than an hour
+        const minutesAgo = Math.floor(secondsAgo / 60);
+        return `updated ${minutesAgo} minute${minutesAgo === 1 ? '' : 's'} ago`;
+    } else if (secondsAgo < 86400) {
+        // Less than a day
+        const hoursAgo = Math.floor(secondsAgo / 3600);
+        return `updated ${hoursAgo} hour${hoursAgo === 1 ? '' : 's'} ago`;
+    } else {
+        // More than a day
+        const daysAgo = Math.floor(secondsAgo / 86400);
+        return `updated ${daysAgo} day${daysAgo === 1 ? '' : 's'} ago`;
+    }
 }
