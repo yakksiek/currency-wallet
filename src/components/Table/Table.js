@@ -2,17 +2,19 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { UilMultiply, UilTrashAlt, UilTimes } from '@iconscout/react-unicons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Row from './Row';
 import Arrow from '../Arrow';
 import Button from '../Button';
 import Popup from '../Popup';
 import Wrapper from '../Wrapper';
+import { transactionsActions } from '../../features/transactionsSlice';
 
 function Table({ headings, tableData }) {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [itemToDelete, setItemToDelete] = useState(null);
+    const dispatch = useDispatch();
 
     const {
         data: { rates: currentRates },
@@ -64,8 +66,8 @@ function Table({ headings, tableData }) {
     };
 
     const handleDeleteItem = (id) => {
-        console.log('deleted');
-        console.log(id);
+        dispatch(transactionsActions.removeTransaction({ id }));
+        closeConfirmationPoup();
     };
 
     const renderRows = (dataArr) => {

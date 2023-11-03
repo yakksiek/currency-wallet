@@ -132,3 +132,7 @@ export function getCurrencySymbols(objArr) {
 
     return [...currencySymbols];
 }
+
+export function removeObjectById(id, array) {
+    return array.filter((item) => item.id !== id);
+}
