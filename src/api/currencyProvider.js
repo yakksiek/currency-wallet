@@ -11,11 +11,7 @@ class CurrencyAPI {
 
     getRates(options) {
         const { date, currency } = options;
-        console.log(date);
-        console.log(currency);
-
         const dateQuery = date || 'latest';
-        console.log(dateQuery);
 
         return fetch(`${this.url}/${dateQuery}?symbols=${currency}&base=PLN`, requestOptions)
             .then(this.handleErrors)

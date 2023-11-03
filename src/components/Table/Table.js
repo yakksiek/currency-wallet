@@ -8,17 +8,10 @@ import Row from './Row';
 import Arrow from '../Arrow';
 import Button from '../Button';
 
-// const currentRates = {
-//     EUR: 4.49,
-//     USD: 4.2701,
-//     GBP: 5.172,
-// };
-
 function Table({ headings, tableData }) {
     const {
         data: { rates: currentRates },
     } = useSelector((store) => store.currency.latest);
-    console.log(currentRates);
 
     const calculateProfitLoss = (transaction) => {
         const { currency, price, amount } = transaction;

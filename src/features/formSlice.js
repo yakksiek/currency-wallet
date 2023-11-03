@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 // eslint-disable-next-line import/no-cycle
-import { fetchHistorical } from './currencySlice';
+import { fetchRates } from './currencySlice';
 
 const initialState = {
     isOpen: false,
@@ -38,8 +38,11 @@ export const formSlice = createSlice({
         // zamysł był, żeby nastawić nasłuchwianie na
         // wykonianie obietnicy
         // celem załadowania na bieżąco ceny w formularzu
-        builder.addCase(fetchHistorical.fulfilled, (state, action) => {
-            if (action.payload) {
+        builder.addCase(fetchRates.fulfilled, (state, action) => {
+            const { dataType } = action.meta.arg;
+            if (!dataType) throw Error('dataType in payload not found');
+            
+            if (action.payload && dataType === 'historical') {
                 const [_, currency] = state.formData.currency.split(' ');
                 const value = Number(action.payload.rates[currency]);
                 const rate = (1 / value).toFixed(4);

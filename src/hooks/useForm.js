@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as h from '../components/helpers';
 import { formActions } from '../features/formSlice';
-import { fetchHistorical, currencyActions } from '../features/currencySlice';
+import { fetchRates, currencyActions } from '../features/currencySlice';
 import { transactionsActions } from '../features/transactionsSlice';
 import * as db from '../data';
 
@@ -16,7 +16,7 @@ function useForm() {
             const dateString = formData.date.split('T')[0];
             const currencyString = formData.currency.split(' ')[1];
 
-            dispatch(fetchHistorical({ currency: currencyString, date: dateString, historical: true }));
+            dispatch(fetchRates({ currency: currencyString, date: dateString, dataType: 'historical' }));
         }
     }, [formData.date, formData.currency]);
 
