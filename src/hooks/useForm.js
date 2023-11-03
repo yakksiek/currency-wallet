@@ -64,7 +64,7 @@ function useForm() {
     };
 
     const handleFetchErrorReset = () => {
-        dispatch(currencyActions.resetFetchError());
+        dispatch(currencyActions.resetFetchError({ dataType: 'historical' }));
     };
 
     const handleFieldChange = (e) => {

@@ -4,10 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import * as h from '../helpers';
+import * as db from '../../data';
 import Table from '../Table';
 import { fetchRates } from '../../features/currencySlice';
-
-const columnHeadings = ['Date', 'Symbol', 'Volume', 'Rates', 'Current rates', 'Value', 'Current Value', 'Profit'];
 
 function Trades() {
     const dispatch = useDispatch();
@@ -22,7 +21,7 @@ function Trades() {
         <div className="element">
             <h2 className="element-header">Trades</h2>
             <StyledTableContainer>
-                <Table headings={columnHeadings} tableData={transactions} />
+                <Table headings={db.columnHeadings} tableData={transactions} />
             </StyledTableContainer>
         </div>
     );

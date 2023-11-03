@@ -32,9 +32,12 @@ export const currencySlice = createSlice({
     name: 'data',
     initialState,
     reducers: {
-        resetFetchError(state) {
-            state.historical.error = null;
-            state.historical.loading = 'idle';
+        resetFetchError(state, action) {
+            const { dataType } = action.payload;
+            if (!dataType) throw Error('dataType in payload not found');
+
+            state[dataType].error = null;
+            state[dataType].loading = 'idle';
         },
     },
     extraReducers: (builder) => {

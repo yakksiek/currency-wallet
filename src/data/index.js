@@ -102,6 +102,8 @@ export const months = [
 
 export const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+export const columnHeadings = ['Date', 'Symbol', 'Volume', 'Rates', 'Current rates', 'Value', 'Current Value', 'Profit'];
+
 // const currentRates = {
 //     EUR: 4.49,
 //     USD: 4.2701,
