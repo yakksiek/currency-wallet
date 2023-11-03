@@ -1,14 +1,19 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { UilMultiply } from '@iconscout/react-unicons';
+import { UilMultiply, UilTrashAlt, UilTimes } from '@iconscout/react-unicons';
 import { useSelector } from 'react-redux';
 
 import Row from './Row';
 import Arrow from '../Arrow';
 import Button from '../Button';
+import Popup from '../Popup';
+import Wrapper from '../Wrapper';
 
 function Table({ headings, tableData }) {
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState(null);
+
     const {
         data: { rates: currentRates },
     } = useSelector((store) => store.currency.latest);
@@ -48,7 +53,18 @@ function Table({ headings, tableData }) {
         return headingsJXS;
     };
 
-    const handleItemDel = (id) => {
+    const openConfirmationPopup = (itemData) => {
+        setIsPopupOpen(true);
+        setItemToDelete(itemData);
+    };
+
+    const closeConfirmationPoup = () => {
+        setIsPopupOpen(false);
+        setItemToDelete(null);
+    };
+
+    const handleDeleteItem = (id) => {
+        console.log('deleted');
         console.log(id);
     };
 
@@ -72,7 +88,7 @@ function Table({ headings, tableData }) {
                     className="btn-delete"
                     variant="transparent"
                     shape="circle"
-                    handleClick={() => handleItemDel(id)}
+                    handleClick={() => openConfirmationPopup({ date, currency, amount, id })}
                 >
                     <UilMultiply />
                 </Button>
@@ -97,13 +113,46 @@ function Table({ headings, tableData }) {
         return rows;
     };
 
+    const renderPopupMessage = (itemToDeleteData) => {
+        const { date, currency, amount, id } = itemToDeleteData;
+        return (
+            <>
+                <h2>Delete transaction?</h2>
+                <h4>date: {date.split('T')[0]}</h4>
+                <p>bought: {currency}</p>
+                <p>amount: {amount}</p>
+                <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+                    <Button handleClick={() => handleDeleteItem(id)}>
+                        <Wrapper as="icon">
+                            <UilTrashAlt />
+                        </Wrapper>
+                        DELETE
+                    </Button>
+                    <Button handleClick={closeConfirmationPoup}>
+                        <Wrapper as="icon">
+                            <UilTimes />
+                        </Wrapper>
+                        CANCEL
+                    </Button>
+                </div>
+            </>
+        );
+    };
+
     return (
-        <StyledTable>
-            <thead className="element-bg">
-                <tr>{renderHeadings(headings)}</tr>
-            </thead>
-            <tbody>{renderRows(tableData)}</tbody>
-        </StyledTable>
+        <>
+            {isPopupOpen && (
+                <Popup handleClick={closeConfirmationPoup} classes="background">
+                    {renderPopupMessage(itemToDelete)}
+                </Popup>
+            )}
+            <StyledTable>
+                <thead className="element-bg">
+                    <tr>{renderHeadings(headings)}</tr>
+                </thead>
+                <tbody>{renderRows(tableData)}</tbody>
+            </StyledTable>
+        </>
     );
 }
 
