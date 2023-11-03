@@ -1,12 +1,12 @@
-/* eslint-disable arrow-body-style */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import styled from 'styled-components';
 
 import * as h from '../helpers';
 import * as db from '../../data';
 import Table from '../Table';
 import { fetchRates } from '../../features/currencySlice';
+
+import StyledTableContainer from './Trades.styled';
 
 function Trades() {
     const dispatch = useDispatch();
@@ -26,26 +26,5 @@ function Trades() {
         </div>
     );
 }
-
-const StyledTableContainer = styled.div`
-    max-height: 400px;
-    overflow-y: auto;
-    padding-right: 1rem;
-
-    &::-webkit-scrollbar {
-        width: 0.2em;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: transparent;
-        margin-block-start: 2.5rem;
-        margin-block-end: 1rem;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: var(--color-3);
-        border-radius: 100vw;
-    }
-`;
 
 export default Trades;

@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { UilMultiply, UilTrashAlt, UilTimes } from '@iconscout/react-unicons';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -10,6 +9,8 @@ import Button from '../Button';
 import Popup from '../Popup';
 import Wrapper from '../Wrapper';
 import { transactionsActions } from '../../features/transactionsSlice';
+
+import StyledTable from './Table.styled';
 
 function Table({ headings, tableData }) {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -157,23 +158,5 @@ function Table({ headings, tableData }) {
         </>
     );
 }
-
-const StyledTable = styled.table`
-    width: 100%;
-    text-align: left;
-    font-size: 0.8rem;
-    border-collapse: collapse;
-
-    thead {
-        color: var(--color-3);
-        position: sticky;
-        top: 0;
-        z-index: 1;
-
-        th {
-            padding-bottom: 0.5rem;
-        }
-    }
-`;
 
 export default Table;
