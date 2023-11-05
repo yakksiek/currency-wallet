@@ -140,7 +140,7 @@ export function removeObjectById(id, array) {
 
 export function formatTimeDifference(timestamp) {
     const currentTime = new Date();
-    const targetTime = new Date(timestamp * 1000); // Convert timestamp to milliseconds
+    const targetTime = new Date(timestamp * 1000);
 
     const timeDifference = currentTime - targetTime;
 

@@ -44,8 +44,8 @@ export const StyledHeader = styled.header`
     button {
         font-size: 0.7rem;
 
-        & svg,
-        & div {
+        svg,
+        div {
             transform: scale(0.8);
         }
     }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { UilSync } from '@iconscout/react-unicons';
 
@@ -19,7 +19,6 @@ function Trades() {
         data: { timestamp },
     } = useSelector((store) => store.currency.latest);
     const currencySymbolsArr = h.getCurrencySymbols(transactions);
-    console.log(timestamp);
 
     const dispatchUpdateRates = (currency, dataType) => {
         dispatch(fetchRates({ currency, dataType }));
