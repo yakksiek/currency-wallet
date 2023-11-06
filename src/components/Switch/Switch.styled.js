@@ -18,6 +18,7 @@ export const StyledFieldWrapper = styled.div`
         position: absolute;
         cursor: pointer;
         background-color: #b6b6b6;
+        background-color: var(--dark-color-3);
         border-radius: 25px;
         top: 0;
         right: 0;
@@ -33,17 +34,17 @@ export const StyledFieldWrapper = styled.div`
         top: 2px;
         width: 21px;
         height: 21px;
-        background-color: #333;
+        background-color: var(--accent-color-3);
         border-radius: 50%;
         transition: transform 0.3s ease;
     }
 
     .toggle-switch input[type='checkbox']:checked + .switch::before {
         transform: translateX(25px);
-        background-color: #333;
+        background-color: var(--accent-color-3);
     }
-    
+
     .toggle-switch input[type='checkbox']:checked + .switch {
-        background-color: #2bc6ff;
+        background-color: var(--dark-color-3);
     }
 `;
