@@ -17,16 +17,22 @@ const initialState = {
 //     }
 // });
 
-export const fetchRates = createAsyncThunk('data/fetchRates', async (options, { rejectWithValue }) => {
-    // w sumie to nie jestem pewien, czy dobrze to poniżej zrobiłem z await
-    // może łatwiej/lepiej było zrobić z then().catch()
-    try {
-        const data = await api.getRates(options);
-        return data;
-    } catch {
-        return rejectWithValue('Could not fetch rates. Try again later');
-    }
-});
+export const fetchRates = createAsyncThunk(
+    'data/fetchRates',
+    async (options, { rejectWithValue }) => {
+        // w sumie to nie jestem pewien, czy dobrze to poniżej zrobiłem z await
+        // może łatwiej/lepiej było zrobić z then().catch()
+        try {
+            const data = await api.getRates(options);
+            return data;
+        } catch {
+            return rejectWithValue('Could not fetch rates. Try again later');
+        }
+    },
+    {
+        timeout: 10000,
+    },
+);
 
 export const currencySlice = createSlice({
     name: 'data',
