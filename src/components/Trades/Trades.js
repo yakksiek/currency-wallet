@@ -30,12 +30,9 @@ function Trades() {
 
     useEffect(() => {
         // nie włączam na starcie, bo potem API wolno chodzi
-        // dispatchUpdateRates(currencySymbolsArr, 'latest');
-    }, []);
-
-    useEffect(() => {
-        console.log(currencySymbolsArr)
-        dispatchUpdateRates(currencySymbolsArr, 'latest');
+        if (transactions.length > 0) {
+            dispatchUpdateRates(currencySymbolsArr, 'latest');
+        }
     }, [transactions]);
 
     const updateRatesHandler = () => {
@@ -166,7 +163,7 @@ function Trades() {
                     </Button>
                 )}
             </StyledHeader>
-            {transactions.length === 0 ? (
+            {!data ? (
                 <h4>No transactions added.</h4>
             ) : (
                 <StyledTableContainer>
