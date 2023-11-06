@@ -56,6 +56,7 @@ export const currencySlice = createSlice({
 
                 state[dataType].loading = 'succeeded';
                 state[dataType].data = action.payload;
+                state[dataType].error = null;
             })
             .addCase(fetchRates.rejected, (state, action) => {
                 const { dataType } = action.meta.arg;

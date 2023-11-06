@@ -21,7 +21,11 @@ function Trades() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [itemToDelete, setItemToDelete] = useState(null);
     const { transactions } = useSelector((store) => store.transactions);
-    const { loading, data } = useSelector((store) => store.currency.latest);
+    const {
+        loading: ratesLoading,
+        data: ratesData,
+        error: ratesFetchError,
+    } = useSelector((store) => store.currency.latest);
     const currencySymbolsArr = h.getCurrencySymbols(transactions);
 
     const dispatchUpdateRates = (currency, dataType) => {
@@ -30,7 +34,7 @@ function Trades() {
 
     useEffect(() => {
         // nie włączam na starcie, bo potem API wolno chodzi
-        if (transactions.length > 0) {
+        if (transactions.length === 1) {
             dispatchUpdateRates(currencySymbolsArr, 'latest');
         }
     }, [transactions]);
@@ -64,7 +68,7 @@ function Trades() {
     const renderRows = (dataArr, currentRates) => {
         const rows = dataArr.map((transaction) => {
             const { currency, date, amount, price, id } = transaction;
-            const formattedDate = h.formatDateToMonthInfo(date)
+            const formattedDate = h.formatDateToMonthInfo(date);
             const { profitLoss, currentPrice, currentRate, totalPrice, symbol } = h.calculateProfitLoss(
                 transaction,
                 currentRates,
@@ -135,7 +139,13 @@ function Trades() {
         );
     };
 
-    const renderUpdatedTimeMessage = data ? h.formatTimeDifference(data.timestamp) : '';
+    const renderUpdatedTimeMessage = (data, error) => {
+        if (error) {
+            return error;
+        }
+
+        return data ? h.formatTimeDifference(data.timestamp) : '';
+    };
 
     return (
         <div className="element">
@@ -143,12 +153,12 @@ function Trades() {
                 <h2>Trades history</h2>
                 {transactions.length !== 0 && (
                     <Button variant="transparent" className="sync-btn" handleClick={updateRatesHandler}>
-                        {loading === 'pending' ? <Spinner /> : <UilSync />}
-                        {renderUpdatedTimeMessage}
+                        {ratesLoading === 'pending' ? <Spinner /> : <UilSync />}
+                        {renderUpdatedTimeMessage(ratesData, ratesFetchError)}
                     </Button>
                 )}
             </StyledHeader>
-            {!data ? (
+            {!ratesData ? (
                 <h4>No transactions added.</h4>
             ) : (
                 <StyledTableContainer>
@@ -159,7 +169,7 @@ function Trades() {
                     )}
                     <Table
                         headings={renderHeadings(db.columnHeadings)}
-                        tableData={renderRows(transactions, data.rates)}
+                        tableData={renderRows(transactions, ratesData.rates)}
                     />
                 </StyledTableContainer>
             )}
