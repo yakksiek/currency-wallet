@@ -34,7 +34,7 @@ function Trades() {
 
     useEffect(() => {
         // nie włączam na starcie, bo potem API wolno chodzi
-        if (transactions.length === 1) {
+        if (transactions.length >= 1) {
             dispatchUpdateRates(currencySymbolsArr, 'latest');
         }
     }, [transactions]);
@@ -151,7 +151,7 @@ function Trades() {
         <div className="element">
             <StyledHeader>
                 <h2>Trades history</h2>
-                {transactions.length !== 0 && (
+                {transactions.length > 0 && (
                     <Button variant="transparent" className="sync-btn" handleClick={updateRatesHandler}>
                         {ratesLoading === 'pending' ? <Spinner /> : <UilSync />}
                         {renderUpdatedTimeMessage(ratesData, ratesFetchError)}
