@@ -3,12 +3,17 @@ import styled from 'styled-components';
 
 import Header from '../Header';
 import Trades from '../Trades';
+import ChartRates from '../Chart';
+import ProfitLossChart from '../ProfitLossChart';
 
 function Dashboard() {
     return (
         <StyledDasboard>
             <Header />
             <Trades />
+            <ProfitLossChart>
+                <ChartRates />
+            </ProfitLossChart>
         </StyledDasboard>
     );
 }

@@ -14,37 +14,9 @@ const App = function () {
         <ThemeProvider theme={theme}>
             <ThemeSwitcher darkMode={darkMode}>
                 <Dashboard />
-                <StyledElement className="element">
-                    <h1>Działa</h1>
-                    <p>
-                        webpack-dev-server Server started: Hot Module Replacement enabled, Live Reloading enabled,
-                        Progress disabled, Overlay enabled.
-                    </p>
-                    <p className="red">15% $423 BUY</p>
-                    <p className="green">15% $423 SELL</p>
-                    <p className="grey">two months ago</p>
-                </StyledElement>
             </ThemeSwitcher>
         </ThemeProvider>
     );
 };
-
-const StyledElement = styled.div`
-    max-width: 300px;
-    padding: 1rem;
-    border-radius: 2rem;
-
-    .red {
-        color: var(--accent-color-2);
-    }
-
-    .green {
-        color: var(--accent-color-1);
-    }
-
-    .grey {
-        color: var(--accent-color-3);
-    }
-`;
 
 export default App;

@@ -14,10 +14,7 @@ import { StyledTableContainer, StyledHeader } from './Trades.styled';
 function Trades() {
     const dispatch = useDispatch();
     const { transactions } = useSelector((store) => store.transactions);
-    const {
-        loading,
-        data: { timestamp },
-    } = useSelector((store) => store.currency.latest);
+    const { loading, data } = useSelector((store) => store.currency.latest);
     const currencySymbolsArr = h.getCurrencySymbols(transactions);
 
     const dispatchUpdateRates = (currency, dataType) => {
@@ -29,24 +26,32 @@ function Trades() {
         // dispatchUpdateRates(currencySymbolsArr, 'latest');
     }, []);
 
+    // useEffect(() => {}, [transactions, data]);
+
     const updateRatesHandler = () => {
         dispatchUpdateRates(currencySymbolsArr, 'latest');
     };
 
-    const renderUpdatedTimeMessage = h.formatTimeDifference(timestamp);
+    const renderUpdatedTimeMessage = data ? h.formatTimeDifference(data.timestamp) : '';
 
     return (
         <div className="element">
             <StyledHeader>
-                <h2 className="element-header">Trades</h2>
-                <Button variant="transparent" className="sync-btn" handleClick={updateRatesHandler}>
-                    {loading === 'pending' ? <Spinner /> : <UilSync />}
-                    {renderUpdatedTimeMessage}
-                </Button>
+                <h2>Trades history</h2>
+                {transactions.length !== 0 && (
+                    <Button variant="transparent" className="sync-btn" handleClick={updateRatesHandler}>
+                        {loading === 'pending' ? <Spinner /> : <UilSync />}
+                        {renderUpdatedTimeMessage}
+                    </Button>
+                )}
             </StyledHeader>
-            <StyledTableContainer>
-                <Table headings={db.columnHeadings} tableData={transactions} />
-            </StyledTableContainer>
+            {transactions.length === 0 ? (
+                <h4>No transactions added.</h4>
+            ) : (
+                <StyledTableContainer>
+                    <Table headings={db.columnHeadings} tableData={transactions} latestRates={data} />
+                </StyledTableContainer>
+            )}
         </div>
     );
 }

@@ -16,8 +16,9 @@ export const transactionsSlice = createSlice({
             const { transaction } = action.payload;
 
             const objWithID = { ...transaction, id: uuid() };
-            console.log(objWithID);
-            state.transactions.push(objWithID);
+            const allTransactions = [...state.transactions, objWithID];
+            const sortedTransactions = h.sortByKeyDateString(allTransactions);
+            state.transactions = sortedTransactions;
             console.log('added transaction');
         },
         removeTransaction(state, action) {

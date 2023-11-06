@@ -163,3 +163,37 @@ export function formatTimeDifference(timestamp) {
         return `updated ${daysAgo} day${daysAgo === 1 ? '' : 's'} ago`;
     }
 }
+
+export function sortByKeyDateString(objectsArr) {
+    const sortedArr = objectsArr.sort((a, b) => new Date(b.date) - new Date(a.date));
+    return sortedArr;
+}
+
+export const calculateProfitLoss = (transaction, currentRates) => {
+    const { currency, price, amount } = transaction;
+    const [_, symbol] = currency.split(' ');
+    const rate = (1 / currentRates[symbol]).toFixed(4);
+
+    const volume = parseFloat(amount);
+    const totalPrice = parseFloat(price) * volume;
+    const currentPrice = rate * volume;
+    const profitLoss = currentPrice - totalPrice;
+
+    return { profitLoss, symbol, currentPrice, totalPrice, currentRate: rate };
+};
+
+export function formatDateToMonthYear(dateObj) {
+    const date = new Date(dateObj);
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${month}/${year}`;
+}
+
+export function extractAndSortDates(objectsArr) {
+    const dateArray = objectsArr.map((item) => formatDateToMonthYear(item.date));
+
+    dateArray.sort();
+    const uniqueDates = [...new Set(dateArray)];
+
+    return uniqueDates;
+}

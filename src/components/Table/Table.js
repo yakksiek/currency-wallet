@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { UilMultiply, UilTrashAlt, UilTimes } from '@iconscout/react-unicons';
 import { useSelector, useDispatch } from 'react-redux';
 
+import * as h from '../helpers';
 import Row from './Row';
 import Arrow from '../Arrow';
 import Button from '../Button';
@@ -12,27 +13,10 @@ import { transactionsActions } from '../../features/transactionsSlice';
 
 import StyledTable from './Table.styled';
 
-function Table({ headings, tableData }) {
+function Table({ headings, tableData, latestRates }) {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [itemToDelete, setItemToDelete] = useState(null);
     const dispatch = useDispatch();
-
-    const {
-        data: { rates: currentRates },
-    } = useSelector((store) => store.currency.latest);
-
-    const calculateProfitLoss = (transaction) => {
-        const { currency, price, amount } = transaction;
-        const [_, symbol] = currency.split(' ');
-        const rate = (1 / currentRates[symbol]).toFixed(4);
-
-        const volume = parseFloat(amount);
-        const totalPrice = parseFloat(price) * volume;
-        const currentPrice = rate * volume;
-        const profitLoss = currentPrice - totalPrice;
-
-        return { profitLoss, symbol, currentPrice, totalPrice, currentRate: rate };
-    };
 
     const formatDate = (date) => {
         const transactionDate = new Date(date);
@@ -71,11 +55,14 @@ function Table({ headings, tableData }) {
         closeConfirmationPoup();
     };
 
-    const renderRows = (dataArr) => {
+    const renderRows = (dataArr, currentRates) => {
         const rows = dataArr.map((transaction) => {
             const { currency, date, amount, price, id } = transaction;
             const formattedDate = formatDate(date);
-            const { profitLoss, currentPrice, currentRate, totalPrice, symbol } = calculateProfitLoss(transaction);
+            const { profitLoss, currentPrice, currentRate, totalPrice, symbol } = h.calculateProfitLoss(
+                transaction,
+                currentRates,
+            );
             const percentage = calculatePercentage(profitLoss, totalPrice);
             const profitLossClassName = profitLoss > 0 ? 'summary profit' : 'summary loss';
             const arrowClassName = profitLoss > 0 ? 'arrow-up' : 'arrow-down';
@@ -153,7 +140,7 @@ function Table({ headings, tableData }) {
                 <thead className="element-bg">
                     <tr>{renderHeadings(headings)}</tr>
                 </thead>
-                <tbody>{renderRows(tableData)}</tbody>
+                <tbody>{renderRows(tableData, latestRates)}</tbody>
             </StyledTable>
         </>
     );

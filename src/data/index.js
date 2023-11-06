@@ -102,13 +102,24 @@ export const months = [
 
 export const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-export const columnHeadings = ['Date', 'Symbol', 'Volume', 'Rates', 'Current rates', 'Value', 'Current Value', 'Profit'];
+export const columnHeadings = [
+    'Date',
+    'Symbol',
+    'Volume',
+    'Rates',
+    'Current rates',
+    'Value',
+    'Current Value',
+    'Profit',
+];
 
-// const currentRates = {
-//     EUR: 4.49,
-//     USD: 4.2701,
-//     GBP: 5.172,
-// };
+export const chartColors = [' rgb(0 108 255)', 'rgb(76 51 205)', 'rgb(87 87 87)', 'rgb(31 181 74)'];
+
+const currentRates = {
+    EUR: 4.49,
+    USD: 4.2701,
+    GBP: 5.172,
+};
 
 // const data = [
 //     {
