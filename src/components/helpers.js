@@ -197,3 +197,26 @@ export function extractAndSortDates(objectsArr) {
 
     return uniqueDates;
 }
+
+export function formatDateToMonthInfo(date) {
+    const transactionDate = new Date(date);
+    const now = new Date();
+    const monthsAgo = now.getMonth() - transactionDate.getMonth();
+    const formattedDate = transactionDate.toLocaleDateString();
+
+    let formattedString = '';
+
+    if (monthsAgo === 0) {
+        formattedString = 'this month';
+    } else if (monthsAgo === 1) {
+        formattedString = '1 month ago';
+    } else if (monthsAgo > 1) {
+        formattedString = `${monthsAgo} months ago`;
+    }
+
+    return (
+        <p>
+            {formattedDate} <span className="date">({formattedString})</span>
+        </p>
+    );
+}

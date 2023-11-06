@@ -39,21 +39,6 @@ function Trades() {
         dispatchUpdateRates(currencySymbolsArr, 'latest');
     };
 
-    const formatDate = (date) => {
-        const transactionDate = new Date(date);
-        const now = new Date();
-        const monthsAgo = now.getMonth() - transactionDate.getMonth();
-        const formattedDate = transactionDate.toLocaleDateString();
-
-        const dataJSX = (
-            <p>
-                {formattedDate} <span className="date">({monthsAgo} months ago)</span>
-            </p>
-        );
-
-        return dataJSX;
-    };
-
     const calculatePercentage = (profitLoss, totalPrice) => ((profitLoss / totalPrice) * 100).toFixed(2);
 
     const renderHeadings = (headingsArr) => {
@@ -79,7 +64,7 @@ function Trades() {
     const renderRows = (dataArr, currentRates) => {
         const rows = dataArr.map((transaction) => {
             const { currency, date, amount, price, id } = transaction;
-            const formattedDate = formatDate(date);
+            const formattedDate = h.formatDateToMonthInfo(date)
             const { profitLoss, currentPrice, currentRate, totalPrice, symbol } = h.calculateProfitLoss(
                 transaction,
                 currentRates,
