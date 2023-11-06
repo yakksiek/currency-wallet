@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -29,10 +29,22 @@ function ChartRates({ labels, chartData }) {
     };
 
     return (
-        <div style={{ width: 900, height: 400 }}>
+        <div style={{ width: 900, height: 400, margin: '0 auto' }}>
             <Line options={options} data={data} />
         </div>
     );
 }
+
+ChartRates.propTypes = {
+    labels: PropTypes.arrayOf(PropTypes.string).isRequired,
+    chartData: PropTypes.arrayOf(
+        PropTypes.shape({
+            label: PropTypes.string.isRequired,
+            data: PropTypes.arrayOf(PropTypes.number).isRequired,
+            backgroundColor: PropTypes.string.isRequired,
+            borderColor: PropTypes.string.isRequired,
+        }),
+    ).isRequired,
+};
 
 export default ChartRates;
