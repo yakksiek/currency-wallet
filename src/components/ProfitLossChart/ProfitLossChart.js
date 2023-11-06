@@ -1,13 +1,18 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useTheme } from 'styled-components';
 
 import * as h from '../helpers';
 import * as db from '../../data';
 import Chart from '../Chart';
 
 function ProfitLossChart() {
+    const theme = useTheme();
+    const { darkMode } = useSelector((store) => store.darkMode);
     const { transactions } = useSelector((store) => store.transactions);
     const { data } = useSelector((store) => store.currency.latest);
+    const darkTheme = darkMode ? 'dark' : 'light';
+    const gridLinesColor = theme.palete[darkTheme]['border-color'];
 
     const labels = h.extractAndSortDates(transactions);
 
@@ -73,6 +78,7 @@ function ProfitLossChart() {
                             calculateProfitLossPerLabel(transactions, data.rates, labels),
                             db.chartColors,
                         )}
+                        gridColor={gridLinesColor}
                     />
                 </div>
             )}
