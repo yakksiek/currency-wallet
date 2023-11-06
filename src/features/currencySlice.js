@@ -3,19 +3,23 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import CurrencyAPI from '../api/currencyProvider';
 
+// wrzucam tutaj na wszelki wypadek, bo mam za dużo api requestów
+// const fakeLatestData = {
+//     success: true,
+//     timestamp: 1699300503,
+//     base: 'PLN',
+//     date: '2023-11-06',
+//     rates: {
+//         EUR: 0.224317,
+//     },
+// };
+
 const api = new CurrencyAPI();
 
 const initialState = {
     historical: { data: null, loading: 'idle', error: null },
     latest: { data: null, loading: 'idle', error: null },
 };
-//     try {
-//         const data = await api.getRates(options);
-//         return data;
-//     } catch {
-//         return rejectWithValue('Oh no, something went wrong');
-//     }
-// });
 
 export const fetchRates = createAsyncThunk(
     'data/fetchRates',
