@@ -49,8 +49,26 @@ const GlobalStyles = createGlobalStyle`
     font-family: var(--font-semi-bold)
     }
 
-  
- 
+    .scroll {
+      overflow-x: auto;
+      width: 100%;
+
+      &::-webkit-scrollbar {
+        width: 0.2em;
+        height: 0.2rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+        margin-block-start: 2.5rem;
+        margin-block-end: 1rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--color-3);
+        border-radius: 100vw;
+    }
+    }
 `;
 
 export default GlobalStyles;

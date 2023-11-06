@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import * as h from '../helpers';
 import * as db from '../../data';
-import ChartRates from '../Chart';
+import Chart from '../Chart';
 
 function ProfitLossChart() {
     const { transactions } = useSelector((store) => store.transactions);
@@ -66,13 +66,15 @@ function ProfitLossChart() {
             {!data ? (
                 <h4>Add first transaction to show chart</h4>
             ) : (
-                <ChartRates
-                    labels={labels}
-                    chartData={renderDataObjForChart(
-                        calculateProfitLossPerLabel(transactions, data.rates, labels),
-                        db.chartColors,
-                    )}
-                />
+                <div className="scroll">
+                    <Chart
+                        labels={labels}
+                        chartData={renderDataObjForChart(
+                            calculateProfitLossPerLabel(transactions, data.rates, labels),
+                            db.chartColors,
+                        )}
+                    />
+                </div>
             )}
         </div>
     );

@@ -5,6 +5,8 @@ const StyledTable = styled.table`
     text-align: left;
     font-size: 0.8rem;
     border-collapse: collapse;
+    overflow-x: auto;
+    min-width: 850px;
 
     thead {
         color: var(--color-3);

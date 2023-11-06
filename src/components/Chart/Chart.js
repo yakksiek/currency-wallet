@@ -22,18 +22,22 @@ const options = {
     },
 };
 
-function ChartRates({ labels, chartData }) {
+function ChartRates({ labels, chartData, classes }) {
     const data = {
         labels,
         datasets: chartData,
     };
 
     return (
-        <div style={{ width: 900, height: 400, margin: '0 auto' }}>
+        <div className={classes} style={{ width: 900, height: 400, margin: '0 auto' }}>
             <Line options={options} data={data} />
         </div>
     );
 }
+
+ChartRates.defaultProps = {
+    classes: '',
+};
 
 ChartRates.propTypes = {
     labels: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -45,6 +49,7 @@ ChartRates.propTypes = {
             borderColor: PropTypes.string.isRequired,
         }),
     ).isRequired,
+    classes: PropTypes.string,
 };
 
 export default ChartRates;

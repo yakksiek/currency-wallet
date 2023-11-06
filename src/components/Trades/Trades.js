@@ -161,7 +161,7 @@ function Trades() {
             {!ratesData ? (
                 <h4>No transactions added.</h4>
             ) : (
-                <StyledTableContainer>
+                <StyledTableContainer className="scroll">
                     {isPopupOpen && (
                         <Popup handleClick={closeConfirmationPoup} classes="background">
                             {renderPopupMessage(itemToDelete)}
