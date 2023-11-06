@@ -19,12 +19,14 @@ function Header() {
     const { isOpen } = useSelector((store) => store.form);
     const dispatch = useDispatch();
 
-    const togglePopup = () => {
+    const openPopup = () => {
         dispatch(formActions.toggleForm());
+        document.body.style.overflow = 'hidden';
     };
 
     const closePopup = () => {
         dispatch(formActions.resetForm());
+        document.body.style.overflow = '';
     };
 
     return (
@@ -34,7 +36,7 @@ function Header() {
                     <Form />
                 </Popup>
             )}
-            <Button handleClick={togglePopup}>
+            <Button handleClick={openPopup}>
                 <Wrapper as="icon">
                     <UilTransaction />
                 </Wrapper>

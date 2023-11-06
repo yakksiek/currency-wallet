@@ -20,6 +20,11 @@ export const StyledPopup = styled.div`
         position: relative;
         border-radius: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        @media (max-width: 750px) {
+            height: 100vh;
+            overflow-y: auto;
+            width: 100%;
+        }
     }
 `;
 
@@ -43,5 +48,9 @@ export const StyledButton = styled.button`
         &:hover {
             background-color: #f4364c;
         }
+
+        @media (max-width: 750px) {
+           top: 2rem;
+           right: 2rem;
     }
 `;

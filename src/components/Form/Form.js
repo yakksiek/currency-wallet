@@ -5,7 +5,7 @@ import Button from '../Button';
 import * as db from '../../data';
 import useForm from '../../hooks/useForm';
 
-import { StyledHeader, StyledForm } from './Form.styled';
+import { StyledHeader, StyledForm, StyledFieldGroup } from './Form.styled';
 
 function Form() {
     const {
@@ -31,7 +31,7 @@ function Form() {
         });
 
         const inputGroups = Object.values(groupedFields).map((fieldSet, index) => (
-            <div key={index} id={`item${index + 1}`} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <StyledFieldGroup key={index} id={`item${index + 1}`}>
                 {fieldSet.map((field) => {
                     const { name, element } = field;
                     const error = formErrors[name];
@@ -48,7 +48,7 @@ function Form() {
 
                     return <TagEl key={name} fieldData={fieldData} />;
                 })}
-            </div>
+            </StyledFieldGroup>
         ));
 
         return inputGroups;
@@ -70,10 +70,8 @@ function Form() {
     return (
         <div className="background">
             <StyledHeader>
-                <div>
-                    <h2>Add new transaction</h2>
-                    <h4 className="header-color">Pick date and currency to load the price</h4>
-                </div>
+                <h2>Add new transaction</h2>
+                <h4 className="header-color">Pick date and currency to load the price</h4>
             </StyledHeader>
             <StyledForm action="" onSubmit={handleSubmit}>
                 {renderInputs(db.formFields)}
