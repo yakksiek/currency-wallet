@@ -152,14 +152,14 @@ export const StyledOptionItem = styled.li`
     padding: 0.4em 2em;
     cursor: pointer;
     user-select: none;
-    font-family: 'PoppinsLight', sans-serif;
+    font-family: var(--font-light);
     transition: color 0.4s;
 
     ${({ $isOver }) =>
         $isOver &&
         css`
             background: lightgray;
-            font-family: 'PoppinsSemiBold', sans-serif;
+            font-family: var(--font-semi-bold)
             font-size: 1.3em;
             color: #000;
         `}

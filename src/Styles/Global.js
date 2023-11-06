@@ -49,7 +49,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: var(--font-semi-bold)
     }
 
-    .scroll {
+  .scroll {
       overflow-x: auto;
       width: 100%;
 

@@ -8,7 +8,7 @@ export const StyledPickerWrapper = styled.div`
 
     .header-line {
         background-color: var(--accent-color-3);
-        height: .5px;
+        height: 0.5px;
         width: 100%;
     }
 `;
@@ -60,7 +60,7 @@ export const StyledColGrid = styled.div`
         background: none;
         padding: 0;
         margin: 0;
-        font-family: 'PoppinsLight', sans-serif;
+        font-family: var(--font-light);
         font-size: 1rem;
         color: var(--font-color-number);
         border: 2px solid transparent;
@@ -77,12 +77,12 @@ export const StyledColGrid = styled.div`
     button:hover {
         transform: scale(1.2);
         transition: transform 0.3s;
-        font-family: 'PoppinsMedium', sans-serif;
+        font-family: var(--font-medium);
         text-shadow: var(--font-shadow-glow);
     }
 
     .active {
-        font-family: 'PoppinsSemiBold', sans-serif;
+        font-family: var(--font-semi-bold);
         height: 100%;
         width: 100%;
         border-radius: 50%;

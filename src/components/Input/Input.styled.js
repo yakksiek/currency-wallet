@@ -50,7 +50,7 @@ export const StyledDefaultItem = styled.li`
     padding: 0.5rem;
     font-size: 0.75rem;
     cursor: pointer;
-    font-family: 'PoppinsSemiBold', sans-serif;
+    font-family: var(--font-semi-bold);
 
     &:hover {
         color: var(--color-3);
