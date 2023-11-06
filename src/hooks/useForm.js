@@ -17,6 +17,7 @@ function useForm() {
             const currencyString = formData.currency.split(' ')[1];
 
             dispatch(fetchRates({ currency: currencyString, date: dateString, dataType: 'historical' }));
+            // dispatch(fetchRates({ currency: currencyString, dataType: 'latest' }));
         }
     }, [formData.date, formData.currency]);
 
