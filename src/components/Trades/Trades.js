@@ -33,9 +33,9 @@ function Trades() {
     };
 
     useEffect(() => {
-        // if (transactions.length >= 1) {
-        //     dispatchUpdateRates(currencySymbolsArr, 'latest');
-        // }
+        if (transactions.length >= 1) {
+            dispatchUpdateRates(currencySymbolsArr, 'latest');
+        }
     }, [transactions]);
 
     const updateRatesHandler = () => {
