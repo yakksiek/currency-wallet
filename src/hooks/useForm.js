@@ -13,8 +13,8 @@ function useForm() {
 
     useEffect(() => {
         if (formData.date !== '' && formData.currency !== '') {
-            const dateString = formData.date.split('T')[0];
-            const currencyString = formData.currency.split(' ')[1];
+            const [dateString] = formData.date.split('T');
+            const [_, currencyString] = formData.currency.split(' ');
 
             dispatch(fetchRates({ currency: currencyString, date: dateString, dataType: 'historical' }));
         }
