@@ -13,8 +13,6 @@ import Button from '../Button';
 
 import { StyledPickerWrapper, StyledHeader, StyledBody, StyledColGrid } from './DatePicker.styled';
 
-const min = h.getToday();
-
 function DatePicker({ minDate, fieldData }) {
     const { name, error, value, handleCustomSelection } = fieldData;
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
@@ -114,7 +112,7 @@ function DatePicker({ minDate, fieldData }) {
 }
 
 DatePicker.defaultProps = {
-    minDate: min,
+    minDate: h.getToday(),
 };
 
 DatePicker.propTypes = {
@@ -126,7 +124,6 @@ DatePicker.propTypes = {
         required: PropTypes.bool,
         pattern: PropTypes.string,
         errorMessage: PropTypes.string.isRequired,
-        // value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     }).isRequired,
     minDate: PropTypes.instanceOf(Date),
 };
