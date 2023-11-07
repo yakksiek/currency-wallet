@@ -87,18 +87,18 @@ function Input({ fieldData }) {
     );
 }
 
-// Input.propTypes = {
-//     fieldData: PropTypes.shape({
-//         label: PropTypes.string.isRequired,
-//         name: PropTypes.string.isRequired,
-//         type: PropTypes.string.isRequired,
-//         placeholder: PropTypes.string,
-//         required: PropTypes.bool,
-//         pattern: PropTypes.string,
-//         errorMessage: PropTypes.string.isRequired,
-//         group: PropTypes.number.isRequired,
-//         value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-//     }),
-// };
+Input.propTypes = {
+    fieldData: PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        placeholder: PropTypes.string,
+        required: PropTypes.bool,
+        pattern: PropTypes.string,
+        errorMessage: PropTypes.string.isRequired,
+        group: PropTypes.number.isRequired,
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    }).isRequired,
+};
 
 export default Input;
