@@ -3,32 +3,51 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import CurrencyAPI from '../api/currencyProvider';
 
-// wrzucam tutaj na wszelki wypadek, bo mam za dużo api requestów
-// const fakeLatestData = {
-//     success: true,
-//     timestamp: 1699300503,
-//     base: 'PLN',
-//     date: '2023-11-06',
-//     rates: {
-//         EUR: 0.224317,
-//     },
-// };
+const fakeLatestData = {
+    success: true,
+    timestamp: 1699300503,
+    base: 'PLN',
+    date: '2023-11-06',
+    rates: {
+        EUR: 0.224317,
+        USD: 0.234214,
+        GBP: 0.241231,
+    },
+};
+
+const fakeFormData = {
+    success: true,
+    timestamp: 1699055999,
+    historical: true,
+    base: 'PLN',
+    date: '2023-11-03',
+    rates: {
+        USD: 0.240874,
+    },
+};
 
 const api = new CurrencyAPI();
 
 const initialState = {
-    historical: { data: null, loading: 'idle', error: null },
+    historical: { data: null, loading: 'idle', error: ' 401 (Unauthorized)' },
     latest: { data: null, loading: 'idle', error: null },
 };
 
 export const fetchRates = createAsyncThunk(
     'data/fetchRates',
+    // eslint-disable-next-line consistent-return
     async (options, { rejectWithValue }) => {
-        // w sumie to nie jestem pewien, czy dobrze to poniżej zrobiłem z await
-        // może łatwiej/lepiej było zrobić z then().catch()
         try {
             const data = await api.getRates(options);
             return data;
+            // const { dataType } = options;
+            // if (dataType === 'latest') {
+            //     return fakeLatestData;
+            // }
+
+            // if (dataType === 'historical') {
+            //     return fakeFormData;
+            // }
         } catch {
             return rejectWithValue('Could not fetch rates. Try again later');
         }

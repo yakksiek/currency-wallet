@@ -5,7 +5,7 @@ import Button from '../Button';
 import * as db from '../../data';
 import useForm from '../../hooks/useForm';
 
-import { StyledHeader, StyledForm, StyledFieldGroup } from './Form.styled';
+import { StyledHeader, StyledForm, StyledFieldGroup, StyledErrorMessage } from './Form.styled';
 
 function Form() {
     const {
@@ -56,14 +56,14 @@ function Form() {
 
     if (fetchError) {
         return (
-            <div className="background">
+            <StyledErrorMessage className="background">
                 <h2>{fetchError}</h2>
                 <hr />
                 <p>Problem getting the data. Try again or enter value manually</p>
                 <Button handleClick={handleFetchErrorReset} type="button">
                     OK!
                 </Button>
-            </div>
+            </StyledErrorMessage>
         );
     }
 

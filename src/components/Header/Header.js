@@ -13,6 +13,7 @@ import Popup from '../Popup';
 import Form from '../Form';
 
 import { StyledThemeSwitch, StyledHeader } from './Header.styled';
+import { currencyActions } from '../../features/currencySlice';
 
 function Header() {
     const { toggleTheme } = useDarkMode(darkModeActions.toggleDarkMode);
@@ -26,6 +27,7 @@ function Header() {
 
     const closePopup = () => {
         dispatch(formActions.resetForm());
+        dispatch(currencyActions.resetFetchError({ dataType: 'historical' }));
         document.body.style.overflow = '';
     };
 

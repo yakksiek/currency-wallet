@@ -33,10 +33,9 @@ function Trades() {
     };
 
     useEffect(() => {
-        // nie włączam na starcie, bo potem API wolno chodzi
-        if (transactions.length >= 1) {
-            dispatchUpdateRates(currencySymbolsArr, 'latest');
-        }
+        // if (transactions.length >= 1) {
+        //     dispatchUpdateRates(currencySymbolsArr, 'latest');
+        // }
     }, [transactions]);
 
     const updateRatesHandler = () => {

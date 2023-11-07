@@ -48,3 +48,19 @@ export const StyledFieldGroup = styled.div`
     margin: 0 auto;
     gap: 1rem;
 `;
+
+export const StyledErrorMessage = styled.div`
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* flex-direction: column; */
+    padding: 2rem;
+
+    p {
+        margin-top: 0.5rem;
+    }
+
+    button {
+        margin-top: 1rem;
+    }
+`;
