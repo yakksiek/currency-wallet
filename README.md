@@ -1,43 +1,167 @@
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+![application presentation](src/assets/gif/add-transaction.gif)
+
+# Project Name
+
+See the live version of [POSTMAG](https://yakksiek.github.io/blog-prismic-cms/#/).
+
+The Currency Wallet application is a financial tracking tool that allows users to manually input their historical transactions involving various currencies. It utilizes APIs to fetch the historical exchange rates for each transaction date, providing an accurate financial overview. The application then displays a chart showing the profit or loss for each transaction, calculated based on current currency rates, enabling users to assess their investment performance over time.
+
+**Main features**:
+
+1. **API Rate Fetching**
+   - Integrates with APIs for real-time and historical currency exchange rates.
+   - Ensures accurate financial data for each transaction.
+
+2. **Live Transaction Validation**
+   - Performs live validation during transaction entry.
+
+3. **ChartJS 2 Integration**
+   - Uses ChartJS 2 for visual representation of financial data.
+   - Provides clear, interactive charts to display profit or loss.
+
+4. **Redux Toolkit**
+   - Employs Redux Toolkit for efficient state management.
+
+5. **Dark Mode**
+   - Offers a user-friendly dark mode.
+   - Reduces eye strain and provides an alternative aesthetic.
+
+6. **Custom Hooks for Form**
+   - Custom hooks enhance form handling and selection options.
+
+7. **Local Storage**
+   - Stores user data and preferences locally.
+   - Allows for persistent user experiences and quick data retrieval.
 
 &nbsp;
 
+## 💡 Technologies
 
-# Portfel walutowy
-
-Zbuduj aplikację, która będzie obliczać potencjalny zysk lub stratę z posiadanych walut.
-
-Użytkownik ma mieć możliwość wprowadzenia poniższych informacji:
-- rodzaj posiadanej waluty
-- jej ilość
-- data zakupu
-- cena zakupu (ten element można zautomatyzować – kiedy zostanie wybrana data, to cena uzupełni się automatycznie przy pomocy API. Oczywiście użytkownik będzie mógł tę cenę zmodyfikować). 
-
-Zapisuj te informacje w [localStorage](https://frontstack.pl/czym-jest-local-storage-i-jak-uzywac/) jako tablicę przechowującą obiekty. Po uruchomieniu strony zawsze sprawdzaj, czy w LS są już przechowywane jakieś dane. Jeśli tak, wczytuj je do widoku aplikacji.
-
-Następnie przy pomocy [API](https://exchangeratesapi.io/) pobieraj aktualne kursy walut użytkownika i przypisuj odpowiednią wartość do każdego elementu w tablicy.
-
-Wynik działania aplikacji mógłby się sprowadzać do poniższej tabeli:
-
-| Waluta | Ilość | Data zakupu | Cena zakupu | Obecny kurs | Obecna wartość | Zysk/Strata |
-| --- | --- | --- | --- | --- | --- | --- |
-| EUR | 100 | 2020-01-01 | 4.38 | 4.49 | 449.00 | 11.00 (+2.5%) |
-| EUR | 100 | 2020-03-01 | 4.48 | 4.49 | 449.00 |  1.00 (+0.2%) |
-| USD | 100 | 2020-03-01 | 3.91 | 3.71 | 371.00 |  -20.00 (-5.2%) |
-
-Stanem zarządzaj przy pomocy Reduxa, wykorzystując oddzielny Magazyn dla danych z localStorage ([przykład](https://dev.to/link2twenty/react-redux-and-localstorage-2lih)) oraz dla API. Całość połącz przy pomocy `.combineReducers()`.
-
-Stwórz projekt tak, aby każdy z elementów w łatwy sposób można było przenieść do innej aplikacji.
-
-
-PS Jeśli uznasz, że Twoja aplikacja powinna być bardziej rozbudowana, możesz przechowywać historię sprawdzeń danej waluty w localStorage i [generować wykres](https://github.com/jerairrest/react-chartjs-2) prezentujący poziom zysków lub strat dla danej pozycji.
-
-
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
+![ESlint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
+![Babel](https://img.shields.io/badge/Babel-F9DC3e?style=for-the-badge&logo=babel&logoColor=black)
 
 &nbsp;
 
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+## 💿 Installation
+
+The project uses [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/). Having them installed, type into the terminal: `npm i`.
+
+&nbsp;
+
+## 🤔 Solutions provided in the project
+
+**Custom Hook for dark mode and form**
+
+```javascript 
+function useForm() {
+    const { formData, formErrors } = useSelector((store) => store.form);
+    const { loading, error: fetchError } = useSelector((store) => store.currency.historical);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (formData.date !== '' && formData.currency !== '') {
+            const [dateString] = formData.date.split('T');
+            const [_, currencyString] = formData.currency.split(' ');
+
+            dispatch(fetchRates({ currency: currencyString, date: dateString, dataType: 'historical' }));
+        }
+    }, [formData.date, formData.currency]);
+
+    const liveValidation = (input) => {
+        const { name } = input;
+        const errorInState = formErrors[name];
+        if (!errorInState) return;
+
+        const inputError = h.validate(db.formFields, [input]);
+        const isErrorObjEmpty = h.isObjectEmpty(inputError);
+        if (!isErrorObjEmpty) return;
+
+        dispatch(formActions.removeError({ name }));
+    };
+
+    const handleCustomInputSelection = (name, value) => {
+        dispatch(formActions.setFormData({ name, value }));
+        dispatch(formActions.removeError({ name }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const form = e.target;
+
+        // input validation
+        const inputElements = h.findInputElementsInForm(form);
+        const fieldErrors = h.validate(db.formFields, inputElements);
+
+        // custom validation
+        const customInputsErrors = h.customValidation(db.formFields, formData);
+        const updatedErrors = { ...fieldErrors, ...customInputsErrors };
+
+        dispatch(formActions.setErrors(updatedErrors));
+
+        const isFormClean = h.checkErrors([formErrors, updatedErrors]);
+        if (!isFormClean) {
+            console.log('errors');
+            return;
+        }
+
+        console.log('submitted');
+        dispatch(transactionsActions.addTransaction({ transaction: formData }));
+        dispatch(formActions.resetForm());
+    };
+
+    const handleFetchErrorReset = () => {
+        dispatch(currencyActions.resetFetchError({ dataType: 'historical' }));
+    };
+
+    const handleFieldChange = (e) => {
+        const { name, value } = e.target;
+        dispatch(formActions.setFormData({ name, value }));
+        liveValidation(e.target);
+    };
+
+    return {
+        formData,
+        formErrors,
+        loading,
+        fetchError,
+        liveValidation,
+        handleCustomInputSelection,
+        handleSubmit,
+        handleFetchErrorReset,
+        handleFieldChange,
+    };
+}
+
+```
+
+&nbsp;
+
+-   **Custom Select**: Offers both search and select function with keys.
+
+![custom select screenshot](src/assets/images/custom-select-screenshot.png)
+
+&nbsp;
+
+## 💭 Possible future features
+
+-   **Filtering by month/year, biggest gain/loss**
+
+&nbsp;
+
+## 🙋‍♂️ Feel free to contact me
+
+Write sth nice ;) Find me on [LinkedIn ](https://www.linkedin.com/in/marcin-kulbicki-426817a4/) or [Instagram](https://www.instagram.com/yakksiek/)
+
+&nbsp;
+
+## 👏 Thanks / Special thanks / Credits
+
+Thanks to my [Mentor - devmentor.pl](https://devmentor.pl/) – for providing me with this task and for code review.
