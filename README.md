@@ -49,8 +49,6 @@ The Currency Wallet application is a financial tracking tool that allows users t
 
 ## 💿 Installation
 
-## 💿 Installation
-
 The project uses [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/). After ensuring they are installed, follow these steps:
 
 1. **Install Dependencies**
@@ -78,7 +76,7 @@ By following these steps, you will set up the necessary environment and API acce
 
 ## 🤔 Solutions provided in the project
 
-**Custom Hook for dark mode and form**
+**Custom Hook for the form component**
 
 ```javascript 
 function useForm() {
