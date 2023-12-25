@@ -2,8 +2,6 @@
 
 # Currency Wallet
 
-See the live version of [Currency Wallet](https://yakksiek.github.io/blog-prismic-cms/#/).
-
 The Currency Wallet application is a financial tracking tool that allows users to manually input their historical transactions involving various currencies. It utilizes APIs to fetch the historical exchange rates for each transaction date, providing an accurate financial overview. The application then displays a chart showing the profit or loss for each transaction, calculated based on current currency rates, enabling users to assess their investment performance over time.
 
 **Main features**:
