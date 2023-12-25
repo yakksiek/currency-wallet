@@ -1,8 +1,8 @@
 ![application presentation](src/assets/gif/add-transaction.gif)
 
-# Project Name
+# Currency Wallet
 
-See the live version of [POSTMAG](https://yakksiek.github.io/blog-prismic-cms/#/).
+See the live version of [Currency Wallet](https://yakksiek.github.io/blog-prismic-cms/#/).
 
 The Currency Wallet application is a financial tracking tool that allows users to manually input their historical transactions involving various currencies. It utilizes APIs to fetch the historical exchange rates for each transaction date, providing an accurate financial overview. The application then displays a chart showing the profit or loss for each transaction, calculated based on current currency rates, enabling users to assess their investment performance over time.
 
@@ -51,7 +51,30 @@ The Currency Wallet application is a financial tracking tool that allows users t
 
 ## 💿 Installation
 
-The project uses [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/). Having them installed, type into the terminal: `npm i`.
+## 💿 Installation
+
+The project uses [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/). After ensuring they are installed, follow these steps:
+
+1. **Install Dependencies**
+   - Open your terminal.
+   - Navigate to the project's root directory.
+   - Type `npm i` to install the necessary packages.
+
+2. **API Key Setup**
+   - Obtain an API key from [API Layer's Exchange Rates](https://api.apilayer.com/exchangerates_data).
+   - In the `src` folder of the project, create a file named `API_KEY.js`.
+   - Inside `API_KEY.js`, export the API key as follows:
+
+     ```javascript
+     const API_KEY = 'your_api_key_here';
+     export default API_KEY;
+     ```
+
+   - Replace `your_api_key_here` with the actual API key you obtained.
+
+By following these steps, you will set up the necessary environment and API access for the application.
+
+
 
 &nbsp;
 
