@@ -54,11 +54,9 @@ function useForm() {
 
         const isFormClean = h.checkErrors([formErrors, updatedErrors]);
         if (!isFormClean) {
-            console.log('errors');
             return;
         }
 
-        console.log('submitted');
         dispatch(transactionsActions.addTransaction({ transaction: formData }));
         dispatch(formActions.resetForm());
     };
