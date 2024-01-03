@@ -32,11 +32,11 @@ function Trades() {
         dispatch(fetchRates({ currency, dataType }));
     };
 
-    useEffect(() => {
-        if (transactions.length >= 1) {
-            dispatchUpdateRates(currencySymbolsArr, 'latest');
-        }
-    }, [transactions]);
+    // useEffect(() => {
+    //     if (transactions.length >= 1) {
+    //         dispatchUpdateRates(currencySymbolsArr, 'latest');
+    //     }
+    // }, [transactions]);
 
     const updateRatesHandler = () => {
         dispatchUpdateRates(currencySymbolsArr, 'latest');

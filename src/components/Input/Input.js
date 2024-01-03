@@ -32,6 +32,7 @@ function Input({ fieldData }) {
         loader,
         loading,
         max,
+        handleFocus,
     } = fieldData;
 
     const handleChange = (e) => {
@@ -77,6 +78,7 @@ function Input({ fieldData }) {
                         min={min}
                         placeholder={placeholder}
                         max={max}
+                        onFocus={() => handleFocus(name)}
                     />
                     {loader && loading === 'pending' && renderLoader()}
                     {defaultValues && renderDefaults(defaultValues)}

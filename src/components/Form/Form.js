@@ -19,6 +19,12 @@ function Form() {
         handleFieldChange,
     } = useForm();
 
+    const handleFocus = (name) => {
+        if (name === 'price') {
+            console.log(name);
+        }
+    };
+
     const renderInputs = (fields) => {
         const groupedFields = {};
         fields.forEach((field) => {
@@ -43,6 +49,7 @@ function Form() {
                         loading,
                         error,
                         handleCustomSelection: handleCustomInputSelection,
+                        handleFocus,
                     };
                     const TagEl = element;
 

@@ -9,11 +9,12 @@ const requestOptions = {
 class CurrencyAPI {
     url = `https://api.apilayer.com/exchangerates_data`;
 
-    getRates(options) {
+    getRates(options, signal) {
         const { date, currency } = options;
         const dateQuery = date || 'latest';
+        const fetchOptions = {...requestOptions, signal}
 
-        return fetch(`${this.url}/${dateQuery}?symbols=${currency}&base=PLN`, requestOptions)
+        return fetch(`${this.url}/${dateQuery}?symbols=${currency}&base=PLN`, fetchOptions)
             .then(this.handleErrors)
             .then((resp) => resp.json());
     }

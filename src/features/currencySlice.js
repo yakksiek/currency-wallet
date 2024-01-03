@@ -33,29 +33,24 @@ const initialState = {
     latest: { data: null, loading: 'idle', error: null },
 };
 
-export const fetchRates = createAsyncThunk(
-    'data/fetchRates',
-    // eslint-disable-next-line consistent-return
-    async (options, { rejectWithValue }) => {
-        try {
-            const data = await api.getRates(options);
-            return data;
-            // const { dataType } = options;
-            // if (dataType === 'latest') {
-            //     return fakeLatestData;
-            // }
+export const fetchRates = createAsyncThunk('data/fetchRates', async (options, { rejectWithValue }) => {
+    const controller = new AbortController();
+    const { signal } = controller;
 
-            // if (dataType === 'historical') {
-            //     return fakeFormData;
-            // }
-        } catch {
-            return rejectWithValue('Could not fetch rates. Try again later');
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
+
+    try {
+        const data = await api.getRates(options, signal);
+        clearTimeout(timeoutId);
+        return data;
+    } catch (error) {
+        clearTimeout(timeoutId);
+        if (error.name === 'AbortError') {
+            return rejectWithValue('Request cancelled due to timeout');
         }
-    },
-    {
-        timeout: 10000,
-    },
-);
+        return rejectWithValue('Could not fetch rates. Try again later');
+    }
+});
 
 export const currencySlice = createSlice({
     name: 'data',
