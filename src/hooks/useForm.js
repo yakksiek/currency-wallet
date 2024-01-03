@@ -11,6 +11,15 @@ function useForm() {
     const { loading, error: fetchError } = useSelector((store) => store.currency.historical);
     const dispatch = useDispatch();
 
+    // console.log(isPriceFocused)
+
+    // useEffect(() => {
+    //     if(isPriceFocused) {
+    //         dispatch(currencyActions.abortFetch())
+    //     }
+    // }, [isPriceFocused, dispatch])
+
+
     useEffect(() => {
         if (formData.date !== '' && formData.currency !== '') {
             const [dateString] = formData.date.split('T');
@@ -61,6 +70,7 @@ function useForm() {
         console.log('submitted');
         dispatch(transactionsActions.addTransaction({ transaction: formData }));
         dispatch(formActions.resetForm());
+        document.body.style.overflow = '';
     };
 
     const handleFetchErrorReset = () => {
@@ -73,6 +83,18 @@ function useForm() {
         liveValidation(e.target);
     };
 
+    const handleFocus = (name) => {
+        if (name === 'price') {
+            dispatch(formActions.setPriceFocused(true));
+        }
+    };
+
+    const handleBlur = (name) => {
+        if (name === 'price') {
+            dispatch(formActions.setPriceFocused(false));
+        }
+    };
+
     return {
         formData,
         formErrors,
@@ -83,6 +105,8 @@ function useForm() {
         handleSubmit,
         handleFetchErrorReset,
         handleFieldChange,
+        handleFocus,
+        handleBlur,
     };
 }
 

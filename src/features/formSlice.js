@@ -8,6 +8,7 @@ const initialState = {
     isOpen: false,
     formData: { date: '', currency: '', price: '', amount: '' },
     formErrors: {},
+    isPriceFocused: false,
 };
 
 export const formSlice = createSlice({
@@ -29,24 +30,26 @@ export const formSlice = createSlice({
             const { [name]: ommitedKey, ...filteredErrors } = state.formErrors;
             state.formErrors = filteredErrors;
         },
+        setPriceFocused(state, { payload }) {
+            state.isPriceFocused = payload;
+        },
         resetForm() {
             return initialState;
         },
     },
     extraReducers: (builder) => {
-        // nie wiem, czy to zrobiłem w dobry sposób,
-        // zamysł był, żeby nastawić nasłuchwianie na
-        // wykonianie obietnicy
-        // celem załadowania na bieżąco ceny w formularzu
         builder.addCase(fetchRates.fulfilled, (state, action) => {
             const { dataType } = action.meta.arg;
             if (!dataType) throw Error('dataType in payload not found');
-            
+
             if (action.payload && dataType === 'historical') {
                 const [_, currency] = state.formData.currency.split(' ');
                 const value = Number(action.payload.rates[currency]);
                 const rate = (1 / value).toFixed(4);
-                state.formData.price = rate;
+
+                if (!state.isPriceFocused) {
+                    state.formData.price = rate;
+                }
             }
         });
     },

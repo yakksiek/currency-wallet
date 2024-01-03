@@ -17,13 +17,9 @@ function Form() {
         handleSubmit,
         handleFetchErrorReset,
         handleFieldChange,
+        handleFocus,
+        handleBlur,
     } = useForm();
-
-    const handleFocus = (name) => {
-        if (name === 'price') {
-            console.log(name);
-        }
-    };
 
     const renderInputs = (fields) => {
         const groupedFields = {};
@@ -50,6 +46,7 @@ function Form() {
                         error,
                         handleCustomSelection: handleCustomInputSelection,
                         handleFocus,
+                        handleBlur,
                     };
                     const TagEl = element;
 

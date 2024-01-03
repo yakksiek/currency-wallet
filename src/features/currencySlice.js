@@ -3,28 +3,28 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import CurrencyAPI from '../api/currencyProvider';
 
-const fakeLatestData = {
-    success: true,
-    timestamp: 1699300503,
-    base: 'PLN',
-    date: '2023-11-06',
-    rates: {
-        EUR: 0.224317,
-        USD: 0.234214,
-        GBP: 0.241231,
-    },
-};
+// const fakeLatestData = {
+//     success: true,
+//     timestamp: 1699300503,
+//     base: 'PLN',
+//     date: '2023-11-06',
+//     rates: {
+//         EUR: 0.224317,
+//         USD: 0.234214,
+//         GBP: 0.241231,
+//     },
+// };
 
-const fakeFormData = {
-    success: true,
-    timestamp: 1699055999,
-    historical: true,
-    base: 'PLN',
-    date: '2023-11-03',
-    rates: {
-        USD: 0.240874,
-    },
-};
+// const fakeFormData = {
+//     success: true,
+//     timestamp: 1699055999,
+//     historical: true,
+//     base: 'PLN',
+//     date: '2023-11-03',
+//     rates: {
+//         USD: 0.240874,
+//     },
+// };
 
 const api = new CurrencyAPI();
 
@@ -37,7 +37,7 @@ export const fetchRates = createAsyncThunk('data/fetchRates', async (options, { 
     const controller = new AbortController();
     const { signal } = controller;
 
-    const timeoutId = setTimeout(() => controller.abort(), 3000);
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
 
     try {
         const data = await api.getRates(options, signal);
@@ -46,7 +46,7 @@ export const fetchRates = createAsyncThunk('data/fetchRates', async (options, { 
     } catch (error) {
         clearTimeout(timeoutId);
         if (error.name === 'AbortError') {
-            return rejectWithValue('Request cancelled due to timeout');
+            return rejectWithValue('Request cancelled.');
         }
         return rejectWithValue('Could not fetch rates. Try again later');
     }
@@ -73,11 +73,8 @@ export const currencySlice = createSlice({
                 state[dataType].loading = 'pending';
             })
             .addCase(fetchRates.fulfilled, (state, action) => {
-                console.log('fetching latests:');
-                console.log(action.payload);
                 const { dataType } = action.meta.arg;
                 if (!dataType) throw Error('dataType in payload not found');
-
                 state[dataType].loading = 'succeeded';
                 state[dataType].data = action.payload;
                 state[dataType].error = null;
