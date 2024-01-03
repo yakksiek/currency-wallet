@@ -68,7 +68,7 @@ function ProfitLossChart() {
     return (
         <div className="element">
             <h2>Chart rates data</h2>
-            {!data ? (
+            {transactions.length === 0 ? (
                 <h4>Add first transaction to show chart</h4>
             ) : (
                 <div className="scroll">

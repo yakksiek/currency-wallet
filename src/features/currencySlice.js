@@ -29,7 +29,7 @@ import CurrencyAPI from '../api/currencyProvider';
 const api = new CurrencyAPI();
 
 const initialState = {
-    historical: { data: null, loading: 'idle', error: ' 401 (Unauthorized)' },
+    historical: { data: null, loading: 'idle', error: null },
     latest: { data: null, loading: 'idle', error: null },
 };
 

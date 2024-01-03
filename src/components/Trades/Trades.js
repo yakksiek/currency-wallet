@@ -157,7 +157,7 @@ function Trades() {
                     </Button>
                 )}
             </StyledHeader>
-            {!ratesData ? (
+            {transactions.length === 0 ? (
                 <h4>No transactions added.</h4>
             ) : (
                 <StyledTableContainer className="scroll">
