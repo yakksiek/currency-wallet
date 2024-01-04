@@ -1,6 +1,8 @@
 /* eslint-disable no-else-return */
 /* global navigator */
 import React from 'react';
+// eslint-disable-next-line import/no-cycle
+import * as db from '../data'
 
 export function getNumbersOfDaysInMonth(year, month) {
     const date = new Date(year, month, 1);
@@ -70,7 +72,7 @@ export function validate(validationFields, inputElementsArr) {
         const validationField = validationFields.find((el) => el.name === inputName);
         if (!validationField) throw new Error('no validation field');
 
-        const { label, pattern, required, name } = validationField;
+        const { pattern, required, name } = validationField;
 
         if (required) {
             if (inputValue.length === 0) {
@@ -201,18 +203,32 @@ export function extractAndSortDates(objectsArr) {
 export function formatDateToMonthInfo(date) {
     const transactionDate = new Date(date);
     const now = new Date();
-    const monthsAgo = now.getMonth() - transactionDate.getMonth();
+
+    const yearDifference = now.getFullYear() - transactionDate.getFullYear();
+    const monthDifference = now.getMonth() - transactionDate.getMonth();
+    const totalMonthsAgo = yearDifference * 12 + monthDifference;
     const formattedDate = transactionDate.toLocaleDateString();
 
-    let formattedString = '';
+    const timeConditions = [
+        {
+            check: () => totalMonthsAgo === 0,
+            format: () => 'this month',
+        },
+        {
+            check: () => totalMonthsAgo > 0 && totalMonthsAgo < 12,
+            format: () => `${totalMonthsAgo} month${totalMonthsAgo === 1 ? '' : 's'} ago`,
+        },
+        {
+            check: () => totalMonthsAgo >= 12 && yearDifference === 1,
+            format: () => `${totalMonthsAgo} months ago`,
+        },
+        {
+            check: () => yearDifference >= 2,
+            format: () => `${db.months[transactionDate.getMonth()]} ${transactionDate.getFullYear()}`,
+        },
+    ];
 
-    if (monthsAgo === 0) {
-        formattedString = 'this month';
-    } else if (monthsAgo === 1) {
-        formattedString = '1 month ago';
-    } else if (monthsAgo > 1) {
-        formattedString = `${monthsAgo} months ago`;
-    }
+    const formattedString = timeConditions.find((condition) => condition.check()).format();
 
     return (
         <p>

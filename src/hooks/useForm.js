@@ -11,15 +11,6 @@ function useForm() {
     const { loading, error: fetchError } = useSelector((store) => store.currency.historical);
     const dispatch = useDispatch();
 
-    // console.log(isPriceFocused)
-
-    // useEffect(() => {
-    //     if(isPriceFocused) {
-    //         dispatch(currencyActions.abortFetch())
-    //     }
-    // }, [isPriceFocused, dispatch])
-
-
     useEffect(() => {
         if (formData.date !== '' && formData.currency !== '') {
             const [dateString] = formData.date.split('T');
@@ -63,11 +54,9 @@ function useForm() {
 
         const isFormClean = h.checkErrors([formErrors, updatedErrors]);
         if (!isFormClean) {
-            console.log('errors');
             return;
         }
 
-        console.log('submitted');
         dispatch(transactionsActions.addTransaction({ transaction: formData }));
         dispatch(formActions.resetForm());
         document.body.style.overflow = '';

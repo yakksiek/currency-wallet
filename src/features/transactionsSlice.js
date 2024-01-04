@@ -19,13 +19,11 @@ export const transactionsSlice = createSlice({
             const allTransactions = [...state.transactions, objWithID];
             const sortedTransactions = h.sortByKeyDateString(allTransactions);
             state.transactions = sortedTransactions;
-            console.log('added transaction');
         },
         removeTransaction(state, action) {
             const { id } = action.payload;
             const filteredTransaction = h.removeObjectById(id, state.transactions);
             state.transactions = filteredTransaction;
-            console.log('transaction removed');
         },
     },
 });
