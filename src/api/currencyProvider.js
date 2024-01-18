@@ -1,20 +1,12 @@
-import API_KEY from '../API_KEY';
-
-const requestOptions = {
-    method: 'GET',
-    redirect: 'follow',
-    headers: { apiKey: API_KEY },
-};
-
 class CurrencyAPI {
-    url = `https://api.apilayer.com/exchangerates_data`;
+    url = '/api/getRates';
 
     getRates(options, signal) {
         const { date, currency } = options;
         const dateQuery = date || 'latest';
-        const fetchOptions = {...requestOptions, signal}
+        const fetchOptions = { signal };
 
-        return fetch(`${this.url}/${dateQuery}?symbols=${currency}&base=PLN`, fetchOptions)
+        return fetch(`${this.url}?symbols=${currency}&base=EUR&date=${dateQuery}`, fetchOptions)
             .then(this.handleErrors)
             .then((resp) => resp.json());
     }
