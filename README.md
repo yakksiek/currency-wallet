@@ -167,6 +167,12 @@ function useForm() {
 
 &nbsp;
 
+-   **Error handling**: Offers fetch error handling.
+
+![error handling](src/assets/gif/fetch-error-handling.gif)
+
+&nbsp;
+
 ## 💭 Possible future features
 
 -   **Filtering by month/year, biggest gain/loss**
