@@ -3,3 +3,4 @@ build/
 package-lock.json
 .lh/
 API_KEY.js
+.DS_Store
