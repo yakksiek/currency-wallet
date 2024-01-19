@@ -1,7 +1,10 @@
+const webpack = require('webpack');
 const path = require('path');
+require('dotenv').config();
 // importuję bibliotękę [path] z [node.js]
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+
 // importuję odpowiedni plugin
 module.exports = {
     entry: './src/app.js',
@@ -45,6 +48,9 @@ module.exports = {
             // określan nazwę dla pliku
         }),
         new ESLintPlugin(),
+        new webpack.DefinePlugin({
+            'process.env.REACT_APP_API_KEY': JSON.stringify(process.env.REACT_APP_API_KEY),
+        }),
     ],
 };
 // eksportuję ustawienia dla webpack-a

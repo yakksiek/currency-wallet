@@ -4,3 +4,6 @@ package-lock.json
 .lh/
 API_KEY.js
 .DS_Store
+.env
+# Local Netlify folder
+.netlify
