@@ -22,6 +22,7 @@ function Header() {
 
     const openPopup = () => {
         dispatch(formActions.toggleForm());
+        dispatch(currencyActions.resetFetchError({ dataType: 'historical' }));
         document.body.style.overflow = 'hidden';
     };
 

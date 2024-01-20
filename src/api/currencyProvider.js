@@ -14,7 +14,7 @@ class CurrencyAPI {
         const dateQuery = date || 'latest';
         const fetchOptions = { signal };
 
-        return fetch(`${this.url}/${dateQuery}&base=PLN`, requestOptions)
+        return fetch(`${this.url}/${dateQuery}&base=PLN`, fetchOptions)
             .then(this.handleErrors)
             .then((resp) => resp.json());
     }

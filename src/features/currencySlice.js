@@ -38,7 +38,6 @@ export const fetchRates = createAsyncThunk('data/fetchRates', async (options, { 
     const { signal } = controller;
 
     const timeoutId = setTimeout(() => controller.abort(), 5000);
-    console.log(options);
 
     try {
         const data = await api.getRates(options, signal);
