@@ -22,12 +22,14 @@ const dataRates = {
 // };
 
 // const url = `http://api.exchangeratesapi.io/v1/latest?access_key=${process.env.API_KEY}&base=EUR&symbols=USD,PLN,GBP`;
+// exchange rates
 const url = `http://api.exchangeratesapi.io/v1`;
 
 exports.handler = async (event, context) => {
     const { date } = event.queryStringParameters;
 
-    return await fetch(`${url}/${date}?access_key=${process.env.API_KEY_RATES}`)
+    // exchange rates 
+    return await fetch(`${url}/${date}?access_key=${process.env.API_KEY_FAST}`)
         .then((resp) => {
             return resp.json();
         })
