@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { UilSync, UilMultiply, UilTrashAlt, UilTimes } from '@iconscout/react-unicons';
 
@@ -26,20 +26,13 @@ function Trades() {
         data: ratesData,
         error: ratesFetchError,
     } = useSelector((store) => store.currency.latest);
-    const currencySymbolsArr = h.getCurrencySymbols(transactions);
 
     const dispatchUpdateRates = (currency, dataType) => {
         dispatch(fetchRates({ currency, dataType }));
     };
 
-    useEffect(() => {
-        if (transactions.length >= 1) {
-            dispatchUpdateRates(currencySymbolsArr, 'latest');
-        }
-    }, [transactions]);
-
     const updateRatesHandler = () => {
-        dispatchUpdateRates(currencySymbolsArr, 'latest');
+        dispatchUpdateRates([], 'latest');
     };
 
     const calculatePercentage = (profitLoss, totalPrice) => ((profitLoss / totalPrice) * 100).toFixed(2);
