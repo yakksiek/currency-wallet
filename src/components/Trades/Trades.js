@@ -26,13 +26,9 @@ function Trades() {
         data: ratesData,
         error: ratesFetchError,
     } = useSelector((store) => store.currency.latest);
-
-    const dispatchUpdateRates = (currency, dataType) => {
-        dispatch(fetchRates({ currency, dataType }));
-    };
-
+    
     const updateRatesHandler = () => {
-        dispatchUpdateRates([], 'latest');
+        dispatch(fetchRates({ dataType: 'latest' }));
     };
 
     const calculatePercentage = (profitLoss, totalPrice) => ((profitLoss / totalPrice) * 100).toFixed(2);
