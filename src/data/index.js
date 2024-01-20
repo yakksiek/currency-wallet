@@ -6,8 +6,10 @@ import Spinner from '../components/Spinner';
 
 export const currencies = [
     '🇺🇸 USD', // United States Dollar
-    '🇪🇺 EUR', // Euro
     '🇬🇧 GBP', // British Pound Sterling
+    '🇨🇭 CHF', // Swiss Franc
+    '🇦🇺 AUD', // Australian Dollar
+    '🇵🇱 PLN',
 ];
 
 // export const currencies = [
