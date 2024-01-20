@@ -36,6 +36,7 @@
     "dependencies": {
         "@iconscout/react-unicons": "^2.0.2",
         "@reduxjs/toolkit": "^1.9.7",
+        "axios": "^1.6.5",
         "chart.js": "^4.4.0",
         "node-fetch": "^2.7.0",
         "prop-types": "^15.8.1",

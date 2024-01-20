@@ -49,7 +49,8 @@ module.exports = {
         }),
         new ESLintPlugin(),
         new webpack.DefinePlugin({
-            'process.env.REACT_APP_API_KEY': JSON.stringify(process.env.REACT_APP_API_KEY),
+            'process.env.API_KEY_SLOW': JSON.stringify(process.env.API_KEY_SLOW),
+            'process.env.API_KEY_FAST': JSON.stringify(process.env.API_KEY_FAST),
         }),
     ],
 };

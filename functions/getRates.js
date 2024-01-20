@@ -22,23 +22,22 @@ const dataRates = {
 // };
 
 // const url = `http://api.exchangeratesapi.io/v1/latest?access_key=${process.env.API_KEY}&base=EUR&symbols=USD,PLN,GBP`;
-const url = `http://api.exchangeratesapi.io/v1/latest?access_key=${process.env.API_KEY_RATES}&base=EUR`;
+const url = `http://api.exchangeratesapi.io/v1`;
 
 exports.handler = async (event, context) => {
-    // const symbols = event.queryStringParameters.symbols || 'USD,PLN,GBP'
+    const { date } = event.queryStringParameters;
 
-    // return await fetch(`${url}&symbols=${symbols}`)
-    //     .then(resp => {
-    //         return resp.json();
-    //     })
-    //     .then(data => {
-    //         console.log(data);
-    //         return {
-    //             statusCode: 200,
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify(data),
-    //         };
-    //     });
+    return await fetch(`${url}/${date}?access_key=${process.env.API_KEY_RATES}`)
+        .then((resp) => {
+            return resp.json();
+        })
+        .then((data) => {
+            return {
+                statusCode: 200,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            };
+        });
 
-    return { statusCode: 200, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataRates) };
+    // return { statusCode: 200, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataRates) };
 };

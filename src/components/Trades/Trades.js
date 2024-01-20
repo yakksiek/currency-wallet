@@ -27,6 +27,7 @@ function Trades() {
         error: ratesFetchError,
     } = useSelector((store) => store.currency.latest);
     
+
     const updateRatesHandler = () => {
         dispatch(fetchRates({ dataType: 'latest' }));
     };
