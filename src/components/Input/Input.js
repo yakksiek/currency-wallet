@@ -1,6 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -96,12 +95,17 @@ Input.propTypes = {
         label: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
-        placeholder: PropTypes.string,
-        required: PropTypes.bool,
-        pattern: PropTypes.string,
-        errorMessage: PropTypes.string.isRequired,
-        group: PropTypes.number.isRequired,
         value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        error: PropTypes.string,
+        onChange: PropTypes.func.isRequired,
+        min: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        placeholder: PropTypes.string,
+        defaultValues: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+        loader: PropTypes.elementType,
+        loading: PropTypes.string,
+        max: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        handleFocus: PropTypes.func.isRequired,
+        handleBlur: PropTypes.func.isRequired,
     }).isRequired,
 };
 

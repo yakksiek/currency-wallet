@@ -8,7 +8,7 @@ import * as db from '../data';
 
 function useForm() {
     const { formData, formErrors, isPriceFocused } = useSelector((store) => store.form);
-    const { loading, error: fetchError, data } = useSelector((store) => store.currency.historical);
+    const { loading, error: fetchError } = useSelector((store) => store.currency.historical);
     const dispatch = useDispatch();
     const [fetchPromise, setFetchPromise] = useState(null);
 
