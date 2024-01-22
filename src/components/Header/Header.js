@@ -13,7 +13,7 @@ import Popup from '../Popup';
 import Form from '../Form';
 
 import { StyledThemeSwitch, StyledHeader } from './Header.styled';
-import { currencyActions } from '../../features/currencySlice';
+import { currencyActions, fetchRates } from '../../features/currencySlice';
 
 function Header() {
     const { toggleTheme } = useDarkMode(darkModeActions.toggleDarkMode);
@@ -23,6 +23,7 @@ function Header() {
     const openPopup = () => {
         dispatch(formActions.toggleForm());
         dispatch(currencyActions.resetFetchError({ dataType: 'historical' }));
+        // dispatch(fetchRates({ dataType: 'latest' }));
         document.body.style.overflow = 'hidden';
     };
 
@@ -30,6 +31,7 @@ function Header() {
         dispatch(formActions.resetForm());
         dispatch(currencyActions.resetFetchError({ dataType: 'historical' }));
         document.body.style.overflow = '';
+        
     };
 
     return (

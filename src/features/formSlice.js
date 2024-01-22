@@ -46,12 +46,6 @@ export const formSlice = createSlice({
                 const [_, currency] = state.formData.currency.split(' ');
                 const value = Number(action.payload.rates[currency]);
                 const rate = (1 / value).toFixed(4);
-            }
-
-            if (!state.isPriceFocused) {
-                const [_, currency] = state.formData.currency.split(' ');
-                const value = Number(action.payload.rates[currency]);
-                const rate = (1 / value).toFixed(4);
                 state.formData.price = rate;
             }
         });

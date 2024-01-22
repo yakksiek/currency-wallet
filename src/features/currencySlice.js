@@ -3,29 +3,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import CurrencyAPI from '../api/currencyProvider';
 
-// const fakeLatestData = {
-//     success: true,
-//     timestamp: 1699300503,
-//     base: 'PLN',
-//     date: '2023-11-06',
-//     rates: {
-//         EUR: 0.224317,
-//         USD: 0.234214,
-//         GBP: 0.241231,
-//     },
-// };
-
-// const fakeFormData = {
-//     success: true,
-//     timestamp: 1699055999,
-//     historical: true,
-//     base: 'PLN',
-//     date: '2023-11-03',
-//     rates: {
-//         USD: 0.240874,
-//     },
-// };
-
 const api = new CurrencyAPI();
 
 const initialState = {
@@ -34,17 +11,14 @@ const initialState = {
 };
 
 export const fetchRates = createAsyncThunk('data/fetchRates', async (options, { rejectWithValue }) => {
-    const controller = new AbortController();
-    const { signal } = controller;
-
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    // const timeoutId = setTimeout(() => controller.abort(), 10000);
 
     try {
-        const data = await api.getRates(options, signal);
-        clearTimeout(timeoutId);
+        const data = await api.getRates(options);
+        // clearTimeout(timeoutId);
         return data;
     } catch (error) {
-        clearTimeout(timeoutId);
+        // clearTimeout(timeoutId);
         if (error.name === 'AbortError') {
             return rejectWithValue('Request cancelled.');
         }
@@ -69,11 +43,12 @@ export const currencySlice = createSlice({
             .addCase(fetchRates.pending, (state, action) => {
                 const { dataType } = action.meta.arg;
                 if (!dataType) throw Error('dataType in payload not found');
-
                 state[dataType].loading = 'pending';
+                state[dataType].data = null;
             })
             .addCase(fetchRates.fulfilled, (state, action) => {
                 const { dataType } = action.meta.arg;
+                console.log(dataType);
                 if (!dataType) throw Error('dataType in payload not found');
                 state[dataType].loading = 'succeeded';
                 state[dataType].data = action.payload;
