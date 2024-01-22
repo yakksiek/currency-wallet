@@ -15,14 +15,6 @@ const dataRates = {
     },
 };
 
-// const requestOptions = {
-//     method: 'GET',
-//     redirect: 'follow',
-//     headers: { apiKey: process.env.API_KEY },
-// };
-
-// const url = `http://api.exchangeratesapi.io/v1/latest?access_key=${process.env.API_KEY}&base=EUR&symbols=USD,PLN,GBP`;
-// exchange rates
 const url = `http://api.exchangeratesapi.io/v1`;
 
 exports.handler = async (event, context) => {
@@ -40,6 +32,4 @@ exports.handler = async (event, context) => {
                 body: JSON.stringify(data),
             };
         });
-
-    // return { statusCode: 200, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataRates) };
 };
