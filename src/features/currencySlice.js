@@ -48,7 +48,7 @@ export const currencySlice = createSlice({
             })
             .addCase(fetchRates.fulfilled, (state, action) => {
                 const { dataType } = action.meta.arg;
-                console.log(dataType);
+                
                 if (!dataType) throw Error('dataType in payload not found');
                 state[dataType].loading = 'succeeded';
                 state[dataType].data = action.payload;

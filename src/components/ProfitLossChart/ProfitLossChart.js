@@ -10,7 +10,7 @@ function ProfitLossChart() {
     const theme = useTheme();
     const { darkMode } = useSelector((store) => store.darkMode);
     const { transactions } = useSelector((store) => store.transactions);
-    const { data } = useSelector((store) => store.currency.latest);
+    const { data, loading, error } = useSelector((store) => store.currency.latest);
     const darkTheme = darkMode ? 'dark' : 'light';
     const gridLinesColor = theme.palete[darkTheme]['border-color'];
 
@@ -64,6 +64,19 @@ function ProfitLossChart() {
 
         return chartObjData;
     };
+
+    if (loading === 'pending') {
+        return (
+            <div className="element">
+                <h2>Trades history</h2>
+                <h1>LOADING ....</h1>
+            </div>
+        );
+    }
+
+    if (error) {
+        return <h1>Could not fetch data. Error</h1>;
+    }
 
     return (
         <div className="element">

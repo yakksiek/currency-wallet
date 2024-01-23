@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { UilSync, UilMultiply, UilTrashAlt, UilTimes } from '@iconscout/react-unicons';
 
@@ -26,7 +26,15 @@ function Trades() {
         data: ratesData,
         error: ratesFetchError,
     } = useSelector((store) => store.currency.latest);
-    
+
+    useEffect(() => {
+        if (transactions.length === 0) return;
+
+        const promise = dispatch(fetchRates({ dataType: 'latest' }));
+
+        // eslint-disable-next-line consistent-return
+        return () => promise.abort();
+    }, [transactions]);
 
     const updateRatesHandler = () => {
         dispatch(fetchRates({ dataType: 'latest' }));
@@ -135,6 +143,19 @@ function Trades() {
 
         return data ? h.formatTimeDifference(data.timestamp) : '';
     };
+
+    if (ratesLoading === 'pending') {
+        return (
+            <div className="element">
+                <h2>Trades history</h2>
+                <h1>LOADING ....</h1>
+            </div>
+        );
+    }
+
+    if (ratesFetchError) {
+        return <h1>Could not fetch data. Error</h1>;
+    }
 
     return (
         <div className="element">
