@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Header from '../Header';
 import Trades from '../Trades';
-import ProfitLossChart from '../ProfitLossChart';
+import ProfitLossChart from '../ProfitLossChart'
 
 function Dashboard() {
     return (

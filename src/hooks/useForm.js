@@ -24,7 +24,7 @@ function useForm() {
                 fetchRates({ currency: currencyString, date: dateString, dataType: 'historical' }),
             );
             setFetchPromise(promise);
-            // const latestPromise = dispatch(fetchRates({ dataType: 'latest' }));
+            const latestPromise = dispatch(fetchRates({ dataType: 'latest' }));
 
             return () => {
                 promise.abort();

@@ -2,7 +2,7 @@
 /* global navigator */
 import React from 'react';
 // eslint-disable-next-line import/no-cycle
-import * as db from '../data'
+import * as db from '../data';
 
 export function getNumbersOfDaysInMonth(year, month) {
     const date = new Date(year, month, 1);
@@ -174,12 +174,12 @@ export function sortByKeyDateString(objectsArr) {
 export const calculateProfitLoss = (transaction, currentRates) => {
     const { currency, price, amount } = transaction;
     const [_, symbol] = currency.split(' ');
-    const rate = (1 / currentRates[symbol]).toFixed(4);
+    const rate = !currentRates ? 0 : (1 / currentRates.rates[symbol]).toFixed(4);
 
     const volume = parseFloat(amount);
     const totalPrice = parseFloat(price) * volume;
     const currentPrice = rate * volume;
-    const profitLoss = currentPrice - totalPrice;
+    const profitLoss = !currentRates ? 0 : currentPrice - totalPrice;
 
     return { profitLoss, symbol, currentPrice, totalPrice, currentRate: rate };
 };

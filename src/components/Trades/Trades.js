@@ -14,7 +14,7 @@ import Wrapper from '../Wrapper';
 import Popup from '../Popup';
 import { transactionsActions } from '../../features/transactionsSlice';
 
-import { StyledTableContainer, StyledHeader } from './Trades.styled';
+import { StyledTableContainer, StyledHeader, StyledErrorHeading } from './Trades.styled';
 
 function Trades() {
     const dispatch = useDispatch();
@@ -26,15 +26,6 @@ function Trades() {
         data: ratesData,
         error: ratesFetchError,
     } = useSelector((store) => store.currency.latest);
-
-    useEffect(() => {
-        if (transactions.length === 0) return;
-
-        const promise = dispatch(fetchRates({ dataType: 'latest' }));
-
-        // eslint-disable-next-line consistent-return
-        return () => promise.abort();
-    }, [transactions]);
 
     const updateRatesHandler = () => {
         dispatch(fetchRates({ dataType: 'latest' }));
@@ -63,6 +54,7 @@ function Trades() {
     };
 
     const renderRows = (dataArr, currentRates) => {
+        console.log(currentRates);
         const rows = dataArr.map((transaction) => {
             const { currency, date, amount, price, id } = transaction;
             const formattedDate = h.formatDateToMonthInfo(date);
@@ -144,33 +136,40 @@ function Trades() {
         return data ? h.formatTimeDifference(data.timestamp) : '';
     };
 
-    if (ratesLoading === 'pending') {
+    const header = (
+        <StyledHeader>
+            <h2>Trades history</h2>
+            {(transactions.length > 0 || ratesFetchError) && (
+                <Button variant="transparent" className="sync-btn" handleClick={updateRatesHandler}>
+                    {ratesLoading === 'pending' ? <Spinner /> : <UilSync />}
+                    {renderUpdatedTimeMessage(ratesData, ratesFetchError)}
+                </Button>
+            )}
+        </StyledHeader>
+    );
+
+    if (transactions.length === 0) {
         return (
             <div className="element">
-                <h2>Trades history</h2>
-                <h1>LOADING ....</h1>
+                {header}
+                <h4>No transactions added.</h4>
             </div>
         );
     }
 
-    if (ratesFetchError) {
-        return <h1>Could not fetch data. Error</h1>;
+    if (ratesLoading === 'pending') {
+        return (
+            <div className="element">
+                {header}
+                <Spinner />
+            </div>
+        );
     }
 
     return (
         <div className="element">
-            <StyledHeader>
-                <h2>Trades history</h2>
-                {transactions.length > 0 && (
-                    <Button variant="transparent" className="sync-btn" handleClick={updateRatesHandler}>
-                        {ratesLoading === 'pending' ? <Spinner /> : <UilSync />}
-                        {renderUpdatedTimeMessage(ratesData, ratesFetchError)}
-                    </Button>
-                )}
-            </StyledHeader>
-            {transactions.length === 0 ? (
-                <h4>No transactions added.</h4>
-            ) : (
+            {header}
+            {transactions.length > 0 && (
                 <StyledTableContainer className="scroll">
                     {isPopupOpen && (
                         <Popup handleClick={closeConfirmationPoup} classes="background">
@@ -179,10 +178,11 @@ function Trades() {
                     )}
                     <Table
                         headings={renderHeadings(db.columnHeadings)}
-                        tableData={renderRows(transactions, ratesData.rates)}
+                        tableData={renderRows(transactions, ratesData)}
                     />
                 </StyledTableContainer>
             )}
+            {!ratesData && <StyledErrorHeading>You are offline and cannot see profil & loss data!</StyledErrorHeading>}
         </div>
     );
 }

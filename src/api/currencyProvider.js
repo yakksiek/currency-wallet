@@ -3,7 +3,7 @@ export const responseData = {
     success: true,
     timestamp: 1705753204,
     base: 'EUR',
-    date: '2024-01-20',
+    date: '2024-01-23',
     rates: {
         AED: 4.008391,
         AFN: 78.791335,
@@ -199,9 +199,9 @@ class CurrencyAPI {
         const fetchOptions = { ...requestOptions, signal };
 
         // apilayer
-        // return fetch(`${this.url}/${dateQuery}&base=PLN`, fetchOptions)
-        //     .then(this.handleErrors)
-        //     .then((resp) => resp.json());
+        return fetch(`${this.url}/${dateQuery}&base=PLN`, fetchOptions)
+            .then(this.handleErrors)
+            .then((resp) => resp.json());
 
         // exchange rates
         // return fetch(`${this.urlApiRates}/${dateQuery}?access_key=${process.env.API_KEY_FAST}`)
@@ -219,11 +219,11 @@ class CurrencyAPI {
         //     .then(this.handleErrors)
         //     .then((resp) => resp.json());
 
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(responseData);
-            }, 2000); // 2000 milliseconds = 2 seconds
-        });
+        // return new Promise((resolve) => {
+        //     setTimeout(() => {
+        //         resolve(responseData);
+        //     }, 2000); // 2000 milliseconds = 2 seconds
+        // });
     }
 
     // eslint-disable-next-line class-methods-use-this

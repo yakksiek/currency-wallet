@@ -11,17 +11,20 @@ const initialState = {
 };
 
 export const fetchRates = createAsyncThunk('data/fetchRates', async (options, { rejectWithValue }) => {
-    // const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
 
     try {
-        const data = await api.getRates(options);
-        // clearTimeout(timeoutId);
+        const data = await api.getRates(options, signal);
+        clearTimeout(timeoutId);
         return data;
     } catch (error) {
-        // clearTimeout(timeoutId);
-        if (error.name === 'AbortError') {
-            return rejectWithValue('Request cancelled.');
-        }
+        clearTimeout(timeoutId);
+        // if (error.name === 'AbortError') {
+        //     return rejectWithValue('Request cancelled.');
+        // }
         return rejectWithValue('Could not fetch rates. Try again later');
     }
 });
@@ -48,7 +51,9 @@ export const currencySlice = createSlice({
             })
             .addCase(fetchRates.fulfilled, (state, action) => {
                 const { dataType } = action.meta.arg;
-                
+
+                console.log(action.payload);
+
                 if (!dataType) throw Error('dataType in payload not found');
                 state[dataType].loading = 'succeeded';
                 state[dataType].data = action.payload;

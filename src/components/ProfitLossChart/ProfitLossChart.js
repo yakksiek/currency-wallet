@@ -68,14 +68,19 @@ function ProfitLossChart() {
     if (loading === 'pending') {
         return (
             <div className="element">
-                <h2>Trades history</h2>
-                <h1>LOADING ....</h1>
+                <h2>Chart rates data</h2>
+                <h3>Fetch data to see the chart.</h3>
             </div>
         );
     }
 
     if (error) {
-        return <h1>Could not fetch data. Error</h1>;
+        return (
+            <div className="element">
+                <h2>Chart rates data</h2>
+                <h3>Fetch data to see the chart.</h3>
+            </div>
+        );
     }
 
     return (
@@ -88,7 +93,7 @@ function ProfitLossChart() {
                     <Chart
                         labels={labels}
                         chartData={renderDataObjForChart(
-                            calculateProfitLossPerLabel(transactions, data.rates, labels),
+                            calculateProfitLossPerLabel(transactions, data, labels),
                             db.chartColors,
                         )}
                         gridColor={gridLinesColor}

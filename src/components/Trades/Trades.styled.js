@@ -35,3 +35,10 @@ export const StyledHeader = styled.header`
         }
     }
 `;
+
+export const StyledErrorHeading = styled.h4`
+    && {
+        color: green;
+        margin-top: 1rem;
+    }
+`;
