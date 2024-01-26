@@ -41,7 +41,7 @@ export const StyledDefaultList = styled.ul`
     display: flex;
     list-style: none;
     justify-content: space-around;
-    margin-top: 0.5rem;
+    margin-top: 0.75rem;
 `;
 
 export const StyledDefaultItem = styled.li`
