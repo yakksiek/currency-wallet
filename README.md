@@ -2,34 +2,42 @@
 
 # Currency Wallet
 
+See the live version of [Currency Wallet](https://remarkable-cupcake-c5f750.netlify.app).
+
 The Currency Wallet application is a financial tracking tool that allows users to manually input their historical transactions involving various currencies. It utilizes APIs to fetch the historical exchange rates for each transaction date, providing an accurate financial overview. The application then displays a chart showing the profit or loss for each transaction, calculated based on current currency rates, enabling users to assess their investment performance over time.
 
 **Main features**:
 
 1. **API Rate Fetching**
-   - Integrates with APIs for real-time and historical currency exchange rates.
-   - Ensures accurate financial data for each transaction.
+
+    - Integrates with APIs for real-time and historical currency exchange rates.
+    - Ensures accurate financial data for each transaction.
 
 2. **Live Transaction Validation**
-   - Performs live validation during transaction entry.
+
+    - Performs live validation during transaction entry.
 
 3. **ChartJS 2 Integration**
-   - Uses ChartJS 2 for visual representation of financial data.
-   - Provides clear, interactive charts to display profit or loss.
+
+    - Uses ChartJS 2 for visual representation of financial data.
+    - Provides clear, interactive charts to display profit or loss.
 
 4. **Redux Toolkit**
-   - Employs Redux Toolkit for efficient state management.
+
+    - Employs Redux Toolkit for efficient state management.
 
 5. **Dark Mode**
-   - Offers a user-friendly dark mode.
-   - Reduces eye strain and provides an alternative aesthetic.
+
+    - Offers a user-friendly dark mode.
+    - Reduces eye strain and provides an alternative aesthetic.
 
 6. **Custom Hooks for Form**
-   - Custom hooks enhance form handling and selection options.
+
+    - Custom hooks enhance form handling and selection options.
 
 7. **Local Storage**
-   - Stores user data and preferences locally.
-   - Allows for persistent user experiences and quick data retrieval.
+    - Stores user data and preferences locally.
+    - Allows for persistent user experiences and quick data retrieval.
 
 &nbsp;
 
@@ -52,25 +60,25 @@ The Currency Wallet application is a financial tracking tool that allows users t
 The project uses [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/). After ensuring they are installed, follow these steps:
 
 1. **Install Dependencies**
-   - Open your terminal.
-   - Navigate to the project's root directory.
-   - Type `npm i` to install the necessary packages.
+
+    - Open your terminal.
+    - Navigate to the project's root directory.
+    - Type `npm i` to install the necessary packages.
 
 2. **API Key Setup**
-   - Obtain an API key from [API Layer's Exchange Rates](https://api.apilayer.com/exchangerates_data).
-   - In the `src` folder of the project, create a file named `API_KEY.js`.
-   - Inside `API_KEY.js`, export the API key as follows:
 
-     ```javascript
-     const API_KEY = 'your_api_key_here';
-     export default API_KEY;
-     ```
+    - Obtain an API key from [API Layer's Exchange Rates](https://api.apilayer.com/exchangerates_data).
+    - In the `src` folder of the project, create a file named `API_KEY.js`.
+    - Inside `API_KEY.js`, export the API key as follows:
 
-   - Replace `your_api_key_here` with the actual API key you obtained.
+        ```javascript
+        const API_KEY = 'your_api_key_here';
+        export default API_KEY;
+        ```
+
+    - Replace `your_api_key_here` with the actual API key you obtained.
 
 By following these steps, you will set up the necessary environment and API access for the application.
-
-
 
 &nbsp;
 
@@ -78,7 +86,7 @@ By following these steps, you will set up the necessary environment and API acce
 
 **Custom Hook for the form component**
 
-```javascript 
+```javascript
 function useForm() {
     const { formData, formErrors } = useSelector((store) => store.form);
     const { loading, error: fetchError } = useSelector((store) => store.currency.historical);
@@ -156,7 +164,6 @@ function useForm() {
         handleFieldChange,
     };
 }
-
 ```
 
 &nbsp;
