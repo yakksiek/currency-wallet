@@ -7,7 +7,6 @@ import { StyledPopup, StyledButton } from './Popup.styled';
 
 function Popup({ handleClick, children, classes }) {
     return (
-        // <StyledPopup onClick={handleClick}>
         <StyledPopup>
             <div className={`popup-content ${classes}`}>
                 <StyledButton className="close-button" onClick={handleClick}>

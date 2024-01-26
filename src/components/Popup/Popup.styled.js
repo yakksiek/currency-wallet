@@ -20,6 +20,7 @@ export const StyledPopup = styled.div`
         position: relative;
         border-radius: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border: .1px solid black;
         @media (max-width: 750px) {
             height: 100vh;
             overflow-y: auto;
