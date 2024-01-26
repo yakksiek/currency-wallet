@@ -20,7 +20,7 @@ export const StyledPopup = styled.div`
         position: relative;
         border-radius: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        border: .1px solid black;
+        border: 0.1px solid black;
         @media (max-width: 750px) {
             height: 100vh;
             overflow-y: auto;
@@ -37,10 +37,10 @@ export const StyledButton = styled.button`
         transform: translate(50%, -50%);
         border: none;
         background-color: rgb(249 126 156);
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
-        font-size: 1.2em;
+        font-size: 1.5em;
         color: white;
         display: flex;
         align-items: center;
