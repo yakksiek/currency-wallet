@@ -22,9 +22,6 @@ export const fetchRates = createAsyncThunk('data/fetchRates', async (options, { 
         return data;
     } catch (error) {
         clearTimeout(timeoutId);
-        // if (error.name === 'AbortError') {
-        //     return rejectWithValue('Request cancelled.');
-        // }
         return rejectWithValue('Could not fetch rates. Try again later');
     }
 });
@@ -51,8 +48,6 @@ export const currencySlice = createSlice({
             })
             .addCase(fetchRates.fulfilled, (state, action) => {
                 const { dataType } = action.meta.arg;
-
-                console.log(action.payload);
 
                 if (!dataType) throw Error('dataType in payload not found');
                 state[dataType].loading = 'succeeded';

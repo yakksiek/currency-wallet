@@ -45,7 +45,8 @@ export const formSlice = createSlice({
             if (action.payload && dataType === 'historical') {
                 const [_, currency] = state.formData.currency.split(' ');
                 const value = Number(action.payload.rates[currency]);
-                const rate = (1 / value).toFixed(4);
+                // const rate = (1 / value).toFixed(4);
+                const rate = (value / 1).toFixed(4);
                 state.formData.price = rate;
             }
         });

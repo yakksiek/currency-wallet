@@ -174,7 +174,7 @@ export function sortByKeyDateString(objectsArr) {
 export const calculateProfitLoss = (transaction, currentRates) => {
     const { currency, price, amount } = transaction;
     const [_, symbol] = currency.split(' ');
-    const rate = !currentRates ? 0 : (1 / currentRates.rates[symbol]).toFixed(4);
+    const rate = !currentRates ? 0 : (currentRates.rates[symbol] / 1).toFixed(4);
 
     const volume = parseFloat(amount);
     const totalPrice = parseFloat(price) * volume;

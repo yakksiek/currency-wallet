@@ -62,7 +62,7 @@ export const formFields = [
     },
 
     {
-        label: 'Price in PLN',
+        label: 'Price for 1 🇪🇺',
         name: 'price',
         type: 'text',
         required: true,

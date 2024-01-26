@@ -54,7 +54,6 @@ function Trades() {
     };
 
     const renderRows = (dataArr, currentRates) => {
-        console.log(currentRates);
         const rows = dataArr.map((transaction) => {
             const { currency, date, amount, price, id } = transaction;
             const formattedDate = h.formatDateToMonthInfo(date);
@@ -90,8 +89,8 @@ function Trades() {
                 amount,
                 price,
                 currentRate,
-                totalPrice: `PLN ${totalPrice.toFixed(2)}`,
-                currentPrice: `PLN ${currentPrice.toFixed(2)}`,
+                totalPrice: `EUR ${totalPrice.toFixed(2)}`,
+                currentPrice: `EUR ${currentPrice.toFixed(2)}`,
                 summary: profitLossJSX,
                 button: buttonDelJSX,
             };

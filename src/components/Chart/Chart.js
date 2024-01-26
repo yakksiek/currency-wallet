@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Line } from 'react-chartjs-2';
+import { Line, Bar } from 'react-chartjs-2';
 
 import {
     Chart as ChartJS,
@@ -8,12 +8,13 @@ import {
     LinearScale,
     PointElement,
     LineElement,
+    BarElement,
     Title,
     Tooltip,
     Legend,
 } from 'chart.js';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
 function ChartRates({ labels, chartData, gridLinesColor }) {
     const data = {
@@ -39,7 +40,8 @@ function ChartRates({ labels, chartData, gridLinesColor }) {
 
     return (
         <div style={{ width: 900, height: 400, margin: '0 auto' }}>
-            <Line options={options} data={data} />
+            {/* <Line options={options} data={data} /> */}
+            <Bar options={options} data={data} />
         </div>
     );
 }
