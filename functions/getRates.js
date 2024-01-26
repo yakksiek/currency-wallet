@@ -16,21 +16,10 @@ exports.handler = async (event, context) => {
     const { date } = event.queryStringParameters;
 
     // exchange rates
-    // return await fetch(`${url}/${date}?access_key=${process.env.API_KEY_FAST}`)
-    //     .then((resp) => {
-    //         return resp.json();
-    //     })
-    //     .then((data) => {
-    //         return {
-    //             statusCode: 200,
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify(data),
-    //         };
-    //     });
-
-    // apiLayer
-    return await fetch(`${urlApiRates}/${date}&base=EUR`, requestOptions)
-        .then((resp) => resp.json())
+    return await fetch(`${url}/${date}?access_key=${process.env.API_KEY_FAST}`)
+        .then((resp) => {
+            return resp.json();
+        })
         .then((data) => {
             return {
                 statusCode: 200,
@@ -38,4 +27,15 @@ exports.handler = async (event, context) => {
                 body: JSON.stringify(data),
             };
         });
+
+    // apiLayer
+    // return await fetch(`${urlApiRates}/${date}&base=EUR`, requestOptions)
+    //     .then((resp) => resp.json())
+    //     .then((data) => {
+    //         return {
+    //             statusCode: 200,
+    //             headers: { 'Content-Type': 'application/json' },
+    //             body: JSON.stringify(data),
+    //         };
+    //     });
 };
